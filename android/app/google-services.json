@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "308845910376",
+    "firebase_url": "https://psikoz-teknofest-default-rtdb.firebaseio.com",
+    "project_id": "psikoz-teknofest",
+    "storage_bucket": "psikoz-teknofest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308845910376:android:ccfaba4f1a8c75b1285edd",
+        "android_client_info": {
+          "package_name": "com.bexbow.psikoz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308845910376-ehoe74vuppb4vb00liovk8tgcllub24b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjVuizr_tb5lXm6kFW9Ui945pa654sYCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308845910376-ehoe74vuppb4vb00liovk8tgcllub24b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "308845910376-k7st00uuj1mb7m5dkjl4qog6o2fn1ipf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bexbow.psikoz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
