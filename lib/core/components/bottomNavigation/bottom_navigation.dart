@@ -4,7 +4,7 @@ import '../../constants/enums/Icon-enums.dart';
 import '../../utility/app/gradient-utility.dart';
 import '../../utility/embabed/embabed_utility.dart';
 
-
+import 'package:get/get.dart';
 
 class BottomNavigatior extends StatelessWidget {
   BottomNavigatior(
@@ -16,7 +16,7 @@ class BottomNavigatior extends StatelessWidget {
       required this.onTap3,
       required this.onTap4})
       : super(key: key);
-  int selectedItem ;
+  int selectedItem;
   void Function() onTap;
   void Function() onTap1;
 
@@ -28,7 +28,7 @@ class BottomNavigatior extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
         child: Container(
-      color: EmbabedUtility.pureBlack,
+      color: Get.isDarkMode ? EmbabedUtility.pureBlack : Colors.white,
       height: 64,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -37,13 +37,13 @@ class BottomNavigatior extends StatelessWidget {
             IconNormal(
                 onTap: onTap,
                 child: IconNames.feed.tosvgPictureConvert(selectedItem == 0
-                    ? Colors.white
-                    : EmbabedUtility.socialGray)),
+                    ? Get.theme.colorScheme.background 
+                    : Get.theme.colorScheme.surface)),
             IconNormal(
                 onTap: onTap1,
                 child: IconNames.search.tosvgPictureConvert(selectedItem == 1
-                    ? Colors.white
-                    : EmbabedUtility.socialGray)),
+                     ? Get.theme.colorScheme.background 
+                    : Get.theme.colorScheme.surface)),
             IconCircular(
               onTap: onTap2,
               child: Padding(
@@ -52,14 +52,14 @@ class BottomNavigatior extends StatelessWidget {
             ),
             IconNormal(
                 onTap: onTap3,
-                child: IconNames.alert.tosvgPictureConvert(selectedItem == 3
-                    ? Colors.white
-                    : EmbabedUtility.socialGray)),
+                child: IconNames.articles.tosvgPictureConvert(selectedItem == 3
+                     ? Get.theme.colorScheme.background 
+                    : Get.theme.colorScheme.surface)),
             IconNormal(
                 onTap: onTap4,
                 child: IconNames.profile.tosvgPictureConvert(selectedItem == 4
-                    ? Colors.white
-                    : EmbabedUtility.socialGray)),
+                     ? Get.theme.colorScheme.background 
+                    : Get.theme.colorScheme.surface)),
           ]),
     ));
   }

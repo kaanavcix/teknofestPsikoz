@@ -8,7 +8,7 @@ import 'package:psikoz/core/utility/app/sizedbox_utility.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/product/controller/profile_controller.dart';
 import 'package:psikoz/product/controller/set_controller.dart';
-import 'package:psikoz/product/view/profile/settings_view.dart';
+import 'package:psikoz/view/profile/settings_view.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
@@ -22,67 +22,66 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
       body: Column(
         children: [
-           Stack(clipBehavior: Clip.none, children: [
-              GestureDetector(
-                onTap: () => Get.bottomSheet(bottomsheet(
-                  stroage,
-                  () => stroage
-                      .getProfileBackground(ImageSource.camera)
-                      .then((value) => Get.back()),
-                  () => stroage
-                      .getProfileImage(ImageSource.gallery)
-                      .then((value) => Get.back()),
-                )),
-                child: Container(
-                  height: 160,
-                  decoration: BoxDecoration(
-                      color: Colors.green.shade300,
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              db.user.first.backgroundImage.toString()))),
-                ),
+          Stack(clipBehavior: Clip.none, children: [
+            GestureDetector(
+              onTap: () => Get.bottomSheet(bottomsheet(
+                stroage,
+                () => stroage
+                    .getProfileBackground(ImageSource.camera)
+                    .then((value) => Get.back()),
+                () => stroage
+                    .getProfileImage(ImageSource.gallery)
+                    .then((value) => Get.back()),
+              )),
+              child: Container(
+                height: 160,
+                decoration: BoxDecoration(
+                    color: Colors.green.shade300,
+                    image: db.user.first.backgroundImage == ""
+                        ? DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(db.user.first.backgroundImage ??
+                                "https://picsum.photos/200/300"))
+                        : null),
               ),
-              Positioned(
-                  right: 0,
-                  top: 160 / 10,
-                  child: IconButton(
-                      onPressed: () => Get.to(SettingsView()),
-                      icon: IconNames.settings.tosvgPictureConvert(
-                          EmbabedUtility.socialLightGray,
-                          height: 24,
-                          width: 24))),
-              Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: -70,
-                  child: GestureDetector(
-                    onTap: () => Get.bottomSheet(
-                      bottomsheet(
-                        stroage,
-                        () => stroage
-                            .getProfileImage(ImageSource.camera)
-                            .then((value) => Get.back()),
-                        () => stroage
-                            .getProfileBackground(ImageSource.gallery)
-                            .then((value) => Get.back()),
-                      ),
+            ),
+            Positioned(
+                right: 0,
+                top: 160 / 10,
+                child: IconButton(
+                    onPressed: () => Get.to(SettingsView()),
+                    icon: IconNames.settings.tosvgPictureConvert(
+                        EmbabedUtility.socialLightGray,
+                        height: 24,
+                        width: 24))),
+            Positioned(
+                left: 0,
+                right: 0,
+                bottom: -70,
+                child: GestureDetector(
+                  onTap: () => Get.bottomSheet(
+                    bottomsheet(
+                      stroage,
+                      () => stroage
+                          .getProfileImage(ImageSource.camera)
+                          .then((value) => Get.back()),
+                      () => stroage
+                          .getProfileBackground(ImageSource.gallery)
+                          .then((value) => Get.back()),
                     ),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue.shade800,
-                      
-                      backgroundImage: db.user.first.image == ""
-                          ? null
-                          : NetworkImage(
-
-                              db.user.first.image.toString() ,
-                              
-                            ),
-                      radius: radius2,
-                    ),
-                  )),
-            ]),
-          
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.blue.shade800,
+                    backgroundImage: db.user.first.image == ""
+                        ? NetworkImage(
+                            db.user.first.image ??
+                                "https://picsum.photos/200/300",
+                          )
+                        : null,
+                    radius: radius2,
+                  ),
+                )),
+          ]),
           Padding(
             padding: const EdgeInsets.only(top: 70.0),
             child: Column(

@@ -26,13 +26,18 @@ class Psikoz extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Psikoz',
-        theme: darkTheme,
+  themeMode: ThemeMode.light,
+        darkTheme: darkTheme,
+        enableLog: true,
+        theme: lightTheme,
         home: OnboardingView());
   }
 }
 
 Future<void> initService() async {
   await Get.putAsync(() async => await AuthStateChanges());
-    await Get.putAsync(() async => await FirebaseDb());
+    
 
 }
+
+

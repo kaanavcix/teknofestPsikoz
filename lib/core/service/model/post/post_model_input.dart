@@ -1,32 +1,53 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostModelForInput {
-  final int? id;
-  final DateTime? createdTime;
+  final String? id;
+  final Timestamp? createdTime;
   final String? message;
-  final int? categoryId;
+  final String? anonimname;
+  final String? categroryName;
   final String? userId;
   final bool? isAnonim;
-  final List<String>? images;
-
+  final String? username;
+  final String? age;
+  final bool? gender;
+  final List<String>? saves;
+  final List<String>? likes;
+  final bool? isLikeBloc;
+  final bool? isCommentBloc;
+// 0 is woman 1 is man
   PostModelForInput(
-      {this.id,
+      {this.anonimname,this.saves,
+      this.likes,
+      this.isLikeBloc,
+      this.isCommentBloc,
+      this.id,
       this.createdTime,
       this.message,
-      this.categoryId,
+      this.categroryName,
       this.userId,
       this.isAnonim,
-      this.images});
+      this.username,
+      this.age,
+      this.gender});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['Id'] = id;
     data['Created'] = createdTime;
-    data["Images"] = images;
+    data['Age'] = age;
+    data["Anonimname"] = anonimname;
+    data['Gender'] = gender;
     data['Message'] = message;
-    data['CategoryId'] = categoryId;
+    data['Categroryname'] = categroryName;
     data['UserId'] = userId;
     data['IsAnonim'] = isAnonim;
+    data['Saves'] = saves;
+    data['Likes'] = likes;
+    data['Username'] = username;
+
+    data['IsLikeBloc'] = isLikeBloc;
+    data['IsCommentBloc'] = isCommentBloc;
     return data;
   }
 }

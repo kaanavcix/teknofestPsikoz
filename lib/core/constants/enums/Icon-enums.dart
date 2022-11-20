@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 extension EnumSvgPicture on IconNames {
-  tosvgPictureConvert(Color? color, {double width= 24, double height=24}) {
+  tosvgPictureConvert(Color? color, {double width = 24, double height = 24}) {
     return SvgPicture.asset(
       "assets/Icon/$name.svg",
-      color: color,
-      width: width ,
-      height: height ,
+      color: color ?? (!Get.isDarkMode
+          ? const Color.fromARGB(255, 0, 0, 0)
+          : const Color.fromARGB(255, 255, 255, 255)),
+      width: width,
+      height: height,
     );
   }
 }
@@ -37,5 +40,6 @@ enum IconNames {
   settings,
   share,
   email,
-  lock
+  lock,
+  articles
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:psikoz/core/components/inputbar/search_bar_widget.dart';
-import 'package:psikoz/core/components/post/post_bar.dart';
-
 import 'package:get/get.dart';
 
-import '../../controller/home_controller.dart';
+import '../../product/controller/home_controller.dart';
 
 class SearchView extends GetView<HomeController> {
   const SearchView({Key? key}) : super(key: key);
@@ -14,16 +12,16 @@ class SearchView extends GetView<HomeController> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(75),
+          preferredSize: const Size.fromHeight(75),
           child: AppBar(
-            flexibleSpace: Padding(
+            flexibleSpace: const Padding(
               padding:  EdgeInsets.all(15.0),
               child: SearchBarWidget(),
             ),
           ),
         ),
         body: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: <Widget>[
             SliverToBoxAdapter(
               child: SizedBox(
@@ -34,15 +32,15 @@ class SearchView extends GetView<HomeController> {
                       padding: const EdgeInsets.symmetric(horizontal: 2.0),
                       child: Container(
                           height: 100,
-                          child: const Center(
-                              child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Hello"),
-                          )),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
                               border:
-                                  Border.all(color: Colors.white, width: 0.4))),
+                                  Border.all(color: Get.isDarkMode ? Colors.white:Colors.black, width: 0.4)),
+                          child:   Center(
+                              child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Hello",style: Get.textTheme.bodyLarge),
+                          ))),
                     );
                   },
                   scrollDirection: Axis.horizontal,

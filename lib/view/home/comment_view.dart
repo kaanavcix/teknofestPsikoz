@@ -3,21 +3,22 @@ import 'package:psikoz/core/components/comments/comments_bar.dart';
 import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/init/theme/text_theme.dart';
+import 'package:psikoz/core/service/model/post/post_model_output.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/product/controller/home_controller.dart';
-import '../../../core/components/iconWidget/leading_widget.dart';
+import '../../core/components/iconWidget/leading_widget.dart';
 
 class CommentView extends GetView<HomeController> {
-  const CommentView({Key? key}) : super(key: key);
+   CommentView({required this.data ,Key? key}) : super(key: key);
+    PostOutput data;
 
   @override
   Widget build(BuildContext context) {
-    var argument = Get.arguments;
 
     return GetBuilder(
 
       builder: (controller) {
-       return sc(argument);
+       return sc(data);
       },
     );
   }
@@ -52,9 +53,7 @@ class CommentView extends GetView<HomeController> {
             },
             onTapComment: () {},
             commentLenght: "0",
-            userName: argument.userName ?? "",
-            imageList: argument.photos ?? [],
-            profileUrl: argument.profileUrl ?? "",
+            userName: argument.userName ?? "",           
             text: argument.text ?? "",
             time: "10"),
         Padding(

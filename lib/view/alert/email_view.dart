@@ -5,7 +5,7 @@ import 'package:psikoz/core/components/seperators/seperators_line.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 
-import '../../../core/init/theme/text_theme.dart';
+import '../../core/init/theme/text_theme.dart';
 
 import 'package:get/get.dart';
 

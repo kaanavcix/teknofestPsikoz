@@ -7,7 +7,7 @@ class ImageBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       itemCount: profileUrlSet!.length,
       itemBuilder: (BuildContext context, int index) {

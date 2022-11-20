@@ -1,37 +1,55 @@
+import 'dart:core';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-import 'package:psikoz/core/service/model/user_model.dart';
 
 class PostOutput {
-  int? id;
-  String? created;
-  String? message;
-  String? categoryName;
-  String? userName;
-  String? image;
-  bool? isAnonim;
+  final String? id;
+  final Timestamp? createdTime;
+  final String? message;
+  final bool? gender;
+  final String? age;
+  final int? categoryName;
+  final String? username;
+  final bool? isAnonim;
+  final List<String>? saves;
+  final List<String>? likes;
+  final bool? isLikeBloc;
+  final bool? isCommentBloc;
+  final String? anonimname;
 
-  PostOutput.fromMap(DocumentSnapshot map, UserInfos personInfo, String categoryNames) {
-    id = map['Id'];
-    created = map['Created'];
-    message = map['Message'];
-    categoryName = categoryNames;
-    userName = personInfo.username;
+  factory PostOutput.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final data = snapshot.data();
 
-    image = personInfo.image;
-
-    isAnonim = map['IsAnonim'];
+    return PostOutput(
+        id: data?["Id"],
+        username: data?["Username"],
+        categoryName: data?["Categoryname"],
+        createdTime: data?["Created"],
+        age: data?['Age'],
+        anonimname: data?["Anonimname"],
+        isAnonim: data?["IsAnonim"],
+        isCommentBloc: data?["IsCommentBloc"],
+        isLikeBloc: data?["IsLikeBloc"],
+        likes: data?['Likes'] is Iterable ? List.from(data?['Likes']) : null,
+        message: data?["Message"],
+        saves: data?['Saves'] is Iterable ? List.from(data?['Saves']) : null,
+        gender: data?["Gender"]);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['id'] = id;
-    data['created'] = created;
-    data['message'] = message;
-    data['categoryName'] = categoryName;
-    data['userName'] = userName;
-    data['image'] = image;
-    data['isAnonim'] = isAnonim;
-    return data;
-  }
+  PostOutput(
+      {this.anonimname,this.id,
+      this.createdTime,
+      this.message,
+      this.categoryName,
+      this.username,
+      this.age,
+      this.isAnonim,
+      this.gender,
+      this.saves,
+      this.likes,
+      this.isLikeBloc,
+      this.isCommentBloc});
 }

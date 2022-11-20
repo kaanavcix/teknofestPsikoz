@@ -1,13 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:psikoz/core/base/firebase_auth_base.dart';
 import 'package:psikoz/core/service/model/OnboardingModel/UserForRegister.dart';
 import 'package:psikoz/core/service/model/user_model.dart';
 import '../model/OnboardingModel/UserForLoginModel.dart';
 import 'package:rxdart/rxdart.dart';
 
-class FireBaseServiceAuth {
+class FireBaseServiceAuth extends IFirebaseAuthService {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore db = FirebaseFirestore.instance;
+
+
+  @override
   Future<void> signUpWithEmail(UserForRegister userForRegister) async {
     UserCredential userCredential =
         await firebaseAuth.createUserWithEmailAndPassword(
@@ -32,7 +36,7 @@ class FireBaseServiceAuth {
         .doc(userCredential.user?.uid)
         .set({"Uid": userCredential.user!.uid, "ClaimsId": "1"});
   }
-
+  @override
   Future<void> signInWithEmail(UserForLoginModel userForLoginModel) async {
     
     

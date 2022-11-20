@@ -51,6 +51,7 @@ dependencies:
   firebase_auth: ^4.1.1
   cloud_firestore: ^4.0.4
   rxdart: ^0.27.6
+  lottie: ^2.0.0
  
 
 dev_dependencies:
@@ -72,5 +73,6 @@ flutter:
   assets:
    - assets/images/
    - assets/Icon/
+   - assets/lotties/
 
   

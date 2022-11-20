@@ -92,7 +92,7 @@ class LoginView extends GetView<LoginController> {
                   width: 5,
                 ),
                 InkWell(
-                    onTap: () => Get.to(const RegisterView()),
+                    onTap: () => Get.to(const RegisterScreen()),
                     child: Text("Kayıt Olun",
                         style: grTertiarySB.copyWith(
                             color: EmbabedUtility.socialblue)))

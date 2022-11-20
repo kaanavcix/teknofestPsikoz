@@ -11,6 +11,7 @@ class RegisterController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   FireBaseServiceAuth auth = FireBaseServiceAuth();
+  var currentIndex = 0.obs;
   var isFailed = false.obs;
 
   Future<void> registerControl(UserForRegister userForRegister) async {

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/product/controller/profile_controller.dart';
-import 'package:psikoz/product/view/profile/anonim_name_view.dart';
+import 'package:psikoz/view/profile/anonim_name_view.dart';
 
 class SettingsView extends GetView<FirebaseDb> {
   const SettingsView({Key? key}) : super(key: key);

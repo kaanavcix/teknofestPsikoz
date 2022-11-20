@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../constants/enums/Icon-enums.dart';
 import '../../utility/embabed/embabed_utility.dart';
 class SearchBarWidget extends StatelessWidget {
@@ -11,7 +12,7 @@ class SearchBarWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
-        color: EmbabedUtility.socialGray,
+        color: Get.isDarkMode ?EmbabedUtility.socialLightGray:EmbabedUtility.socialwhite
       ),
       child: Padding(
         padding: EdgeInsets.zero,
@@ -20,7 +21,7 @@ class SearchBarWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal:8.0),
               child: TextFormField(
-                cursorColor: Colors.transparent,
+                cursorColor: Get.isDarkMode? Colors.white : Colors.black,
                   decoration: InputDecoration(
                       suffixIcon: Padding(
                           padding:  const EdgeInsets.symmetric(vertical: 14),
