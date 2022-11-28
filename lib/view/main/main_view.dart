@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:psikoz/core/components/bottomNavigation/bottom_navigation.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/init/routes/pages.dart';
-import 'package:psikoz/product/controller/main_controller.dart';
+import 'package:psikoz/controller/main_controller.dart';
 
 class MainView extends GetView<MainController> {
   const MainView({Key? key}) : super(key: key);

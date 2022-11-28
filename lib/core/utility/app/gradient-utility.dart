@@ -6,4 +6,10 @@ class GradientUtility {
       colors: [EmbabedUtility.socialblue, EmbabedUtility.socialPurple],
       begin: Alignment.centerRight,
       end: Alignment.centerLeft);
+
+  static const LinearGradient dicoverGradient = LinearGradient(
+      colors: [EmbabedUtility.socialblue, EmbabedUtility.socialPurple],
+      begin: Alignment.topRight,
+      stops: [0.1, 0.7],
+      end: Alignment.bottomLeft);
 }

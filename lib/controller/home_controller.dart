@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/service/model/user_model.dart';
 
-import 'package:psikoz/product/controller/profile_controller.dart';
+import 'package:psikoz/controller/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../core/service/model/post/post_model_output.dart';
 
 class HomeController extends GetxService {
   late final dateTime;
@@ -66,4 +68,13 @@ class HomeController extends GetxService {
 
   return time;
 }
+usernameDetection(PostOutput data, FirebaseDb db) {
+    if (int.parse(db.user.first.claimsId ?? "1") >= 3) {
+      return data.username ?? "";
+    } else if (int.parse(db.user.first.claimsId ?? "1") <= 3) {
+      return data.isAnonim ?? true ? data.anonimname : data.username;
+    } else {
+      return data.anonimname;
+    }
+  }
 }

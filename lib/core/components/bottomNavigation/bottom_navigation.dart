@@ -28,7 +28,7 @@ class BottomNavigatior extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
         child: Container(
-      color: Get.isDarkMode ? EmbabedUtility.pureBlack : Colors.white,
+      color: Get.isDarkMode ? EmbabedUtility.darkBlack : Colors.white,
       height: 64,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -37,12 +37,12 @@ class BottomNavigatior extends StatelessWidget {
             IconNormal(
                 onTap: onTap,
                 child: IconNames.feed.tosvgPictureConvert(selectedItem == 0
-                    ? Get.theme.colorScheme.background 
+                    ? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface)),
             IconNormal(
                 onTap: onTap1,
                 child: IconNames.search.tosvgPictureConvert(selectedItem == 1
-                     ? Get.theme.colorScheme.background 
+                    ? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface)),
             IconCircular(
               onTap: onTap2,
@@ -53,12 +53,12 @@ class BottomNavigatior extends StatelessWidget {
             IconNormal(
                 onTap: onTap3,
                 child: IconNames.articles.tosvgPictureConvert(selectedItem == 3
-                     ? Get.theme.colorScheme.background 
+                    ? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface)),
             IconNormal(
                 onTap: onTap4,
                 child: IconNames.profile.tosvgPictureConvert(selectedItem == 4
-                     ? Get.theme.colorScheme.background 
+                    ? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface)),
           ]),
     ));

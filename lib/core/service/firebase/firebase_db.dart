@@ -68,13 +68,23 @@ class FirebaseDb extends GetxService {
     db.collection("Posts").doc(doc).set(model);
   }
 
+@override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    post.bindStream(getPost());
+
+  }
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     user.bindStream(getInfos());
-    post.bindStream(getPost());
+      
+
   }
+
+  
 
   Stream<List<PostOutput>> getPost() {
     return db

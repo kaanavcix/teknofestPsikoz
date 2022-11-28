@@ -26,6 +26,7 @@ String? Function(String?)? validator;
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         validator: validator,
+        
         textInputAction: textInputAction,
         autocorrect: true,
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -36,7 +37,7 @@ String? Function(String?)? validator;
         keyboardAppearance: Brightness.dark,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: EmbabedUtility.socialblue,
                 width: 0.6,
               ),

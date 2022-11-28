@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/global/firebase_auth_instance.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
-import 'package:psikoz/product/onboarding/login_view.dart';
-import 'package:psikoz/product/onboarding/onboarding_view.dart';
-import 'package:psikoz/product/onboarding/register_view.dart';
+import 'package:psikoz/view/onboarding/login_view.dart';
+import 'package:psikoz/view/onboarding/onboarding_view.dart';
+import 'package:psikoz/view/onboarding/register_view.dart';
 import 'package:psikoz/view/main/main_view.dart';
 
 class AuthStateChanges extends GetxController {
@@ -26,6 +26,7 @@ class AuthStateChanges extends GetxController {
     super.onInit();
     firebaseAuth = FirebaseAuth.instance;
     users = Rx<User?>(firebaseAuth.currentUser);
+   
   }
 
   changePage(User? user) {

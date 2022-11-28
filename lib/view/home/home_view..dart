@@ -4,17 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
-import 'package:psikoz/core/constants/enums/lottie_enums.dart';
-import 'package:psikoz/core/init/theme/text_theme.dart';
+
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
-import 'package:psikoz/core/utility/app/gradient-utility.dart';
-import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
-import 'package:psikoz/product/controller/home_controller.dart';
+import 'package:psikoz/controller/home_controller.dart';
+import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
 import 'package:psikoz/view/alert/email_view.dart';
 import 'package:psikoz/view/home/comment_view.dart';
+import 'package:psikoz/view/home/widgets/feel_bar.dart';
 
-import '../../core/components/containers/face_container.dart';
-import '../../core/service/model/post/post_model_output.dart';
+import 'widgets/message_icon_button.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -22,18 +20,18 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-   // ScrollController controller = ScrollController();
+    // ScrollController controller = ScrollController();
     var db = Get.find<FirebaseDb>();
     return Scaffold(
         appBar: appbar(db),
         body: SingleChildScrollView(
+          physics: const ScrollPyhcisyUtilty.bouncAlways(),
           child: SizedBox(
             height: Get.height,
             child: Column(
               children: [
-               Expanded(flex: 3,child: topbar()),
-              
-                Expanded(flex:17 ,child: postlist(db)),
+                const Expanded(flex: 4, child: FeelBar()),
+                Obx(() => Expanded(flex: 16, child: postlist(db))),
               ],
             ),
           ),
@@ -42,20 +40,41 @@ class HomeView extends GetView<HomeController> {
 
   Widget postlist(FirebaseDb db) {
     return ListView.builder(
-      physics: const  NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
         var data = db.post[index];
 
-        var time = controller
-            .readTimestamp(data.createdTime!.millisecondsSinceEpoch);
+        var time =
+            controller.readTimestamp(data.createdTime!.millisecondsSinceEpoch);
 
         return GestureDetector(
-          onTap: () => Get.to(CommentView(
-            data: data,
-          )),
+          onTap: () => Get.to(() => CommentView(), arguments: data),
           child: PostBar(
+              onLongPress: controller.usernameDetection(data, db) ==
+                      data.username
+                  ? (() {
+                      showGeneralDialog(
+                        context: context,
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return Container(
+                            color: Colors.blue,
+                            height: 200,
+                            width: 200,
+                          );
+                        },
+                        transitionBuilder: (ctx, a1, a2, child) {
+                          var curve = Curves.easeInOut.transform(a1.value);
+                          return Transform.scale(
+                              scale: curve, child: AlertDialog(
+                                
+                              ));
+                        },
+                        transitionDuration: const Duration(milliseconds: 300),
+                      );
+                    })
+                  : null,
               text: data.message ?? "",
-              userName: usernameDetection(data, db),
+              userName: controller.usernameDetection(data, db),
               time: time,
               onTapLike: data.isLikeBloc ?? false ? null : () {},
               onTapComment: data.isCommentBloc ?? false ? null : () {},
@@ -67,78 +86,18 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  BouncingScrollPhysics scroll() =>
-      const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
-
-  Widget topbar() {
-    return SizedBox(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
-              "Bugün Kendinizi nasıl hissediyorsunuz",
-              style: grBodyB,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              FaceContainer(
-                widget: const Icon(Icons.tag_faces_outlined),
-              ),
-              FaceContainer(
-                widget: const Icon(
-                  Icons.tag_faces_outlined,
-                ),
-              ),
-              FaceContainer(
-                widget: const Icon(Icons.tag_faces_outlined),
-              ),
-              FaceContainer(
-                widget: const Icon(Icons.tag_faces_outlined),
-              ),
-              FaceContainer(
-                widget: const Icon(Icons.tag_faces_outlined),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
   AppBar appbar(FirebaseDb db) {
     return AppBar(
-        actions: [iconButton()],
+        actions: [
+          MessageIconButton(
+            onTap: () => Get.to(const MessageView()),
+          )
+        ],
         title: Obx(() => db.user.isEmpty
             ? const SizedBox.shrink()
             : Text(
                 "${controller.frontText.value},${db.user.first.firstName}",
                 style: Get.textTheme.bodyMedium,
               )));
-  }
-
-  GestureDetector iconButton() {
-    return GestureDetector(
-      onTap: () => Get.to(MessageView()),
-      child: Container(
-          margin: const EdgeInsets.all(8),
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 0.4)),
-          child: IconNames.message.tosvgPictureConvert(null)),
-    );
-  }
-
-  usernameDetection(PostOutput data, FirebaseDb db) {
-    if (int.parse(db.user.first.claimsId ?? "1") >= 3) {
-      return data.username ?? "";
-    } else if (int.parse(db.user.first.claimsId ?? "1") <= 3) {
-      return data.isAnonim ?? true ? data.anonimname : data.username;
-    } else {
-      return data.anonimname;
-    }
   }
 }

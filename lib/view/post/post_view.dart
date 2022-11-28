@@ -7,7 +7,7 @@ import 'package:psikoz/core/init/theme/text_theme.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
-import 'package:psikoz/product/controller/post_controller.dart';
+import 'package:psikoz/controller/post_controller.dart';
 import 'package:psikoz/view/post/post_view_2_page.dart';
 import 'package:psikoz/view/post/widgets/appbar_widget.dart';
 
@@ -83,7 +83,7 @@ class PostView extends GetView<PostController> {
                                     width: 18,
                                     height: 18)),
                       ),
-                      scrollBar(),
+                      ScrollBar(controller: controller, ),
                     ],
                   )),
             ],
@@ -112,7 +112,29 @@ class PostView extends GetView<PostController> {
     );
   }
 
-  AnimatedContainer scrollBar() {
+  ListView image(PostController controller) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: controller.photoList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Image.file(File(controller.photoList[index]!.path));
+      },
+    );
+  }
+}
+
+class ScrollBar extends StatelessWidget {
+  const ScrollBar({
+    Key? key,
+    required this.controller,
+   
+  }) : super(key: key);
+
+  final PostController controller;
+  
+
+  @override
+  Widget build(BuildContext context) {
     return AnimatedContainer(
       clipBehavior: Clip.antiAlias,
       curve: Curves.easeInCubic,
@@ -148,16 +170,6 @@ class PostView extends GetView<PostController> {
           child: IconNames.attachment.tosvgPictureConvert(Colors.white),
         ),
       ]),
-    );
-  }
-
-  ListView image(PostController controller) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: controller.photoList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Image.file(File(controller.photoList[index]!.path));
-      },
     );
   }
 }

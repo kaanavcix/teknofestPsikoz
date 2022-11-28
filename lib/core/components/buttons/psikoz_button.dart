@@ -21,7 +21,7 @@ class PsikozButton extends StatelessWidget {
             gradient: LinearGradient(colors: [EmbabedUtility.socialblue,EmbabedUtility.socialPurple]),
           
            
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(80),
           ),
           child: Center(
               child: Padding(

@@ -16,7 +16,7 @@ class PostBar extends StatelessWidget {
       required this.onTapLike,
       required this.onTapComment,
       required this.commentLenght,
-      required this.likeLenght})
+      required this.likeLenght,required this.onLongPress})
       : super(key: key);
   final String text;
 
@@ -28,6 +28,7 @@ class PostBar extends StatelessWidget {
   String? commentLenght;
   Color? colorLike;
   void Function()? onTapMore;
+  void Function()? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -36,32 +37,36 @@ class PostBar extends StatelessWidget {
       sizedbox(),
       Padding(
         padding: edgeInsets,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    userName,
-                    style: grSTextB,
-                  ),
-                  Text(
-                    time,
-                    style: grTertiary,
-                  ),
-                ],
+        child: GestureDetector
+        (
+          onLongPress: onLongPress,
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      userName,
+                      style: grSTextB,
+                    ),
+                    Text(
+                      time,
+                      style: grTertiary,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: onTapMore,
-              child: IconNames.dotsvertical
-                  .tosvgPictureConvert(Colors.white, height: 18, width: 18),
-            ),
-          ],
+              const Spacer(),
+              GestureDetector(
+                onTap: onTapMore,
+                child: IconNames.dotsvertical
+                    .tosvgPictureConvert(Colors.white, height: 18, width: 18),
+              ),
+            ],
+          ),
         ),
       ),
       Column(

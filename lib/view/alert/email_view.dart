@@ -4,6 +4,7 @@ import 'package:psikoz/core/components/inputbar/search_bar_widget.dart';
 import 'package:psikoz/core/components/seperators/seperators_line.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
+import 'package:psikoz/view/alert/message_detail_view.dart';
 
 import '../../core/init/theme/text_theme.dart';
 
@@ -22,24 +23,25 @@ class MessageView extends StatelessWidget {
         actions: [SettingsWidget()],
         title: Text(
           "MESAJLAR",
-          style: grSTextB.copyWith(color: Colors.white, letterSpacing: 0.9),
+          style: Get.textTheme.bodyLarge,
         ),
       ),
       body: Column(
         children: [
-          Padding(
+         const  Padding(
             padding: const EdgeInsets.only(left: 20.0,right:20,bottom: 15),
             child: SearchBarWidget(),
           ),
          
-          MySeparator(
+         const MySeparator(
             color: EmbabedUtility.socialLightGray,
             height: 1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           ListTile(
+            onTap: () => Get.to(MessageDetailView()),
             leading: CircleAvatar(
               backgroundColor: Colors.pink,
             ),

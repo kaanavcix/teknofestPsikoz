@@ -13,6 +13,17 @@ extension EnumSvgPicture on IconNames {
       height: height,
     );
   }
+  tosvgPictureConvertEmotion(Color? color, {double width = 24, double height = 24}) {
+    return SvgPicture.asset(
+      "assets/emotion/$name.svg",
+      color: color ?? (!Get.isDarkMode
+          ? const Color.fromARGB(255, 0, 0, 0)
+          : const Color.fromARGB(255, 255, 255, 255)),
+      width: width,
+      height: height,
+    );
+  }
+
 }
 
 enum IconNames {
@@ -41,5 +52,11 @@ enum IconNames {
   share,
   email,
   lock,
-  articles
+  articles,
+  music,
+  happy,
+  normal,
+  sad,
+  stress,
+  unhappy
 }

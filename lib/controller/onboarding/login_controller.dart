@@ -7,7 +7,7 @@ class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   FireBaseServiceAuth fireBaseServiceAuth = FireBaseServiceAuth();
-  var obscureText = false.obs;
+  var obscureText = true.obs;
   var animateControl = false.obs;
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   var isFailed = false.obs;

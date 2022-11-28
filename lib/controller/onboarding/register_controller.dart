@@ -13,12 +13,22 @@ class RegisterController extends GetxController {
   FireBaseServiceAuth auth = FireBaseServiceAuth();
   var currentIndex = 0.obs;
   var isFailed = false.obs;
+  var obscureText = true.obs;
 
   Future<void> registerControl(UserForRegister userForRegister) async {
     if (formState.currentState != null && formState.currentState!.validate()) {
       auth.signUpWithEmail(userForRegister);
+      print("data");
     } else {
       isFailed.toggle();
     }
+  }
+
+  Future<bool> userNameController(String username) async {
+    return auth.existUsername(username);
+  }
+
+  changeVisible() {
+    obscureText.toggle();
   }
 }

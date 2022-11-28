@@ -10,7 +10,6 @@ class FireBaseServiceAuth extends IFirebaseAuthService {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-
   @override
   Future<void> signUpWithEmail(UserForRegister userForRegister) async {
     UserCredential userCredential =
@@ -29,20 +28,38 @@ class FireBaseServiceAuth extends IFirebaseAuthService {
       "Following": [],
       "AnonimName": "",
       "BackgroundImage": "",
-      "Description":""
+      "Description": ""
     });
     db
         .collection("UserOperationClaims")
         .doc(userCredential.user?.uid)
         .set({"Uid": userCredential.user!.uid, "ClaimsId": "1"});
   }
+
   @override
   Future<void> signInWithEmail(UserForLoginModel userForLoginModel) async {
-    
-    
-        await firebaseAuth.signInWithEmailAndPassword(
-            email: userForLoginModel.email ?? "",
-            password: userForLoginModel.password ?? "");
+    await firebaseAuth.signInWithEmailAndPassword(
+        email: userForLoginModel.email ?? "",
+        password: userForLoginModel.password ?? "");
+  }
 
+  @override
+  Future<void> signOut() async {
+    return await firebaseAuth.signOut();
+  }
+
+  @override
+  Future<bool> existUsername(String username) async {
+    var data = await db
+        .collection("Users")
+        .where("Username", isEqualTo: username)
+        .get();
+
+    if (data.size == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  
   }
 }

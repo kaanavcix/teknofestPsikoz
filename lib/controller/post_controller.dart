@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/service/model/post/post_model_input.dart';
-import 'package:psikoz/product/controller/main_controller.dart';
-import 'package:psikoz/product/controller/profile_controller.dart';
+import 'package:psikoz/controller/main_controller.dart';
+import 'package:psikoz/controller/profile_controller.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PostController extends GetxController

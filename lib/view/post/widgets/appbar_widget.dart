@@ -24,7 +24,7 @@ class PostAppbar extends StatelessWidget with PreferredSizeWidget {
         },
         child: Text(
           labelText,
-          style: Get.textTheme.labelMedium!.copyWith(
+          style: Get.textTheme.headlineLarge!.copyWith(
             color: EmbabedUtility.socialblue,
           ),
         ),

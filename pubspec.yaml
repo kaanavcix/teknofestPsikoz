@@ -52,6 +52,7 @@ dependencies:
   cloud_firestore: ^4.0.4
   rxdart: ^0.27.6
   lottie: ^2.0.0
+  card_swiper: ^2.0.4
  
 
 dev_dependencies:
@@ -74,5 +75,6 @@ flutter:
    - assets/images/
    - assets/Icon/
    - assets/lotties/
+   - assets/emotion/
 
   
