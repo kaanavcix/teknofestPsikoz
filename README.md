@@ -87,16 +87,16 @@ Hurakoya bağlamayı deniyorum olmazsa eğer localhost üzerinden ilerleriz yada
 #### Natifications
 #### Book Article Music Podcast Suggestion System 
 
-> [x]get music
+> [x] get music
 - /api/musics
 
-> [x]get book
+> [x] get book
 - /api/books
 
-> [x]get article 
+> [x] get article 
 - /api/articles
 
-> [x]get podcast
+> [x] get podcast
 - /api/podcasts
 
 > add update delete article getby id also 
