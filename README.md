@@ -1,4 +1,4 @@
-# psikoz
+# Psikoz
 
 Arkadaşlar merhaba aşağı todo ve projeyi nasıl install edebilirsiniz onları yazıcam buna göre ilerleme yaparız
 
