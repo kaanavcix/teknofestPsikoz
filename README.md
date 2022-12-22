@@ -21,6 +21,33 @@ Eğer projeyi güncellemek isterseniz
 git pull
 
 ```
+Yazdığınız kodları projeye import etmek isterseniz 
+``` 
+git pull 
+git push -u origin main 
+
+```
+eğer isterseniz farklı bir branch (dal oluşturup projeyi orayada atabilirsiniz) şuanlık öyle yapmanız daha mantıklı olucaktır.
+
+>branch oluşturmak için
+git checkout -b “carpma_islemi”
+``` 
+git checkout -b “develop”
+
+```
+brancha geçmek için
+``` 
+git checkout  “develop”
+
+```
+
+ardından 
+``` 
+git pull 
+git push -u origin develop 
+
+```
+
 yazmanız yeterlidir proje otomatik güncellenicektir.
 ## Package
 
