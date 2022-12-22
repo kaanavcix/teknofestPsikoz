@@ -17,7 +17,6 @@ class RegisterScreens extends GetView<RegisterController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(RegisterController());
     List<Widget> screens = const [
       FirstScreen(),
       SecondScreen(),

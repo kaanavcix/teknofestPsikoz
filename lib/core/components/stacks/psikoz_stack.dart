@@ -18,7 +18,7 @@ class PsikozStack extends StatelessWidget {
           clipper: CustomClipPath(),
           child: Container(
             width: Get.width,
-            height: 200,
+            height: 220,
             decoration: const BoxDecoration(
                 gradient: LinearGradient(colors: [
               EmbabedUtility.socialblue,EmbabedUtility.socialPurple

@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/utility/app/gradient-utility.dart';
 import 'package:psikoz/controller/post_controller.dart';
-import '../../core/init/theme/text_theme.dart';
+import '../../product/init/theme/text_theme.dart';
 import '../../core/utility/embabed/embabed_utility.dart';
 import 'package:image_picker/image_picker.dart';
 

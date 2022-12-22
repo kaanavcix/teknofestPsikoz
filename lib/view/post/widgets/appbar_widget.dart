@@ -41,13 +41,14 @@ class PostAppbar extends StatelessWidget with PreferredSizeWidget {
                 Get.to(PostValidatePage());
               },
               style: ElevatedButton.styleFrom(
+                elevation: 8,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(48)),
-                backgroundColor: Get.theme.colorScheme.secondary,
+                backgroundColor: EmbabedUtility.socialPurple,
               ),
               child: Text(
                 "Paylaş",
-                style: Get.textTheme.bodyLarge!.copyWith(color: Colors.white),
+                style: Get.textTheme.bodyMedium!.copyWith(color: Colors.white),
               ),
             ),
           ),

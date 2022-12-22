@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../utility/embabed/embabed_utility.dart';
-import '../../init/theme/text_theme.dart';
+import '../../../product/init/theme/text_theme.dart';
 
 class PsikozButton extends StatelessWidget {
   PsikozButton({

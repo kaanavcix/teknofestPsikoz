@@ -3,7 +3,7 @@ import 'package:psikoz/core/components/comments/comments_bar.dart';
 import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
-import 'package:psikoz/core/init/theme/text_theme.dart';
+import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/service/model/post/post_model_output.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';

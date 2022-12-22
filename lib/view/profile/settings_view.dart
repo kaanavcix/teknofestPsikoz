@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
-import 'package:psikoz/core/init/theme/text_theme.dart';
+import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/service/firebase/firebase_auth_service.dart';
 import 'package:psikoz/core/service/firebase/firebase_db.dart';

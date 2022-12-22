@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:psikoz/core/init/theme/text_theme.dart';
+import 'package:psikoz/product/init/theme/text_theme.dart';
 
-import '../../utility/embabed/embabed_utility.dart';
+import '../../../core/utility/embabed/embabed_utility.dart';
 import 'light_text_theme.dart';
 
 ThemeData lightTheme = ThemeData(

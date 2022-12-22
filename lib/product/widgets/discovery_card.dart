@@ -46,7 +46,7 @@ void Function()? onTap;
                       child: Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: Text(
-                          "Popular",
+                          "Depresyon Dönemleri",
                           style: Get.textTheme.bodyLarge,
                         ),
                       ),

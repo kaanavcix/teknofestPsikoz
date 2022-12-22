@@ -11,7 +11,7 @@ import 'package:psikoz/core/utility/app/shape_border_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/profile_controller.dart';
-import 'package:psikoz/view/discovery/discovery_view.dart';
+import 'package:psikoz/product/widgets/discovery_view.dart';
 import 'package:psikoz/view/profile/settings_view.dart';
 
 import '../../core/service/firebase/firebase_db.dart';
@@ -25,8 +25,42 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProfileController());
     var db = Get.find<FirebaseDb>();
+    return Scaffold(
+      body: scdeneme(db)
+    );
+  }
+
+  CustomScrollView scdeneme3(FirebaseDb db) {
+    return CustomScrollView(slivers: [
+      SliverAppBar(
+        pinned: true,
+        snap: true,
+        actions: [Icon(Icons.abc)],
+        floating: true,
+        expandedHeight: 300,
+        flexibleSpace: SafeArea(
+            child: FlexibleSpaceBar(
+            //  title: Text(db.user.first.username ??""),
+              
+          background: Padding(
+            
+            padding: const EdgeInsets.only(top:60.0),
+            child: ProfileCard(
+              imageUrl: "https://picsum.photos/200/300",
+              controller: controller.tabController,
+              claimsName: db.user.first.claimsName,
+              description: db.user.first.description,
+              firstName: db.user.first.firstName,
+              username: db.user.first.username,
+            ),
+          ),
+        )),
+      ),
+    ]);
+  }
+
+  Scaffold scdeneme(FirebaseDb db) {
     return Scaffold(
       appBar: appBar(),
       body: SizedBox(
@@ -35,14 +69,16 @@ class ProfileView extends GetView<ProfileController> {
           shrinkWrap: true,
           children: [
             ProfileCard(
-                imageUrl: "https://picsum.photos/200/300",
-                controller: controller.tabController,
-                claimsName: db.user.first.claimsName,
-                description: db.user.first.description,
-                firstName: db.user.first.firstName,
-                username: db.user.first.username,
-               ),
-         const  SizedBoxDummy.height(height: 5,),
+              imageUrl: "https://picsum.photos/200/300",
+              controller: controller.tabController,
+              claimsName: db.user.first.claimsName,
+              description: db.user.first.description,
+              firstName: db.user.first.firstName,
+              username: db.user.first.username,
+            ),
+            const SizedBoxDummy.height(
+              height: 5,
+            ),
             Container(
               height: Get.height,
               width: Get.width,
@@ -55,13 +91,13 @@ class ProfileView extends GetView<ProfileController> {
                   child: TabBarView(
                       controller: controller.tabController,
                       children: [
-                       const MyArticleView(),
+                        const MyArticleView(),
                         Text(
                           AppConstant.fallowArticle,
                           style: Get.textTheme.displaySmall,
                         ),
                         Text(
-                         AppConstant.profileAnonim,
+                          AppConstant.profileAnonim,
                           style: Get.textTheme.displaySmall,
                         )
                       ])),
@@ -76,10 +112,6 @@ class ProfileView extends GetView<ProfileController> {
     return AppBar(
       title: Padding(
         padding: PaddinUtilty.horizontalPadding().padding,
-        child: Text(
-          AppConstant.profileTitle,
-          style: Get.textTheme.bodyMedium,
-        ),
       ),
       actions: [
         GestureDetector(
@@ -101,4 +133,3 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 }
-

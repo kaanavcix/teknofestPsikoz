@@ -27,3 +27,24 @@
       ),
     );
   } */
+
+
+
+
+/*   controller.isClicked.value
+                        ? SizedBox(
+                            child: Obx(() => AnimatedOpacity(
+                                opacity: controller.isSizedBox.value ? 0 : 1,
+                                duration: DurationUtilty.normalDuration(),
+                                child: Text(
+                                    "Cevapladığınız için teşekkür ederiz"))),
+                          )
+                        : Expanded(
+                            flex: controller.isClicked.value ? 0 : 4,
+                            child: Obx(
+                              () => AnimatedOpacity(
+                                  opacity:
+                                      controller.isClicked.value ? 0.0 : 1.0,
+                                  duration: DurationUtilty.normalDuration(),
+                                  child: FeelBar()),
+                            )), */

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/controller/post_controller.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
-import 'package:psikoz/core/init/theme/text_theme.dart';
+import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:psikoz/core/utility/app/padding_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';

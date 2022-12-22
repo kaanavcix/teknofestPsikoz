@@ -11,6 +11,7 @@ import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/onboarding/login_controller.dart';
 import 'package:psikoz/product/validator/onboarding_validate.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
+import 'package:psikoz/view/onboarding/widgets/register_first_screen.dart';
 
 import '../../core/components/buttons/psikoz_button.dart';
 import '../../core/components/stacks/psikoz_stack.dart';
@@ -19,7 +20,6 @@ class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Get.put(LoginController());
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Form(
@@ -45,10 +45,11 @@ class LoginView extends GetView<LoginController> {
             child:
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(AppConstant.loginBottomText,
-                  style: Get.textTheme.titleSmall),
+                  style: Get.textTheme.titleMedium!.copyWith(color: Colors.white)),
             const  SizedBoxDummy.width(width: 5,),
               InkWell(
-                  onTap: () => Get.to(const RegisterScreens()),
+                  onTap: () => Get.to(RegisterFirstView()
+                  ,preventDuplicates: false),
                   child: Text(AppConstant.registerTextButton,
                       style: Get.textTheme.bodyLarge!
                           .copyWith(color: EmbabedUtility.socialblue)))

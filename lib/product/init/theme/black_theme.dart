@@ -1,16 +1,19 @@
-import 'package:psikoz/core/init/theme/text_theme.dart';
+import 'dart:ui';
+
+import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../utility/embabed/embabed_utility.dart';
+import '../../../core/utility/embabed/embabed_utility.dart';
 
 ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     iconTheme: IconThemeData(color: Colors.white),
-    appBarTheme: const AppBarTheme(
+    appBarTheme:  AppBarTheme(
       
       elevation: 0,
       centerTitle: false,
-      backgroundColor: EmbabedUtility.darkBlack
+      backgroundColor: EmbabedUtility.darkBlack,
+      titleTextStyle: grBodyB.copyWith(color: Colors.white)
     ),
     
     inputDecorationTheme: InputDecorationTheme(

@@ -23,4 +23,5 @@ class AppConstant {
   static const String registerContiuneTitle = "Devam et";
   static const String registerUsername = "Kullanıcı adı";
   static const String registerEmailTitle = "E-mailinizi giriniz";
+  static const String recommenededMaterial = "İlginizi çekebilecek materyaller";
 }

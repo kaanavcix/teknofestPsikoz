@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../components/post/post_bar_image.dart';
 import '../../components/seperators/seperators_line.dart';
 import '../../constants/enums/Icon-enums.dart';
-import '../../init/theme/text_theme.dart';
+import '../../../product/init/theme/text_theme.dart';
 import '../../utility/embabed/embabed_utility.dart';
 
 class PostBar extends StatelessWidget {

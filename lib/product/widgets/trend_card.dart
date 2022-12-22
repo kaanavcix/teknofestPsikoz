@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/app/app_size_constant.dart';
-import '../../../core/utility/embabed/embabed_utility.dart';
+import '../../core/constants/app/app_size_constant.dart';
+import '../../core/utility/embabed/embabed_utility.dart';
 
 class TrendCard extends StatelessWidget {
   const TrendCard({

@@ -6,7 +6,7 @@ import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/view/alert/message_detail_view.dart';
 
-import '../../core/init/theme/text_theme.dart';
+import '../../product/init/theme/text_theme.dart';
 
 import 'package:get/get.dart';
 

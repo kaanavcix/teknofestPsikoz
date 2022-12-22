@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import "package:dio/dio.dart";
 
 class PostOutput {
   final String? id;
@@ -40,7 +41,8 @@ class PostOutput {
   }
 
   PostOutput(
-      {this.anonimname,this.id,
+      {this.anonimname,
+      this.id,
       this.createdTime,
       this.message,
       this.categoryName,
@@ -53,3 +55,4 @@ class PostOutput {
       this.isLikeBloc,
       this.isCommentBloc});
 }
+

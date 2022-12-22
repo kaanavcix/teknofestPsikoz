@@ -23,7 +23,7 @@ class FirebaseDb extends GetxService {
     var dataEnd = data.map((event) => event.docs.map((e) {
           var userData =
               UserInfos.fromFirestore(e, null, refCliams[1], refCliams[0]);
-          print(userData);
+          print(userData.anonimName);
           return userData;
         }).toList());
 
@@ -53,6 +53,7 @@ class FirebaseDb extends GetxService {
     var model = PostModelForInput(
             categroryName: postModelForInput.categroryName,
             createdTime: postModelForInput.createdTime,
+            anonimname: postModelForInput.anonimname,
             id: doc,
             age: postModelForInput.age,
             gender: postModelForInput.gender,
@@ -68,23 +69,19 @@ class FirebaseDb extends GetxService {
     db.collection("Posts").doc(doc).set(model);
   }
 
-@override
+  @override
   void onReady() {
     // TODO: implement onReady
     super.onReady();
     post.bindStream(getPost());
-
   }
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     user.bindStream(getInfos());
-      
-
   }
-
-  
 
   Stream<List<PostOutput>> getPost() {
     return db
@@ -94,5 +91,13 @@ class FirebaseDb extends GetxService {
               print(e.data());
               return PostOutput.fromFirestore(e, null);
             }).toList());
+  }
+
+  Future<void> setEmotion(String emotion) {
+    return db.collection("emotion").doc(firebaseAuth.currentUser?.uid).set({
+      "Uid": firebaseAuth.currentUser?.uid,
+      "currenState": emotion,
+      "Timestap": Timestamp.now()
+    });
   }
 }

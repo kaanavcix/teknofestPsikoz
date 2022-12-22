@@ -14,28 +14,24 @@ class SecondScreen extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     const edgeInsets =  EdgeInsets.only(top: 3, bottom: 10);
-    return Form(
-      key: controller.formState,
-      autovalidateMode: validateMode() ,
-      child: Column(
-        children: [
-          Text(
-            AppConstant.registerEmailTitle, 
-            style: Get.textTheme.headlineLarge,
-          ),
-          Padding(
-              padding: edgeInsets,
-              child: PsikozTextBar(
-                  hintText: AppConstant.emailHintText,
-                  keyboardType: TextInputType.emailAddress,
-                  //textInputAction: TextInputAction.continueAction,
-                  textcontroller: controller.emailController,
-                  prefixIcon: Padding(
-                      padding: PaddinUtilty.normalPadding(padding: 15).padding,
-                      child: IconNames.email
-                          .tosvgPictureConvert(null, height: 12, width: 12)))),
-        ],
-      ),
+    return Column(
+      children: [
+        Text(
+          AppConstant.registerEmailTitle, 
+          style: Get.textTheme.headlineLarge,
+        ),
+        Padding(
+            padding: edgeInsets,
+            child: PsikozTextBar(
+                hintText: AppConstant.emailHintText,
+                keyboardType: TextInputType.emailAddress,
+                //textInputAction: TextInputAction.continueAction,
+                textcontroller: controller.emailController,
+                prefixIcon: Padding(
+                    padding: PaddinUtilty.normalPadding(padding: 15).padding,
+                    child: IconNames.email
+                        .tosvgPictureConvert(null, height: 12, width: 12)))),
+      ],
     );
   }
   AutovalidateMode validateMode() {

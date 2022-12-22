@@ -3,10 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
-import 'package:psikoz/core/init/theme/black_theme.dart';
+import 'package:psikoz/product/init/theme/black_theme.dart';
 import 'package:psikoz/controller/auth_state_changes.dart';
 import 'package:psikoz/view/onboarding/onboarding_view.dart';
-import 'core/init/theme/light_theme.dart';
+import 'product/init/routes/get_list_page.dart';
+import 'product/init/theme/light_theme.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -25,12 +26,10 @@ class Psikoz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      getPages: [
-        GetPage(name: "/", page: ()=>OnboardingView())
-      ],
+      getPages:getPages,
         debugShowCheckedModeBanner: false,
         title: AppConstant.titleApp,
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.dark,
         darkTheme: darkTheme,
         enableLog: true,
         theme: lightTheme,

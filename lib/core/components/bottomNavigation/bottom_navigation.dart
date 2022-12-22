@@ -13,23 +13,21 @@ class BottomNavigatior extends StatelessWidget {
       required this.onTap,
       required this.onTap1,
       required this.onTap2,
-      required this.onTap3,
-      required this.onTap4})
+     })
       : super(key: key);
   int selectedItem;
   void Function() onTap;
   void Function() onTap1;
-
   void Function() onTap2;
-  void Function() onTap3;
-  void Function() onTap4;
+
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      elevation: 80,
         child: Container(
       color: Get.isDarkMode ? EmbabedUtility.darkBlack : Colors.white,
-      height: 64,
+      height: 55,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,25 +37,18 @@ class BottomNavigatior extends StatelessWidget {
                 child: IconNames.feed.tosvgPictureConvert(selectedItem == 0
                     ? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface)),
+           
             IconNormal(
-                onTap: onTap1,
-                child: IconNames.search.tosvgPictureConvert(selectedItem == 1
-                    ? Get.theme.colorScheme.background
-                    : Get.theme.colorScheme.surface)),
-            IconCircular(
-              onTap: onTap2,
+              onTap: onTap1,
               child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: IconNames.plus.tosvgPictureConvert(Colors.white)),
-            ),
+                  child: IconNames.plus.tosvgPictureConvert(selectedItem==1? Get.theme.colorScheme.background
+                    : Get.theme.colorScheme.surface),
+            ),),
+           
             IconNormal(
-                onTap: onTap3,
-                child: IconNames.articles.tosvgPictureConvert(selectedItem == 3
-                    ? Get.theme.colorScheme.background
-                    : Get.theme.colorScheme.surface)),
-            IconNormal(
-                onTap: onTap4,
-                child: IconNames.profile.tosvgPictureConvert(selectedItem == 4
+                onTap: onTap2,
+                child: IconNames.profile.tosvgPictureConvert(selectedItem == 2
                     ? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface)),
           ]),
