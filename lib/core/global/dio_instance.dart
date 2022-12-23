@@ -15,3 +15,13 @@ class DioInstance {
 
   Dio get getDio => _dio;
 }
+
+class DioInstances {
+  DioInstances._();
+
+  final Dio _dio = Dio(BaseOptions(baseUrl: "https://192.168.1.14/api/"));
+
+  static final instance = DioInstance._();
+
+  Dio get getdio => _dio;
+}

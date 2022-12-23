@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:get/get.dart';
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/post_controller.dart';
 import 'package:psikoz/view/post/post_view_2_page.dart';
@@ -16,8 +15,6 @@ class PostView extends GetView<PostController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PostController());
-    var db = Get.find<FirebaseDb>();
 
     var hintText2 = " Psikolojik problemlerinizi buradan ifade edebilirsiniz";
     const radius = Radius.circular(100);
@@ -32,7 +29,7 @@ class PostView extends GetView<PostController> {
                 alignment: Alignment.topLeft,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Text("${db.user.first.username}", style: grSText),
+                  child: Text("user.first.username}", style: grSText),
                 ),
               ),
               Padding(
@@ -97,18 +94,15 @@ class PostView extends GetView<PostController> {
       {required int currentLength,
       required bool isFocused,
       required int? maxLength}) {
-    return GetBuilder<PostController>(
-      init: PostController(),
-      initState: (_) {},
-      builder: (_) {
+    
         return Container(
           height: 55,
           width: currentLength == maxLength
               ? maxLength!.toDouble()
               : currentLength.toDouble(),
           color: EmbabedUtility.socialwhite,
-        );
-      },
+        
+      
     );
   }
 

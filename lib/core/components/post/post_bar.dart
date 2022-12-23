@@ -8,15 +8,13 @@ import '../../../product/init/theme/text_theme.dart';
 import '../../utility/embabed/embabed_utility.dart';
 
 class PostBar extends StatelessWidget {
-  PostBar(
+  PostBar(this.onTapComment, this.onLongPress,
       {Key? key,
       required this.text,
       required this.userName,
       required this.time,
       required this.onTapLike,
-      required this.onTapComment,
-      required this.commentLenght,
-      required this.likeLenght,required this.onLongPress})
+      required this.likeLength})
       : super(key: key);
   final String text;
 
@@ -24,9 +22,10 @@ class PostBar extends StatelessWidget {
   final String time;
   void Function()? onTapLike;
   void Function()? onTapComment;
-  String likeLenght;
+  String likeLength;
   String? commentLenght;
   Color? colorLike;
+  String? status;
   void Function()? onTapMore;
   void Function()? onLongPress;
 
@@ -37,8 +36,7 @@ class PostBar extends StatelessWidget {
       sizedbox(),
       Padding(
         padding: edgeInsets,
-        child: GestureDetector
-        (
+        child: GestureDetector(
           onLongPress: onLongPress,
           child: Row(
             children: [
@@ -89,14 +87,14 @@ class PostBar extends StatelessWidget {
           children: [
             buttons(
                 IconNames.like.tosvgPictureConvert(null, width: 18, height: 18),
-                likeLenght.toString(),
+                likeLength.toString(),
                 onTapLike),
             const Spacer(flex: 1),
             buttons(
                 IconNames.comment
                     .tosvgPictureConvert(null, width: 18, height: 18),
                 // ignore: prefer_null_aware_operators
-                commentLenght ==null? "": commentLenght.toString(),
+                commentLenght == null ? "" : commentLenght.toString(),
                 onTapComment),
             const Spacer(
               flex: 1,

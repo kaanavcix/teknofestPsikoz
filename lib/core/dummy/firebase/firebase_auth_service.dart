@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+/* import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:psikoz/core/base/firebase_auth_base.dart';
-import 'package:psikoz/core/service/model/OnboardingModel/UserForRegister.dart';
-import 'package:psikoz/core/service/model/user_model.dart';
+import 'package:psikoz/product/service/model/OnboardingModel/UserForRegister.dart';
+import 'package:psikoz/product/service/model/user_model.dart';
 import '../model/OnboardingModel/UserForLoginModel.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -63,3 +63,4 @@ class FireBaseServiceAuth extends IFirebaseAuthService {
   
   }
 }
+ */

@@ -4,8 +4,7 @@ import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
 import 'package:psikoz/product/init/theme/text_theme.dart';
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
-import 'package:psikoz/core/service/model/post/post_model_output.dart';
+import 'package:psikoz/product/service/model/post/post_model_output.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/home_controller.dart';
@@ -13,15 +12,11 @@ import '../../core/components/iconWidget/leading_widget.dart';
 
 class CommentView extends GetView<HomeController> {
   CommentView({Key? key}) : super(key: key);
-  var db = Get.find<FirebaseDb>();
-  var data = Get.arguments;
+  
 
   @override
-  Widget build(BuildContext context) {
-    var time =
-        controller.readTimestamp(data.createdTime!.millisecondsSinceEpoch);
-
-    return GetBuilder(
+  Widget build(BuildContext context) {  
+  return GetBuilder(
       builder: (controller) {
         return Scaffold(
           // resizeToAvoidBottomInset: false,
@@ -32,7 +27,7 @@ class CommentView extends GetView<HomeController> {
           body: ListView(
               physics: const ScrollPyhcisyUtilty.neverScroll(),
               children: [
-                postBar(data, time),
+                postBar(PostModel()),
                 bodyTitle(),
               ]),
         );
@@ -40,16 +35,14 @@ class CommentView extends GetView<HomeController> {
     );
   }
 
-  PostBar postBar(PostOutput data, time) {
-    return PostBar(
-      onLongPress: null,
-        text: data.message ?? "",
-        userName: controller.usernameDetection(data, db),
-        time: time,
-        onTapLike: data.isLikeBloc ?? false ? null : () {},
-        onTapComment: data.isCommentBloc ?? false ? null : () {},
-        commentLenght: data.isCommentBloc ?? false ? null : "0",
-        likeLenght: data.likes!.length.toString());
+  PostBar postBar(PostModel data,) {
+    var model = data.data?[0];
+    return PostBar(null,null,
+        text:model!.content ?? "",
+        userName: model.user!.username ?? "" ,
+        time: "",
+        onTapLike: null,
+        likeLength: "0");
   }
 
   Padding bodyTitle() {

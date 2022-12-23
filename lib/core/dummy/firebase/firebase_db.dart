@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/* import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:psikoz/core/service/model/post/post_model_input.dart';
-import 'package:psikoz/core/service/model/post/post_model_output.dart';
+import 'package:psikoz/product/service/model/post/post_model_input.dart';
+import 'package:psikoz/product/service/model/post/post_model_output.dart';
 import 'package:rxdart/rxdart.dart';
 import '../model/user_model.dart';
 import 'package:uuid/uuid.dart';
@@ -101,3 +101,4 @@ class FirebaseDb extends GetxService {
     });
   }
 }
+ */

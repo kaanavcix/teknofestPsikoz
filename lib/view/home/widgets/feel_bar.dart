@@ -16,7 +16,6 @@ class FeelBar extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController()); //şimdilik böyle
     return Card(
       elevation: AppSizeConstant.profileCard80,
       color: EmbabedUtility.socialGray,

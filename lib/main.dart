@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
+import 'package:psikoz/product/init/cache/hive_cach.dart';
 import 'package:psikoz/product/init/theme/black_theme.dart';
 import 'package:psikoz/controller/auth_state_changes.dart';
+import 'package:psikoz/view/onboarding/login_view.dart';
 import 'package:psikoz/view/onboarding/onboarding_view.dart';
 import 'product/init/routes/get_list_page.dart';
 import 'product/init/theme/light_theme.dart';
-import 'firebase_options.dart';
+import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  ).then((value) => initService());
+  await GetStorage.init("token");
   runApp(const Psikoz());
 }
 
@@ -26,17 +24,15 @@ class Psikoz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      getPages:getPages,
+        getPages: getPages,
         debugShowCheckedModeBanner: false,
         title: AppConstant.titleApp,
         themeMode: ThemeMode.dark,
         darkTheme: darkTheme,
         enableLog: true,
         theme: lightTheme,
-        home: const OnboardingView());
+        initialRoute: "/",);
   }
 }
 
-Future<void> initService() async {
-  await Get.putAsync(() async => await AuthStateChanges());
-}
+

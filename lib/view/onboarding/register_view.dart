@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
-import 'package:psikoz/core/service/model/OnboardingModel/UserForRegister.dart';
 import 'package:psikoz/core/utility/app/padding_utility.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/onboarding/register_controller.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/product/service/model/onborading/register_model.dart';
 import 'package:psikoz/view/onboarding/widgets/four_screen.dart';
 import 'package:psikoz/view/onboarding/widgets/register_button.dart';
 import '../../core/components/iconWidget/leading_widget.dart';
@@ -65,22 +65,21 @@ class RegisterScreens extends GetView<RegisterController> {
   }
 
   void registerFunction() async {
-    bool result =
-        await controller.userNameController(controller.usernameController.text);
-
-    if (result) {
-    } else {
+   
+    
       if (controller.currentIndex.value != 3) {
         controller.currentIndex.value++;
       } else if(controller.currentIndex.value==3) {
         //print("data");
-        await controller.registerControl(UserForRegister(
+        await controller.registerControl(RegisterModel(
             email: controller.emailController.text,
-            firstName: controller.nameController.text,
+            username: controller.nameController.text,
             password: controller.passwordController.text,
-            userId: "",
-            userName: controller.usernameController.text));
-      }
+            age: 21,
+            gender: 1 //değişecek
+            
+           ));
+      
     }
   }
 

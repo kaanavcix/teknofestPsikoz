@@ -15,7 +15,6 @@ class PostArticleView extends GetView<PostController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PostController());
     return Scaffold(
       appBar: AppBar(
           title: Text(

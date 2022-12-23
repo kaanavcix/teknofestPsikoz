@@ -1,36 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:psikoz/product/service/model/result/result_model.dart';
 
-import 'package:psikoz/core/service/firebase/firebase_auth_service.dart';
-import 'package:psikoz/core/service/model/OnboardingModel/UserForRegister.dart';
+import '../../product/base/IDioService.dart';
+import '../../product/service/model/Tokens/token_model.dart';
+import '../../product/service/model/onborading/login_model.dart';
+import '../../product/service/model/onborading/register_model.dart';
 
 class RegisterController extends GetxController {
-    RegisterController({
-    required this.auth,
-  });
-  //IfirebaseAuth firebaseAuth = FirebaseAuthService();
+  RegisterController({required this.dioService});
   TextEditingController nameController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formState = GlobalKey<FormState>();
-  FireBaseServiceAuth auth;
+  IDioService dioService;
   var currentIndex = 0.obs;
   var isFailed = false.obs;
   var obscureText = true.obs;
 
-
-  Future<void> registerControl(UserForRegister userForRegister) async {
+  Future<void> registerControl(RegisterModel registerModel) async {
     if (formState.currentState != null && formState.currentState!.validate()) {
-      auth.signUpWithEmail(userForRegister);
-      print("data");
+      await dioService.register(registerModel).then((value) async {
+        final box = GetStorage("token");
+
+        if (value is TokenModel) {
+          await box.write("auth", value.token);
+        } else if (value is ErrorModel) {
+          Get.snackbar("Error", value.message.toString());
+        }
+      });
     } else {
       isFailed.toggle();
     }
-  }
-
-  Future<bool> userNameController(String username) async {
-    return auth.existUsername(username);
   }
 
   changeVisible() {

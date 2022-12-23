@@ -2,11 +2,10 @@ import 'dart:ffi';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
-
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/controller/home_controller.dart';
 import 'package:psikoz/core/utility/app/duration_utilty.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
@@ -32,49 +31,50 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     ScrollController controllers = ScrollController();
-    var db = Get.find<FirebaseDb>();
     return Scaffold(
-        appBar: appbar(db),
-        body: SizedBox(
-            height: Get.height,
-            child: LiquidPullToRefresh(
-              showChildOpacityTransition: false,
-              height: 55,
-              springAnimationDurationInMilliseconds: 50,
-              color: EmbabedUtility.socialPurple,
-              onRefresh: () async {
-                await controller.onrefresh();
-                controllers.jumpTo(0);
-              },
-              child: NotificationListener<OverscrollIndicatorNotification>(
-                onNotification: (notification) {
-                  notification.disallowIndicator();
-                  return true;
-                },
-                child: ListView(
-                  controller: controllers,
-                  clipBehavior: Clip.none,
-                  children: [
-                    smallCard(),
-                    middleBar(AppConstant.discoveryTrend),
-                    trendScroll(),
-                    SizedBoxDummy.height(
-                      height: 5,
+        appBar: appbar(),
+        body: Obx((() => controller.isLoading.value
+            ? CircularProgressIndicator()
+            : SizedBox(
+                height: Get.height,
+                child: LiquidPullToRefresh(
+                  showChildOpacityTransition: false,
+                  height: 55,
+                  springAnimationDurationInMilliseconds: 50,
+                  color: EmbabedUtility.socialPurple,
+                  onRefresh: () async {
+                    await controller.onrefresh();
+                    controllers.jumpTo(0);
+                  },
+                  child: NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (notification) {
+                      notification.disallowIndicator();
+                      return true;
+                    },
+                    child: ListView(
+                      controller: controllers,
+                      clipBehavior: Clip.none,
+                      children: [
+                        smallCard(),
+                        middleBar(AppConstant.discoveryTrend),
+                        trendScroll(),
+                        SizedBoxDummy.height(
+                          height: 5,
+                        ),
+                        middleBar(AppConstant.recommenededMaterial),
+                        mediumLayout(),
+                        Text("Short podcast article book"),
+                        Placeholder(fallbackHeight: 100),
+                        Text("quiz reletaing to phys"),
+                        Placeholder(fallbackHeight: 200),
+                        Text("Short podcast article book"),
+                      ],
                     ),
-                    middleBar(AppConstant.recommenededMaterial),
-                    mediumLayout(),
-                    Text("Short podcast article book"),
-                    Placeholder(fallbackHeight: 100),
-                    Text("quiz reletaing to phys"),
-                    Placeholder(fallbackHeight: 200),
-                    Text("Short podcast article book"),
-                  ],
-                ),
-              ),
-            )));
+                  ),
+                )))));
   }
 
-  AppBar appbar(FirebaseDb db) {
+  AppBar appbar() {
     return AppBar(
         actions: [
           IconButton(
@@ -87,19 +87,17 @@ class HomeView extends GetView<HomeController> {
                 color: Colors.white,
               ))
         ],
-        title: Obx(() => db.user.isEmpty
-            ? const SizedBox.shrink()
-            : Text(
-                "${controller.frontText.value},${db.user.first.firstName}",
-                style: Get.textTheme.bodyMedium,
-              )));
+        title: Text(
+          "kaan",
+          style: Get.textTheme.bodyMedium,
+        ));
   }
 
   SizedBox smallCard() {
     return SizedBox(
       height: kToolbarHeight,
       child: Swiper(
-        itemCount: 4,
+        itemCount: controller.musicModel!.data!.length,
         layout: SwiperLayout.STACK,
 
         //  axisDirection: AxisDirection.down,
@@ -118,9 +116,10 @@ class HomeView extends GetView<HomeController> {
         // pagination: SwiperPagination(),
         control: const SwiperControl(size: 0),
         itemBuilder: (context, index) {
+          var model = controller.musicModel?.data;
           return TopCard(
-            topText: "Bu haftanın favori podcasti",
-            subText: "Dünya nasıl güzelleşir",
+            topText: model?[index].title,
+            subText: model?[index].content,
           );
         },
       ),
@@ -131,14 +130,14 @@ class HomeView extends GetView<HomeController> {
     return SizedBox(
       //  height: 300,
       width: Get.width,
-    
 
       child: ListView.builder(
         physics: ScrollPyhcisyUtilty.neverScroll(),
         shrinkWrap: true,
-        itemCount: 12,
+        itemCount: controller.articleModel!.data!.length,
         itemBuilder: (BuildContext context, int index) {
-          return DiscoverCard();
+          var model = controller.articleModel!.data![index];
+          return DiscoverCard(text1: model.categoryName,text2: model.title,);
         },
       ),
     );
@@ -172,10 +171,11 @@ class HomeView extends GetView<HomeController> {
           padding: PaddinUtilty.leftPadding().padding,
           child: ListView.builder(
             physics: ScrollPyhcisyUtilty.bouncAlways(),
-            itemCount: 20,
+            itemCount: controller.bookModel!.data!.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              return TrendCard();
+              var model = controller.bookModel!.data![index];
+              return TrendCard(text: model.title ??"",name: "ali",);
             },
           ),
         ));

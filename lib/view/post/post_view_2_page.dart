@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
 import 'package:psikoz/core/utility/app/gradient-utility.dart';
 import 'package:psikoz/controller/post_controller.dart';
 import '../../product/init/theme/text_theme.dart';
@@ -12,7 +11,6 @@ class PostValidatePage extends GetView<PostController> {
   PostValidatePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var db = Get.find<FirebaseDb>();
     return Scaffold(
       appBar: appbar(),
       body: Column(
@@ -34,7 +32,7 @@ class PostValidatePage extends GetView<PostController> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "${db.user.first.username}",
+                          "bex",
                           style: grBodyB,
                         ),
                       ),
@@ -120,7 +118,7 @@ class PostValidatePage extends GetView<PostController> {
             child: ElevatedButton(
               onPressed: () {
                 controller
-                    .createPost()
+                    .addPost()
                     .then((value) {
                   controller.postEditinController.text = "";
                   controller.maincontroller.selectedItem.value = 0;

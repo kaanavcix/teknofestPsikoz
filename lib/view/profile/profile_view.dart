@@ -14,7 +14,6 @@ import 'package:psikoz/controller/profile_controller.dart';
 import 'package:psikoz/product/widgets/discovery_view.dart';
 import 'package:psikoz/view/profile/settings_view.dart';
 
-import '../../core/service/firebase/firebase_db.dart';
 import '../../product/view/article_view_details.dart';
 import '../../product/widgets/discovery_card.dart';
 import 'tabpage/my_article_view.dart';
@@ -25,42 +24,14 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    var db = Get.find<FirebaseDb>();
     return Scaffold(
-      body: scdeneme(db)
+      body: scdeneme()
     );
   }
 
-  CustomScrollView scdeneme3(FirebaseDb db) {
-    return CustomScrollView(slivers: [
-      SliverAppBar(
-        pinned: true,
-        snap: true,
-        actions: [Icon(Icons.abc)],
-        floating: true,
-        expandedHeight: 300,
-        flexibleSpace: SafeArea(
-            child: FlexibleSpaceBar(
-            //  title: Text(db.user.first.username ??""),
-              
-          background: Padding(
-            
-            padding: const EdgeInsets.only(top:60.0),
-            child: ProfileCard(
-              imageUrl: "https://picsum.photos/200/300",
-              controller: controller.tabController,
-              claimsName: db.user.first.claimsName,
-              description: db.user.first.description,
-              firstName: db.user.first.firstName,
-              username: db.user.first.username,
-            ),
-          ),
-        )),
-      ),
-    ]);
-  }
+  
 
-  Scaffold scdeneme(FirebaseDb db) {
+  Scaffold scdeneme() {
     return Scaffold(
       appBar: appBar(),
       body: SizedBox(
@@ -71,10 +42,10 @@ class ProfileView extends GetView<ProfileController> {
             ProfileCard(
               imageUrl: "https://picsum.photos/200/300",
               controller: controller.tabController,
-              claimsName: db.user.first.claimsName,
-              description: db.user.first.description,
-              firstName: db.user.first.firstName,
-              username: db.user.first.username,
+              claimsName: "",
+              description: "",
+              firstName: "",
+              username: "",
             ),
             const SizedBoxDummy.height(
               height: 5,

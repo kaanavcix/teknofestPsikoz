@@ -31,7 +31,7 @@ class LoginView extends GetView<LoginController> {
 
             emailTextBar(),
             Obx(() => passwordTextBar()),
-            button(),
+            Obx(() =>  button()),
             const SizedBoxDummy.height(height: 10,),
             bottomText(),
           ]),
@@ -62,7 +62,7 @@ class LoginView extends GetView<LoginController> {
             onTap: () => controller.logControl(
                 controller.emailController.text,
                 controller.passwordController.text),
-            child: Text(
+            child: controller.isLoading.value? const CircularProgressIndicator.adaptive() :  Text(
               AppConstant.loginButtonText,
               style:
                   Get.textTheme.displayLarge?.copyWith(color: Colors.white),

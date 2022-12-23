@@ -1,27 +1,27 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
-import 'package:psikoz/core/service/model/post/post_model_input.dart';
+import 'package:psikoz/product/base/IDioService2.dart';
+import 'package:psikoz/product/service/model/post/post_model_input.dart';
 import 'package:psikoz/controller/main_controller.dart';
 import 'package:psikoz/controller/profile_controller.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:psikoz/product/service/model/post/post_model_output.dart';
 
 class PostController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  PostController(this.dioService);
   MainController maincontroller = Get.find<MainController>();
   late AnimationController switchAnimation;
   TextEditingController postEditinController = TextEditingController();
-
+  IDioServiceMain dioService;
   Rx<XFile?> selectedImage = Rx<XFile?>(null);
   List<File?> photoList = [];
   var clickButton = false.obs;
   var switchClick1 = false.obs;
   var switchClick2 = false.obs;
   var switchClick3 = true.obs;
-  var db = Get.find<FirebaseDb>();
   @override
   void onInit() {
     // TODO: implement onInit
@@ -89,23 +89,8 @@ class PostController extends GetxController
     }
   }
 
-  Future<void> createPost() {
-    return db.addPost(PostModelForInput(
-      anonimname: db.user.first.anonimName,
-      categroryName: "",
-      age: "12",
-      gender: true,
-      isAnonim: switchClick3.value,
-      username: db.user.first.username,
-      isCommentBloc: switchClick1.value,
-      isLikeBloc: switchClick2.value,
-      likes: [],
-      message: postEditinController.text,
-      saves: [],
-      userId: db.user.first.uid,
-      createdTime: Timestamp.now(),
-      id: "",
-
-    ));
+  Future<Object?> addPost() async {
+    return await dioService
+        .add(PostInputModel(userId: 3, content: postEditinController.text));
   }
 }

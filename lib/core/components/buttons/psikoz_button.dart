@@ -12,13 +12,14 @@ class PsikozButton extends StatelessWidget {
   void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    const linearGradient =  LinearGradient(colors: [EmbabedUtility.socialblue,EmbabedUtility.socialPurple]);
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 80.0),
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [EmbabedUtility.socialblue,EmbabedUtility.socialPurple]),
+            gradient: linearGradient,
           
            
             borderRadius: BorderRadius.circular(80),
@@ -26,7 +27,7 @@ class PsikozButton extends StatelessWidget {
           child: Center(
               child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 20,
+                    vertical: 18,
                   ),
                   child: child)),
         ),

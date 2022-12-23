@@ -25,15 +25,14 @@ class PostForumView extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return PostBar(
+          return PostBar(null,null,
               text: "text",
               userName: "userName",
               time: "time",
               onTapLike: null,
-              onTapComment: null,
-              commentLenght: "commentLenght",
-              likeLenght: "likeLenght",
-              onLongPress: null);
+             
+              likeLength: "likeLenght",
+              );
         },
       ),
     );

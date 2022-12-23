@@ -4,7 +4,6 @@ import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 
 import '../../../controller/profile_controller.dart';
 import '../../../core/constants/app/app_size_constant.dart';
-import '../../../core/service/firebase/firebase_db.dart';
 import '../../../core/utility/app/gradient-utility.dart';
 import '../../../core/utility/app/padding_utility.dart';
 import '../../../core/utility/app/shape_border_utility.dart';
