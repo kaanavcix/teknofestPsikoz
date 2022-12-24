@@ -10,9 +10,7 @@ import 'package:psikoz/product/service/model/material/book_model.dart';
 import 'package:psikoz/product/service/model/material/music_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../product/service/model/post/post_model_output.dart';
-
-class HomeController extends GetxService {
+class HomeController extends GetxController {
   late final dateTime;
   late final String formatter;
   var frontText = "Günaydın".obs;
@@ -27,17 +25,17 @@ class HomeController extends GetxService {
   var isLoading = false.obs;
 
   HomeController({required this.dioService});
+
   @override
   Future<void> onInit() async {
     // TODO: implement onInit
     super.onInit();
-
+    
+    initService();
+   
     dateTime = DateTime.now();
     formatter = DateFormat.H().format(dateTime);
     datetimeSelected();
-    isLoading.toggle();
-    initService();
-    isLoading.toggle();
   }
 
   datetimeSelected() {
@@ -66,9 +64,11 @@ class HomeController extends GetxService {
   }
 
   Future<void> initService() async {
+    isLoading.toggle();
     musicModel = await dioService.getMusics();
     bookModel = await dioService.getBooks();
     articleModel = await dioService.getArticles();
-    print("${musicModel!.data![0].content}${bookModel!.data![0].content!}");
+    isLoading.toggle();
+    update();
   }
 }

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:psikoz/product/service/model/Tokens/token_model.dart';
+import 'package:psikoz/product/service/model/tokens/token_model.dart';
 import 'package:psikoz/product/service/model/result/result_model.dart';
 
 import '../service/model/onborading/login_model.dart';

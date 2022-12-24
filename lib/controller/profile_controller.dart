@@ -11,7 +11,7 @@ class ProfileController extends GetxController
   final box = GetStorage("token");
   void signout() async {
     await box.remove("auth").then((value) { 
-    print(box.read("auth"));
+   
     Get.offAndToNamed("/");});
   }
 

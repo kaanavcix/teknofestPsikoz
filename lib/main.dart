@@ -7,6 +7,7 @@ import 'package:psikoz/core/constants/app/app_constant.dart';
 import 'package:psikoz/product/init/cache/hive_cach.dart';
 import 'package:psikoz/product/init/theme/black_theme.dart';
 import 'package:psikoz/controller/auth_state_changes.dart';
+import 'package:psikoz/product/service/model/user/user_cache_model.dart';
 import 'package:psikoz/view/onboarding/login_view.dart';
 import 'package:psikoz/view/onboarding/onboarding_view.dart';
 import 'product/init/routes/get_list_page.dart';
@@ -24,15 +25,16 @@ class Psikoz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        getPages: getPages,
-        debugShowCheckedModeBanner: false,
-        title: AppConstant.titleApp,
-        themeMode: ThemeMode.dark,
-        darkTheme: darkTheme,
-        enableLog: true,
-        theme: lightTheme,
-        initialRoute: "/",);
+      getPages: getPages,
+      debugShowCheckedModeBanner: false,
+      title: AppConstant.titleApp,
+      themeMode: ThemeMode.dark,
+      darkTheme: darkTheme,
+      enableLog: true,
+      theme: lightTheme,
+      initialRoute: "/",
+      
+      
+    );
   }
 }
-
-

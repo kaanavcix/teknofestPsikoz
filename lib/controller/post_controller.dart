@@ -22,6 +22,8 @@ class PostController extends GetxController
   var switchClick1 = false.obs;
   var switchClick2 = false.obs;
   var switchClick3 = true.obs;
+  var isLoading = false.obs;
+  PostModel? postModel;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -30,6 +32,7 @@ class PostController extends GetxController
         vsync: this,
         value: switchClick3.isTrue ? 0.5 : 1,
         duration: const Duration(seconds: 1));
+    getPosts();
   }
 
   late final AnimationController animate = AnimationController(
@@ -92,5 +95,12 @@ class PostController extends GetxController
   Future<Object?> addPost() async {
     return await dioService
         .add(PostInputModel(userId: 3, content: postEditinController.text));
+  }
+
+  Future<void> getPosts() async {
+    isLoading.toggle();
+    postModel = await dioService.getAll();
+    isLoading.toggle();
+    update();
   }
 }

@@ -42,7 +42,7 @@ class BottomNavigatior extends StatelessWidget {
               onTap: onTap1,
               child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: IconNames.plus.tosvgPictureConvert(selectedItem==1? Get.theme.colorScheme.background
+                  child: IconNames.earth.tosvgPictureConvert(selectedItem==1? Get.theme.colorScheme.background
                     : Get.theme.colorScheme.surface),
             ),),
            

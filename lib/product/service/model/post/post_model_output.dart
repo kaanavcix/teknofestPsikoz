@@ -13,6 +13,11 @@ class PostModel {
     }
     success = json['success'];
   }
+  @override
+  String toString() {
+    // TODO: implement toString
+    return success.toString();
+  }
 }
 
 class Data {
@@ -56,23 +61,22 @@ class User {
   int? age;
   int? gender;
 
-  User(
-      {this.id,
-      this.username,
-      this.avatar,
-      this.age,
-      this.gender,
+  User({
+    this.id,
+    this.username,
+    this.avatar,
+    this.age,
+    this.gender,
   });
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
- 
+
     username = json['username'];
     avatar = json['avatar'];
     age = json['age'];
     gender = json['gender'];
   }
-
 }
 
 class Comments {
@@ -94,11 +98,11 @@ class Comments {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] =  id;
-    data['user_id'] =  userId;
-    data['comment'] =  comment;
-    data['joined_at'] =  joinedAt;
-    data['post_id'] =  postId;
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['comment'] = comment;
+    data['joined_at'] = joinedAt;
+    data['post_id'] = postId;
     return data;
   }
 }

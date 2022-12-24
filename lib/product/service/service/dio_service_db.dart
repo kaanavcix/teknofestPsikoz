@@ -14,7 +14,7 @@ class DioServiceDb extends IDioServiceMain {
   DioServiceDb(super.dio);
 
   @override
-  Future<PostModel?> getAll() async {
+  Future<PostModel> getAll() async {
     try {
       var response = await dio.get(PostPath.posts.name);
 
@@ -25,9 +25,11 @@ class DioServiceDb extends IDioServiceMain {
           return PostModel.fromJson(data);
         }
       }
+     
     } on DioError catch (e) {
       print(e.message);
     }
+     return PostModel();
   }
 
   @override
@@ -97,7 +99,7 @@ class DioServiceDb extends IDioServiceMain {
   }
 
   @override
-  Future<PostModel?> getbyid(String postid) async {
+  Future<PostModel> getbyid(String postid) async {
     try {
       var response = await dio.get("${PostPath.post.name}/$postid");
 
@@ -109,15 +111,17 @@ class DioServiceDb extends IDioServiceMain {
         }
       } else if (response.statusCode == 404) {
         var data = response.data;
-        return null;
+      
       }
+     
     } on DioError catch (e) {
       print(e.message);
     }
+     return PostModel();
   }
 
   @override
-  Future<MusicModel?> getMusics() async {
+  Future<MusicModel> getMusics() async {
     var response = await dio.get(PostPath.musics.name);
 
     if (response.statusCode == 200) {
@@ -126,11 +130,13 @@ class DioServiceDb extends IDioServiceMain {
       if (data is Map<String, dynamic>) {
         return MusicModel.fromJson(data);
       }
+
     }
+    return MusicModel();
   }
 
   @override
-  Future<ArticleModel?> getArticles() async {
+  Future<ArticleModel> getArticles() async {
     var response = await dio.get(PostPath.articles.name);
 
     if (response.statusCode == 200) {
@@ -139,13 +145,13 @@ class DioServiceDb extends IDioServiceMain {
       if (data is Map<String, dynamic>) {
         return ArticleModel.fromJson(data);
       }
-     
     }
+    return ArticleModel();
   }
 
   @override
-  Future<BookModel?> getBooks() async {
-  var response = await dio.get(PostPath.books.name);
+  Future<BookModel> getBooks() async {
+    var response = await dio.get(PostPath.books.name);
 
     if (response.statusCode == 200) {
       var data = response.data;
@@ -153,9 +159,10 @@ class DioServiceDb extends IDioServiceMain {
       if (data is Map<String, dynamic>) {
         return BookModel.fromJson(data);
       }
-     
     }
+        return BookModel();
+
   }
 }
 
-enum PostPath { posts, post, musics, articles,books }
+enum PostPath { posts, post, musics, articles, books }

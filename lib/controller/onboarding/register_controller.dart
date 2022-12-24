@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:psikoz/product/service/model/result/result_model.dart';
 
 import '../../product/base/IDioService.dart';
-import '../../product/service/model/Tokens/token_model.dart';
+import '../../product/service/model/tokens/token_model.dart';
 import '../../product/service/model/onborading/login_model.dart';
 import '../../product/service/model/onborading/register_model.dart';
 

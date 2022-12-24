@@ -4,6 +4,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/controller/user_controller.dart';
 import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/controller/home_controller.dart';
@@ -31,50 +32,45 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     ScrollController controllers = ScrollController();
-    return Scaffold(
-        appBar: appbar(),
-        body: Obx((() => controller.isLoading.value
-            ? CircularProgressIndicator()
-            : SizedBox(
-                height: Get.height,
-                child: LiquidPullToRefresh(
-                  showChildOpacityTransition: false,
-                  height: 55,
-                  springAnimationDurationInMilliseconds: 50,
-                  color: EmbabedUtility.socialPurple,
-                  onRefresh: () async {
-                    await controller.onrefresh();
-                    controllers.jumpTo(0);
-                  },
-                  child: NotificationListener<OverscrollIndicatorNotification>(
-                    onNotification: (notification) {
-                      notification.disallowIndicator();
-                      return true;
-                    },
-                    child: ListView(
-                      controller: controllers,
-                      clipBehavior: Clip.none,
-                      children: [
-                        smallCard(),
-                        middleBar(AppConstant.discoveryTrend),
-                        trendScroll(),
-                        SizedBoxDummy.height(
-                          height: 5,
-                        ),
-                        middleBar(AppConstant.recommenededMaterial),
-                        mediumLayout(),
-                        Text("Short podcast article book"),
-                        Placeholder(fallbackHeight: 100),
-                        Text("quiz reletaing to phys"),
-                        Placeholder(fallbackHeight: 200),
-                        Text("Short podcast article book"),
-                      ],
+    return  GetBuilder<HomeController>(
+            
+            builder: (_) => Scaffold (appBar: appbar(),body:controller.isLoading.value
+                ? CircularProgressIndicator(backgroundColor: Colors.blue,)
+                : SizedBox(
+                    height: Get.height,
+                    child: RefreshIndicator(
+                      color: EmbabedUtility.socialPurple,
+                      onRefresh: () async {
+                        await controller.onrefresh();
+                        controllers.jumpTo(0);
+                      },
+                      child: ListView(
+                        physics: ScrollPyhcisyUtilty.bouncAlways(),
+                        controller: controllers,
+                        clipBehavior: Clip.none,
+                        children: [
+                          smallCard(),
+                          middleBar(AppConstant.discoveryTrend),
+                          trendScroll(),
+                          const SizedBoxDummy.height(
+                            height: 5,
+                          ),
+                          middleBar(AppConstant.recommenededMaterial),
+                          mediumLayout(),
+                          Text("Short podcast article book"),
+                          Placeholder(fallbackHeight: 100),
+                          Text("quiz reletaing to phys"),
+                          Placeholder(fallbackHeight: 200),
+                          Text("Short podcast article book"),
+                        ],
+                      ),
                     ),
-                  ),
-                )))));
+                  )));
   }
 
   AppBar appbar() {
+    var userController = Get.find<UserController>();
+
     return AppBar(
         actions: [
           IconButton(
@@ -87,8 +83,8 @@ class HomeView extends GetView<HomeController> {
                 color: Colors.white,
               ))
         ],
-        title: Text(
-          "kaan",
+        title: userController.isLoading.value?CircularProgressIndicator.adaptive() : Text(
+          userController.userModel?.data?.name ?? "",
           style: Get.textTheme.bodyMedium,
         ));
   }
@@ -97,7 +93,7 @@ class HomeView extends GetView<HomeController> {
     return SizedBox(
       height: kToolbarHeight,
       child: Swiper(
-        itemCount: controller.musicModel!.data!.length,
+        itemCount: controller.musicModel?.data?.length ?? 0,
         layout: SwiperLayout.STACK,
 
         //  axisDirection: AxisDirection.down,
@@ -116,10 +112,10 @@ class HomeView extends GetView<HomeController> {
         // pagination: SwiperPagination(),
         control: const SwiperControl(size: 0),
         itemBuilder: (context, index) {
-          var model = controller.musicModel?.data;
+          var model = controller.musicModel?.data?[index];
           return TopCard(
-            topText: model?[index].title,
-            subText: model?[index].content,
+            topText: model?.title,
+            subText: model?.content,
           );
         },
       ),
@@ -137,7 +133,10 @@ class HomeView extends GetView<HomeController> {
         itemCount: controller.articleModel!.data!.length,
         itemBuilder: (BuildContext context, int index) {
           var model = controller.articleModel!.data![index];
-          return DiscoverCard(text1: model.categoryName,text2: model.title,);
+          return DiscoverCard(
+            text1: model.categoryName,
+            text2: model.title,
+          );
         },
       ),
     );
@@ -174,8 +173,11 @@ class HomeView extends GetView<HomeController> {
             itemCount: controller.bookModel!.data!.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              var model = controller.bookModel!.data![index];
-              return TrendCard(text: model.title ??"",name: "ali",);
+              var model = controller.bookModel?.data?[index];
+              return TrendCard(
+                text: model?.title ?? "",
+                name: "ali",
+              );
             },
           ),
         ));

@@ -11,9 +11,11 @@ import 'package:psikoz/core/utility/app/shape_border_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/profile_controller.dart';
+import 'package:psikoz/product/service/model/post/post_model_output.dart';
 import 'package:psikoz/product/widgets/discovery_view.dart';
 import 'package:psikoz/view/profile/settings_view.dart';
 
+import '../../controller/user_controller.dart';
 import '../../product/view/article_view_details.dart';
 import '../../product/widgets/discovery_card.dart';
 import 'tabpage/my_article_view.dart';
@@ -24,28 +26,31 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: scdeneme()
-    );
+     var control = Get.find<UserController>();
+    
+    return Scaffold(body: RefreshIndicator(
+      onRefresh: () => control.getUserData(),
+      child: scdeneme(control),));
   }
 
-  
-
-  Scaffold scdeneme() {
+  Scaffold scdeneme(UserController control) {
+    var mode = control.userModel?.data;
+   
     return Scaffold(
       appBar: appBar(),
       body: SizedBox(
         child: ListView(
-          physics: ScrollPyhcisyUtilty.bouncAlways(),
+          physics: const ScrollPyhcisyUtilty.bouncAlways(),
           shrinkWrap: true,
           children: [
             ProfileCard(
               imageUrl: "https://picsum.photos/200/300",
               controller: controller.tabController,
-              claimsName: "",
-              description: "",
-              firstName: "",
-              username: "",
+              claimsName: mode?.isPatient ??true ? "":"Doktor",
+              description: mode?.description ?? "",
+              firstName:mode?.name ,
+              username: mode?.username,
+
             ),
             const SizedBoxDummy.height(
               height: 5,

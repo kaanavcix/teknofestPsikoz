@@ -5,6 +5,7 @@ import 'package:psikoz/controller/onboarding/login_controller.dart';
 import 'package:psikoz/controller/onboarding/register_controller.dart';
 import 'package:psikoz/core/global/dio_instance.dart';
 import 'package:psikoz/product/service/service/dio_service.dart';
+import 'package:psikoz/product/service/service/dio_service_user.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
 
 class OnboardingBinding implements Bindings {
@@ -12,9 +13,10 @@ class OnboardingBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<LoginController>(() => LoginController(
         dioService: DioServiceOnboard(
-            Dio(BaseOptions(baseUrl: "http://192.168.1.14:8080/api/")))));
+            Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/"))),
+        dioUserService: DioServiceUser(
+            Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/")))));
     Get.lazyPut<RegisterController>(() => RegisterController(
         dioService: DioServiceOnboard(DioInstances.instance.getDio)));
-   
   }
 }

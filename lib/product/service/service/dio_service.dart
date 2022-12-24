@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 
 import '../../base/IDioService.dart';
-import '../model/Tokens/token_model.dart';
+import '../model/tokens/token_model.dart';
 import '../model/onborading/login_model.dart';
 import '../model/onborading/register_model.dart';
 import '../model/result/result_model.dart';
