@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 
-import '../../../controller/profile_controller.dart';
-import '../../../core/constants/app/app_size_constant.dart';
-import '../../../core/utility/app/gradient-utility.dart';
-import '../../../core/utility/app/padding_utility.dart';
-import '../../../core/utility/app/shape_border_utility.dart';
-import '../../../core/utility/embabed/embabed_utility.dart';
+import '../../../../core/constants/app/app_size_constant.dart';
+import '../../../../core/utility/app/gradient-utility.dart';
+import '../../../../core/utility/app/padding_utility.dart';
+import '../../../../core/utility/app/shape_border_utility.dart';
+import '../../../../core/utility/embabed/embabed_utility.dart';
+
 
 class ProfileCard extends StatelessWidget {
    ProfileCard({

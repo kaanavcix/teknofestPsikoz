@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
 
-import '../../../product/view/article_view_details.dart';
-import '../../../product/widgets/discovery_card.dart';
+import '../../../../product/view/article_view_details.dart';
+import '../../../../product/widgets/discovery_card.dart';
+
+
 
 class MyArticleView extends StatelessWidget {
   const MyArticleView({

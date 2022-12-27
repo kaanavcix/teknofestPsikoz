@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:psikoz/core/components/iconWidget/leading_widget.dart';
 import 'package:psikoz/core/constants/app/app_constant.dart';
-import 'package:psikoz/core/constants/app/app_size_constant.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
-import 'package:psikoz/core/utility/app/gradient-utility.dart';
 import 'package:psikoz/core/utility/app/padding_utility.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
-import 'package:psikoz/core/utility/app/shape_border_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
-import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/profile_controller.dart';
-import 'package:psikoz/product/service/model/post/post_model_output.dart';
-import 'package:psikoz/product/widgets/discovery_view.dart';
-import 'package:psikoz/view/profile/settings_view.dart';
-
-import '../../controller/user_controller.dart';
-import '../../product/view/article_view_details.dart';
-import '../../product/widgets/discovery_card.dart';
+import '../../../controller/user_controller.dart';
+import 'settings_view.dart';
 import 'tabpage/my_article_view.dart';
 import 'widgets/profile_card.dart';
 

@@ -1,61 +1,53 @@
-import 'dart:ffi';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/controller/user_controller.dart';
-import 'package:psikoz/core/components/post/post_bar.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/controller/home_controller.dart';
-import 'package:psikoz/core/utility/app/duration_utilty.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
+import 'package:psikoz/product/service/model/material/book_model.dart';
 import 'package:psikoz/product/widgets/discovery_card.dart';
-import 'package:psikoz/view/alert/email_view.dart';
-import 'package:psikoz/view/home/comment_view.dart';
-import 'package:psikoz/view/home/search_view..dart';
-import 'package:psikoz/view/home/widgets/feel_bar.dart';
+import 'package:psikoz/view/patient/home/bar_view.dart';
 
-import '../../core/constants/app/app_constant.dart';
-import '../../core/constants/app/app_size_constant.dart';
-import '../../core/utility/app/padding_utility.dart';
-import '../../product/widgets/top_card.dart';
-import '../../product/widgets/trend_card.dart';
-import 'widgets/message_icon_button.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import '../../../core/constants/app/app_constant.dart';
+import '../../../core/constants/app/app_size_constant.dart';
+import '../../../core/utility/app/padding_utility.dart';
+import '../../../product/widgets/top_card.dart';
+import '../../../product/widgets/trend_card.dart';
+import 'search_view..dart';
+import 'widgets/alert_view.dart';
+
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ScrollController controllers = ScrollController();
-    return  GetBuilder<HomeController>(
-            
-            builder: (_) => Scaffold (appBar: appbar(),body:controller.isLoading.value
-                ? CircularProgressIndicator(backgroundColor: Colors.blue,)
+
+    return GetBuilder<HomeController>(
+        builder: (_) => Scaffold(
+            appBar: appbar(),
+            body: controller.isLoading.value
+                ? loadingBar()
                 : SizedBox(
                     height: Get.height,
                     child: RefreshIndicator(
                       color: EmbabedUtility.socialPurple,
-                      onRefresh: () async {
-                        await controller.onrefresh();
-                        controllers.jumpTo(0);
-                      },
+                      onRefresh: controller.onrefresh,
                       child: ListView(
                         physics: ScrollPyhcisyUtilty.bouncAlways(),
-                        controller: controllers,
+                        controller: controller.controllers,
                         clipBehavior: Clip.none,
                         children: [
                           smallCard(),
-                          middleBar(AppConstant.discoveryTrend),
+                          middleBar(AppConstant.discoveryTrend,controller.bookModel),
                           trendScroll(),
                           const SizedBoxDummy.height(
                             height: 5,
                           ),
-                          middleBar(AppConstant.recommenededMaterial),
+                          middleBar(AppConstant.recommenededMaterial,controller.bookModel),
                           mediumLayout(),
                           Text("Short podcast article book"),
                           Placeholder(fallbackHeight: 100),
@@ -68,6 +60,13 @@ class HomeView extends GetView<HomeController> {
                   )));
   }
 
+  Widget loadingBar() {
+    return const Center(
+        child: CircularProgressIndicator(
+      backgroundColor: Colors.blue,
+    ));
+  }
+
   AppBar appbar() {
     var userController = Get.find<UserController>();
 
@@ -77,13 +76,13 @@ class HomeView extends GetView<HomeController> {
               onPressed: () => Get.to(SearchView()),
               icon: IconNames.search.tosvgPictureConvert(null)),
           IconButton(
-              onPressed: null,
-              icon: Icon(
+              onPressed: () => Get.to(AlertView()),
+              icon: const Icon(
                 Icons.notifications,
                 color: Colors.white,
               ))
         ],
-        title: userController.isLoading.value?CircularProgressIndicator.adaptive() : Text(
+        title: Text(
           userController.userModel?.data?.name ?? "",
           style: Get.textTheme.bodyMedium,
         ));
@@ -143,7 +142,7 @@ class HomeView extends GetView<HomeController> {
   }
 
   Padding middleBar(
-    String text,
+    String text,BookModel? bookModel
   ) {
     return Padding(
       padding: PaddinUtilty.normalPadding().padding,
@@ -154,9 +153,12 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(text),
-              const Icon(
-                Icons.arrow_back_ios_outlined,
-                textDirection: TextDirection.rtl,
+              InkWell(
+                onTap: () => Get.to(BarView(text, bookModel)),
+                child: const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  textDirection: TextDirection.rtl,
+                ),
               )
             ],
           ))),

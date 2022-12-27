@@ -6,9 +6,10 @@ import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:psikoz/core/utility/app/padding_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
-import 'package:psikoz/view/post/post_view.dart';
 
-import '../../core/constants/enums/Icon-enums.dart';
+import '../../../core/constants/enums/Icon-enums.dart';
+import 'post_view.dart';
+
 
 class PostArticleView extends GetView<PostController> {
   const PostArticleView({super.key});

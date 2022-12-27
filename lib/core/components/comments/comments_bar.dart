@@ -19,23 +19,31 @@ class CommentsBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
             children: [
-              Expanded(flex: 8,
+              Expanded(
+                flex: 8,
                 child: TextFormField(
                   enableIMEPersonalizedLearning: true,
                   enableSuggestions: true,
-                 
-                  
                   decoration: const InputDecoration(
-                    enabled: true,
-                    filled: false,
+                      enabled: true,
+                      filled: false,
                       disabledBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       border: InputBorder.none),
-                      
                 ),
               ),
-              Expanded(flex: 1,child: IconNormal(child: IconNames.plus.tosvgPictureConvert(EmbabedUtility.socialLightGray) )),
-              Expanded(flex: 1,child: IconCircular(child: Padding(padding: EdgeInsets.all(8),child:IconNames.send.tosvgPictureConvert(Colors.white))))
+              Expanded(
+                  flex: 1,
+                  child: IconNormal(
+                      child: IconNames.plus.tosvgPictureConvert(
+                          EmbabedUtility.socialLightGray))),
+              Expanded(
+                  flex: 1,
+                  child: IconCircular(
+                      child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: IconNames.send
+                              .tosvgPictureConvert(Colors.white))))
             ],
           ),
         ),

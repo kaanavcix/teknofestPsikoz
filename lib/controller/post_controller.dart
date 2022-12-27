@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/product/base/IDioService2.dart';
+import 'package:psikoz/product/service/model/comment/comment_model.dart';
 import 'package:psikoz/product/service/model/post/post_model_input.dart';
 import 'package:psikoz/controller/main_controller.dart';
 import 'package:psikoz/controller/profile_controller.dart';
@@ -24,6 +25,7 @@ class PostController extends GetxController
   var switchClick3 = true.obs;
   var isLoading = false.obs;
   PostModel? postModel;
+  CommentModel? commentModel;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -32,6 +34,13 @@ class PostController extends GetxController
         vsync: this,
         value: switchClick3.isTrue ? 0.5 : 1,
         duration: const Duration(seconds: 1));
+    getPosts();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
     getPosts();
   }
 
@@ -92,9 +101,9 @@ class PostController extends GetxController
     }
   }
 
-  Future<Object?> addPost() async {
+  Future<Object?> addPost(int? userid, String? content) async {
     return await dioService
-        .add(PostInputModel(userId: 3, content: postEditinController.text));
+        .add(PostInputModel(userId: userid, content: content));
   }
 
   Future<void> getPosts() async {

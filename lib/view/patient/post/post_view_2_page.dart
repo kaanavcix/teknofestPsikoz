@@ -3,12 +3,16 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:psikoz/core/utility/app/gradient-utility.dart';
 import 'package:psikoz/controller/post_controller.dart';
-import '../../product/init/theme/text_theme.dart';
-import '../../core/utility/embabed/embabed_utility.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:psikoz/view/patient/main/main_view.dart';
+
+import '../../../core/utility/embabed/embabed_utility.dart';
+import '../../../product/init/theme/text_theme.dart';
+import '../../../product/service/model/user/user_model.dart';
 
 class PostValidatePage extends GetView<PostController> {
-  PostValidatePage({Key? key}) : super(key: key);
+  PostValidatePage({required this.userModel, Key? key}) : super(key: key);
+
+  UserModel? userModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,39 +47,15 @@ class PostValidatePage extends GetView<PostController> {
                     ]),
               ),
             ),
-            Obx(
-              () => Column(
-                children: [
-                  SwitchListTile(
-                    value: controller.switchClick1.value,
-                    onChanged: (value) => controller.onChanged(value),
-                    activeColor: EmbabedUtility.socialPurple,
-                    title: Text(
-                      "Yorumları kapat",
-                      style: grBodyB,
-                    ),
+            Obx(() => SwitchListTile(
+                  value: controller.switchClick3.value,
+                  onChanged: (value) => controller.onChanged2(value),
+                  activeColor: EmbabedUtility.socialPurple,
+                  title: Text(
+                    "Anonim olarak paylaş",
+                    style: grBodyB,
                   ),
-                  Obx(() => SwitchListTile(
-                        value: controller.switchClick2.value,
-                        onChanged: (value) => controller.onChanged1(value),
-                        activeColor: EmbabedUtility.socialPurple,
-                        title: Text(
-                          "Beğenileri kapat",
-                          style: grBodyB,
-                        ),
-                      )),
-                  Obx(() => SwitchListTile(
-                        value: controller.switchClick3.value,
-                        onChanged: (value) => controller.onChanged2(value),
-                        activeColor: EmbabedUtility.socialPurple,
-                        title: Text(
-                          "Anonim olarak paylaş",
-                          style: grBodyB,
-                        ),
-                      )),
-                ],
-              ),
-            ),
+                )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Container(
@@ -116,19 +96,20 @@ class PostValidatePage extends GetView<PostController> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
             child: ElevatedButton(
-              onPressed: () {
-                controller
-                    .addPost()
+              onPressed: () async {
+                await controller
+                    .addPost(userModel?.data?.id,
+                        controller.postEditinController.text)
                     .then((value) {
                   controller.postEditinController.text = "";
                   controller.maincontroller.selectedItem.value = 0;
-                  Get.back();
+                  Get.off(MainView());
                 });
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(48)),
-                backgroundColor: Get.theme.colorScheme.secondary,
+                backgroundColor: EmbabedUtility.socialPurple,
               ),
               child: Text(
                 "Paylaş",

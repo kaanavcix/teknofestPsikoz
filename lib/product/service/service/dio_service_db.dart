@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:psikoz/product/service/model/comment/comment_model.dart';
 import 'package:psikoz/product/service/model/material/article_model.dart';
 import 'package:psikoz/product/service/model/material/book_model.dart';
 import 'package:psikoz/product/service/model/material/music_model.dart';
@@ -25,11 +26,10 @@ class DioServiceDb extends IDioServiceMain {
           return PostModel.fromJson(data);
         }
       }
-     
     } on DioError catch (e) {
       print(e.message);
     }
-     return PostModel();
+    return PostModel();
   }
 
   @override
@@ -111,13 +111,11 @@ class DioServiceDb extends IDioServiceMain {
         }
       } else if (response.statusCode == 404) {
         var data = response.data;
-      
       }
-     
     } on DioError catch (e) {
       print(e.message);
     }
-     return PostModel();
+    return PostModel();
   }
 
   @override
@@ -130,7 +128,6 @@ class DioServiceDb extends IDioServiceMain {
       if (data is Map<String, dynamic>) {
         return MusicModel.fromJson(data);
       }
-
     }
     return MusicModel();
   }
@@ -160,9 +157,29 @@ class DioServiceDb extends IDioServiceMain {
         return BookModel.fromJson(data);
       }
     }
-        return BookModel();
+    return BookModel();
+  }
 
+  @override
+  Future<CommentModel?> getComments(int id) async {
+    try {
+      var response =
+          await dio.get("${PostPath.post.name}/$id/${PostPath.comments.name}");
+
+      if (response.statusCode == 200) {
+        var data = response.data;
+        if (data is Map<String, dynamic>) {
+          return CommentModel.fromJson(data);
+        }
+      }
+    } on DioError catch (e) {
+      print(e.message);
+    }
   }
 }
 
-enum PostPath { posts, post, musics, articles, books }
+enum PostPath { posts, post, musics, articles, books, comments }
+
+
+
+ //\\  post/11/comments

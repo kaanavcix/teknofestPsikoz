@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/controller/comment_controller.dart';
 import 'package:psikoz/controller/home_controller.dart';
 import 'package:psikoz/controller/post_controller.dart';
 import 'package:psikoz/controller/profile_controller.dart';
@@ -22,6 +23,9 @@ class MainBinding implements Bindings {
     Get.lazyPut<PostController>(
         () => PostController(DioServiceDb(
             Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/")))),
+        fenix: true);
+          Get.lazyPut<CommentController>(
+        () => CommentController(),
         fenix: true);
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.lazyPut<UserController>(

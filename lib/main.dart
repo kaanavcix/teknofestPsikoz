@@ -33,6 +33,8 @@ class Psikoz extends StatelessWidget {
       enableLog: true,
       theme: lightTheme,
       initialRoute: "/",
+      debugShowMaterialGrid: false,
+      
       
       
     );

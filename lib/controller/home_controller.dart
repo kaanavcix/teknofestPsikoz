@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -23,6 +24,7 @@ class HomeController extends GetxController {
   BookModel? bookModel;
   ArticleModel? articleModel;
   var isLoading = false.obs;
+  ScrollController controllers = ScrollController();
 
   HomeController({required this.dioService});
 
@@ -61,6 +63,8 @@ class HomeController extends GetxController {
   Future<void> onrefresh() async {
     initService();
     refreshController.refreshCompleted();
+     controllers.jumpTo(0);
+
   }
 
   Future<void> initService() async {
@@ -71,4 +75,6 @@ class HomeController extends GetxController {
     isLoading.toggle();
     update();
   }
+
+ 
 }

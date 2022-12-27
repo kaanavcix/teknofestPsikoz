@@ -35,21 +35,21 @@ class BottomNavigatior extends StatelessWidget {
             IconNormal(
                 onTap: onTap,
                 child: IconNames.feed.tosvgPictureConvert(selectedItem == 0
-                    ? Get.theme.colorScheme.background
+                    ? EmbabedUtility.socialwhite
                     : Get.theme.colorScheme.surface)),
            
             IconNormal(
               onTap: onTap1,
               child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: IconNames.earth.tosvgPictureConvert(selectedItem==1? Get.theme.colorScheme.background
+                  child: IconNames.earth.tosvgPictureConvert(selectedItem==1? EmbabedUtility.socialwhite
                     : Get.theme.colorScheme.surface),
             ),),
            
             IconNormal(
                 onTap: onTap2,
                 child: IconNames.profile.tosvgPictureConvert(selectedItem == 2
-                    ? Get.theme.colorScheme.background
+                    ? EmbabedUtility.socialwhite
                     : Get.theme.colorScheme.surface)),
           ]),
     ));

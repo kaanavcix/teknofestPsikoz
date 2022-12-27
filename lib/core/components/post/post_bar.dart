@@ -13,25 +13,24 @@ class PostBar extends StatelessWidget {
       required this.text,
       required this.userName,
       required this.time,
-      required this.onTapLike,
-      required this.likeLength})
+      required this.category})
       : super(key: key);
   final String text;
 
   final String userName;
   final String time;
-  void Function()? onTapLike;
   void Function()? onTapComment;
-  String likeLength;
-  String? commentLenght;
+
   Color? colorLike;
   String? status;
   void Function()? onTapMore;
   void Function()? onLongPress;
+  String category;
 
   @override
   Widget build(BuildContext context) {
-    var edgeInsets = const EdgeInsets.symmetric(horizontal: 15.0);
+    const edgeInsets = EdgeInsets.symmetric(horizontal: 15.0);
+    const edgeInsets2 = EdgeInsets.only(left: 8.0);
     return Column(children: [
       sizedbox(),
       Padding(
@@ -41,14 +40,38 @@ class PostBar extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: edgeInsets2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      userName,
-                      style: grSTextB,
+                    Row(
+                      children: [
+                        Text(
+                          userName,
+                          style: grSTextB,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: category!= ""? Row(
+                            children: [
+                              Text(
+                                category,
+                                style: grSTextB.copyWith(
+                                    color: EmbabedUtility.socialPurple),
+                              ),
+                              const SizedBox(
+                                width: 2,
+                              ),
+                              const Icon(
+                                Icons.verified_outlined,
+                                size: 16,
+                                color: EmbabedUtility.socialPurple,
+                              )
+                            ],
+                          ):SizedBox(),
+                        ),
+                      ],
                     ),
                     Text(
                       time,
@@ -81,34 +104,29 @@ class PostBar extends StatelessWidget {
           ),
         ],
       ),
-      Padding(
-        padding: edgeInsets,
-        child: Row(
-          children: [
-            buttons(
-                IconNames.like.tosvgPictureConvert(null, width: 18, height: 18),
-                likeLength.toString(),
-                onTapLike),
-            const Spacer(flex: 1),
-            buttons(
-                IconNames.comment
-                    .tosvgPictureConvert(null, width: 18, height: 18),
-                // ignore: prefer_null_aware_operators
-                commentLenght == null ? "" : commentLenght.toString(),
-                onTapComment),
-            const Spacer(
-              flex: 1,
-            ),
-            const Spacer(
-              flex: 6,
-            ),
-            GestureDetector(
-              child: IconNames.bookmark
-                  .tosvgPictureConvert(null, width: 18, height: 18),
-            ),
-          ],
-        ),
+      const SizedBox(
+        height: 5,
       ),
+      onTapComment != null
+          ? Padding(
+              padding: edgeInsets,
+              child: Row(
+                children: [
+                  buttons(
+                      IconNames.comment
+                          .tosvgPictureConvert(null, width: 18, height: 18),
+                      // ignore: prefer_null_aware_operators
+                      null,
+                      onTapComment),
+                  const Spacer(),
+                  GestureDetector(
+                    child: IconNames.bookmark
+                        .tosvgPictureConvert(null, width: 18, height: 18),
+                  ),
+                ],
+              ),
+            )
+          : sizedbox(),
       sizedbox(),
       const MySeparator(
         color: EmbabedUtility.socialLightGray,
@@ -122,20 +140,6 @@ class PostBar extends StatelessWidget {
       );
 
   Widget buttons(dynamic widget, String? text, void Function()? onTap) {
-    return Row(
-      children: [
-        GestureDetector(child: widget, onTap: onTap),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            text.toString(),
-            style: grTertiary,
-          ),
-        )
-      ],
-    );
+    return GestureDetector(child: widget, onTap: onTap);
   }
 }
-
-
-// beğeni renk olayı gerekiyor

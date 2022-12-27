@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
-import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/profile_controller.dart';
-import 'package:psikoz/view/profile/anonim_name_view.dart';
+import 'anonim_name_view.dart';
 
 class SettingsView extends GetView<ProfileController> {
   const SettingsView({Key? key}) : super(key: key);

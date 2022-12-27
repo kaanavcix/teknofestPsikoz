@@ -5,6 +5,8 @@ import 'package:psikoz/product/service/model/material/music_model.dart';
 import 'package:psikoz/product/service/model/post/post_model_input.dart';
 import 'package:psikoz/product/service/model/post/post_model_output.dart';
 
+import '../service/model/comment/comment_model.dart';
+
 abstract class IDioServiceMain {
   final Dio dio;
 
@@ -16,8 +18,7 @@ abstract class IDioServiceMain {
   Future<Object?> add(PostInputModel model);
   Future<Object?> remove(String postid);
   Future<MusicModel> getMusics();
-    Future<ArticleModel> getArticles();
-        Future<BookModel> getBooks();
-
-
+  Future<ArticleModel> getArticles();
+  Future<BookModel> getBooks();
+  Future<CommentModel?> getComments(int id);
 }

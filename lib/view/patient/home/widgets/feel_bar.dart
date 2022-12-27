@@ -6,8 +6,9 @@ import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/core/utility/app/padding_utility.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 
-import '../../../core/components/containers/face_container.dart';
-import '../../../core/constants/app/app_constant.dart';
+import '../../../../core/components/containers/face_container.dart';
+import '../../../../core/constants/app/app_constant.dart';
+
 
 class FeelBar extends GetView<HomeController> {
   const FeelBar({

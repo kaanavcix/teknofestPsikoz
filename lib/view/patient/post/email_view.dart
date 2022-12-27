@@ -4,11 +4,12 @@ import 'package:psikoz/core/components/inputbar/search_bar_widget.dart';
 import 'package:psikoz/core/components/seperators/seperators_line.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
-import 'package:psikoz/view/alert/message_detail_view.dart';
 
-import '../../product/init/theme/text_theme.dart';
 
 import 'package:get/get.dart';
+
+import '../../../product/init/theme/text_theme.dart';
+import 'message_detail_view.dart';
 
 class MessageView extends StatelessWidget {
   const MessageView({Key? key}) : super(key: key);
