@@ -1,7 +1,7 @@
 import '../result/result_model.dart';
 
 class TokenModel extends BaseModel{
-  String? status;
+  bool? status;
   int? message;
   String? token;
 
@@ -14,7 +14,7 @@ class TokenModel extends BaseModel{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['status'] =  status;
     data['message'] =  message;
     data['token'] =  token;

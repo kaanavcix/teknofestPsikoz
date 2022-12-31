@@ -47,6 +47,8 @@ dependencies:
   lottie: ^2.0.0
   card_swiper: ^2.0.4
   get_storage: ^2.0.3
+  file_picker: ^5.2.4
+  flutter_colorpicker: ^1.0.3
  
 
 dev_dependencies:
@@ -60,6 +62,7 @@ dev_dependencies:
   flutter_native_splash: ^2.2.16
   liquid_pull_to_refresh: ^3.0.1
   pull_to_refresh: ^2.0.0
+  painter: ^2.0.0
 
 
 

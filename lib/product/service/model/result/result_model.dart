@@ -1,6 +1,6 @@
 class ErrorModel extends BaseModel{
   bool? status;
-  int? message;
+  String? message;
 
   ErrorModel({this.status, this.message});
 
@@ -10,7 +10,7 @@ class ErrorModel extends BaseModel{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['status'] = status;
     data['message'] = message;
     return data;

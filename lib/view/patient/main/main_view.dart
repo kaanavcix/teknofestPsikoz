@@ -12,6 +12,7 @@ class MainView extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         body: Obx(() => pages[controller.selectedItem.value]),
         bottomNavigationBar:bottomNavi());
   }

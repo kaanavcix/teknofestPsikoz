@@ -10,6 +10,7 @@ import 'package:psikoz/view/doctor/main_view_doctor.dart';
 import 'package:psikoz/view/onboarding/login_view.dart';
 import 'package:psikoz/view/onboarding/onboarding_view.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
+import 'package:psikoz/view/onboarding/register_view_doctor.dart';
 import 'package:psikoz/view/onboarding/widgets/register_button.dart';
 
 import '../../../view/patient/main/main_view.dart';
@@ -27,7 +28,11 @@ List<GetPage<dynamic>>? getPages = [
       binding: OnboardingBinding()),
   GetPage(
       name: "/register",
-      page: () => const RegisterScreens(),
+      page: () => const RegisterView(),
+      binding: OnboardingBinding()),
+       GetPage(
+      name: "/doctorRegister",
+      page: () => const RegisterDoctorView(),
       binding: OnboardingBinding()),
   GetPage(name: "/main", page: () => const MainView(), binding: MainBinding()),
   GetPage(name: "/mainDoctor", page: ()=>MainViewDoctor())

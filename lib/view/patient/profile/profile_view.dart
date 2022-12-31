@@ -36,7 +36,7 @@ class ProfileView extends GetView<ProfileController> {
             ProfileCard(
               imageUrl: "https://picsum.photos/200/300",
               controller: controller.tabController,
-              claimsName: mode?.isPatient ??true ? "":"Doktor",
+              claimsName: (mode?.isPatient=="1"?true:false)? "":"Doktor",
               description: mode?.description ?? "",
               firstName:mode?.name ,
               username: mode?.username,
@@ -76,6 +76,7 @@ class ProfileView extends GetView<ProfileController> {
 
   AppBar appBar() {
     return AppBar(
+       automaticallyImplyLeading: false,
       title: Padding(
         padding: PaddinUtilty.horizontalPadding().padding,
       ),

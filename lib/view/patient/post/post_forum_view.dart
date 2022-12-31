@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-
+import 'package:psikoz/view/patient/post/post_draw_view.dart';
 
 import '../../../controller/post_controller.dart';
 import '../../../core/components/post/post_bar.dart';
@@ -18,12 +18,21 @@ class PostForumView extends GetView<PostController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Forum"),
+          automaticallyImplyLeading: false,
+          title: const Text("Forum"),
           actions: [
             IconButton(
               onPressed: () => Get.to(PostView()),
               icon: IconNames.plus.tosvgPictureConvert(null),
             ),
+            IconButton(
+                onPressed: () {
+                  Get.to(PostDrawView());
+                },
+                icon: Icon(
+                  Icons.draw_outlined,
+                  color: Colors.white,
+                )),
             IconButton(
                 onPressed: () => Get.to(MessageView()),
                 icon: IconNames.email.tosvgPictureConvert(null))
@@ -42,13 +51,14 @@ class PostForumView extends GetView<PostController> {
                       itemBuilder: (context, index) {
                         var mode = controller.postModel?.data?[index];
                         return PostBar(
-                          mode!.comment!.isEmpty ? null:() => Get.to(CommentView(post: mode)) ,
+                          mode!.comment!.isEmpty
+                              ? null
+                              : () => Get.to(CommentView(post: mode)),
                           null,
                           text: mode.content ?? "",
                           userName: mode.username ?? "",
                           time: "",
-                        category: mode.category ?? "",
-
+                          category: mode.category ?? "",
                         );
                       },
                       itemCount: controller.postModel?.data?.length,

@@ -11,7 +11,7 @@ import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/onboarding/login_controller.dart';
 import 'package:psikoz/product/validator/onboarding_validate.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
-import 'package:psikoz/view/onboarding/widgets/register_first_screen.dart';
+import 'package:psikoz/view/onboarding/register_first_screen.dart';
 
 import '../../core/components/buttons/psikoz_button.dart';
 import '../../core/components/stacks/psikoz_stack.dart';

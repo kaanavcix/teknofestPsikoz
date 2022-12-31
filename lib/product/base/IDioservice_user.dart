@@ -8,4 +8,5 @@ abstract class IDioServiceUser {
      this.dio,
   );
   Future<UserModel> getUserData(TokenInputModel tokenInputModel);
+  
 }

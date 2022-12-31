@@ -45,7 +45,9 @@ class LoginController extends GetxController {
           var data = await dioUserService
               .getUserData(TokenInputModel(token: value.token));
 
-          await box.write("patient", data?.data?.isPatient);
+          //bool patient = data.data?.isPatient=="1"?true:false;
+
+          await box.write("patient", data.data?.isPatient);
 
           box.read("patient")
               ? Get.offAllNamed("/main")

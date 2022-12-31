@@ -19,7 +19,7 @@ class SettingsView extends GetView<ProfileController> {
             onPressed: () => Get.back(),
             icon: IconNames.arrowleft
                 .tosvgPictureConvert(null, width: 24, height: 24)),
-        title: Text("Ayarlar", style: Get.textTheme.headlineSmall),
+        title: Text("Ayarlar"),
       ),
       body: ListView(children: [
         ListTile(

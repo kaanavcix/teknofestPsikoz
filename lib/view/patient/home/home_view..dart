@@ -71,6 +71,7 @@ class HomeView extends GetView<HomeController> {
     var userController = Get.find<UserController>();
 
     return AppBar(
+      automaticallyImplyLeading: false,
         actions: [
           IconButton(
               onPressed: () => Get.to(SearchView()),

@@ -7,16 +7,17 @@ import 'package:get/get.dart';
 import 'package:psikoz/product/service/model/onborading/register_model.dart';
 import 'package:psikoz/product/service/model/result/result_model.dart';
 import 'package:psikoz/view/onboarding/widgets/four_screen.dart';
+import 'package:psikoz/view/onboarding/widgets/four_screen_doctor.dart';
+import 'package:psikoz/view/onboarding/widgets/register_app_bar.dart';
 import 'package:psikoz/view/onboarding/widgets/register_button.dart';
 import '../../core/components/iconWidget/leading_widget.dart';
 import '../../core/constants/enums/Icon-enums.dart';
 import 'widgets/first_screen.dart';
-import 'widgets/register_app_bar.dart';
 import 'widgets/second_screen.dart';
 import 'widgets/third_screen.dart';
 
-class RegisterView extends GetView<RegisterController> {
-  const RegisterView({super.key});
+class RegisterDoctorView extends GetView<RegisterController> {
+  const RegisterDoctorView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class RegisterView extends GetView<RegisterController> {
       FirstScreen(),
       SecondScreen(),
       ThirdScreen(),
-      FourScreen()
+      FourScreenDoctor()
     ];
     return Scaffold(
       //resizeToAvoidBottomInset: false,
@@ -86,18 +87,19 @@ class RegisterView extends GetView<RegisterController> {
       controller.currentIndex.value++;
       // print(controller.currentIndex.value.toString() + "dörtüncü print");
     } else if (controller.currentIndex.value == 3) {
-      print("data");
+      //print("data");
 
-      //TODO: Model üzerinde ilerlemelerde bulunmalıyız.
-      await controller.registerControl(RegisterModel(
-        name: controller.nameController.text,
-        email: controller.emailController.text,
-        username: controller.nameController.text,
-        password: controller.passwordController.text,
-        age: controller.age.value.toString(),
-        gender: controller.gender.value.toString(),
-      ));
+      await controller.registerControlDoctor();
       controller.currentIndex.value = 0;
     }
   }
 }
+  
+   
+
+
+
+   /* 
+          
+
+          ));*/
