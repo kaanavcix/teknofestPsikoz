@@ -12,11 +12,10 @@ class OnboardingBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<LoginController>(() => LoginController(
-        dioService: DioServiceOnboard(
-            Dio(BaseOptions(baseUrl: "http://192.168.1.14:8080/api/"))),
-        dioUserService: DioServiceUser(
-            Dio(BaseOptions(baseUrl: "http://192.168.1.14:8080/api/")))));
+        dioService: DioServiceOnboard(DioInstanceTsApi.instance.dio),
+        dioUserService: DioServiceUser(DioInstanceTsApi.instance.dio)));
     Get.lazyPut<RegisterController>(() => RegisterController(
-        dioService: DioServiceOnboard(Dio(BaseOptions(baseUrl: "http://192.168.1.14:8080/api/")))));
+        dioService: DioServiceOnboard(DioInstanceTsApi.instance.dio)));
   }
 }
+//     Dio(BaseOptions(baseUrl: "http://192.168.1.14:8080/api/"))p

@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:psikoz/bindings/main_bindings.dart';
 import 'package:psikoz/bindings/onboarding_bindings.dart';
-import 'package:psikoz/bindings/register_bindings.dart';
 import 'package:psikoz/product/service/model/user/user_model.dart';
 import 'package:psikoz/view/doctor/main_view_doctor.dart';
 import 'package:psikoz/view/onboarding/login_view.dart';
@@ -39,9 +38,8 @@ List<GetPage<dynamic>>? getPages = [
 ];
 
 Widget function() => box.hasData("auth")
-    ? box.hasData("patient")
-        ? box.read("patient") == true
-            ? MainView()
-            : MainViewDoctor()
-        : LoginView()
-    : LoginView();
+    ? 
+         box.read("patient") == true
+            ? const MainView()
+            : const MainViewDoctor()
+        : const LoginView();

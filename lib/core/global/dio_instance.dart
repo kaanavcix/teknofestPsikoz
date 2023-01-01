@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class DioInstance {
+/* class DioInstance {
   DioInstance._();
   final Dio _dio =
       Dio(BaseOptions(baseUrl: "https://webapipsikoz.azurewebsites.net/"));
@@ -14,14 +14,17 @@ class DioInstance {
   }
 
   Dio get getDio => _dio;
-}
+} */
 
-class DioInstances {
-  DioInstances._();
+class DioInstanceTsApi {
+  final Dio _dio = Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/"));
 
-  final Dio _dio = Dio(BaseOptions(baseUrl: "https://192.168.1.14/api/"));
+  DioInstanceTsApi._();
 
-  static final instance = DioInstance._();
+  static final instance = DioInstanceTsApi._();
 
-  Dio get getdio => _dio;
+  Dio get dio => _dio;
+
+  Dio dioAuth(String token) => Dio(BaseOptions(
+      baseUrl: "http://192.168.192.1:8080/api/", headers: {"token": token}));
 }

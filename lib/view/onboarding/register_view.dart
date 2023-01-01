@@ -96,6 +96,7 @@ class RegisterView extends GetView<RegisterController> {
         password: controller.passwordController.text,
         age: controller.age.value.toString(),
         gender: controller.gender.value.toString(),
+        isPatient: "1"
       ));
       controller.currentIndex.value = 0;
     }

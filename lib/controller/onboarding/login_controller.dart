@@ -38,7 +38,6 @@ class LoginController extends GetxController {
         isLoading.toggle();
 
         final box = GetStorage("token");
-        print(box.read("auth"));
 
         if (value is TokenModel) {
           await box.write("auth", value.token);
@@ -46,7 +45,7 @@ class LoginController extends GetxController {
               .getUserData(TokenInputModel(token: value.token));
 
           //bool patient = data.data?.isPatient=="1"?true:false;
-
+          print(data.data?.isPatient);
           await box.write("patient", data.data?.isPatient);
 
           box.read("patient")

@@ -18,19 +18,20 @@ class MainBinding implements Bindings {
     Get.put<HomeController>(
         HomeController(
             dioService: DioServiceDb(
-                Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/")))),
+                DioInstanceTsApi.instance.dio)),
         permanent: true);
     Get.lazyPut<PostController>(
-        () => PostController(DioServiceDb(
-            Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/")))),
-        fenix: true);
-          Get.lazyPut<CommentController>(
-        () => CommentController(),
-        fenix: true);
+      () => PostController(DioServiceDb(
+          DioInstanceTsApi.instance.dio)),
+    );
+    Get.lazyPut<CommentController>(
+      () => CommentController(),
+    );
+    ;
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.lazyPut<UserController>(
-        () => UserController(DioServiceUser(
-            Dio(BaseOptions(baseUrl: "http://192.168.192.1:8080/api/")))),
-        fenix: true);
+      () => UserController(DioServiceUser(
+          DioInstanceTsApi.instance.dio)),
+    );
   }
 }

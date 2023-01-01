@@ -91,32 +91,17 @@ class PostValidatePage extends GetView<PostController> {
         style: grSTextB.copyWith(color: Colors.white, letterSpacing: 0.2),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
-            child: ElevatedButton(
-              onPressed: () async {
-                await controller
-                    .addPost(userModel?.data?.id,
-                        controller.postEditinController.text)
-                    .then((value) {
-                  controller.postEditinController.text = "";
-                  controller.maincontroller.selectedItem.value = 0;
-                  Get.off(MainView());
-                });
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(48)),
-                backgroundColor: EmbabedUtility.socialPurple,
-              ),
-              child: Text(
-                "Paylaş",
-                style: grSTextB.copyWith(color: Colors.white),
-              ),
-            ),
-          ),
+        ShareButton(
+          function: () async {
+            await controller
+                .addPost(
+                    userModel?.data?.id, controller.postEditinController.text)
+                .then((value) {
+              controller.postEditinController.text = "";
+              controller.maincontroller.selectedItem.value = 0;
+              Get.off(MainView());
+            });
+          },
         )
       ],
     );
@@ -146,6 +131,35 @@ class PostValidatePage extends GetView<PostController> {
           frameRate: FrameRate.composition,
           height: 55,
           controller: controller.switchAnimation),
+    );
+  }
+}
+
+class ShareButton extends StatelessWidget {
+  ShareButton({Key? key, required this.function}) : super(key: key);
+
+  void Function()? function;
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
+        child: ElevatedButton(
+          onPressed: function,
+          style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(48)),
+            backgroundColor: EmbabedUtility.socialPurple,
+          ),
+          child: Text(
+            "Paylaş",
+            style: grSTextB.copyWith(color: Colors.white),
+          ),
+        ),
+      ),
     );
   }
 }
