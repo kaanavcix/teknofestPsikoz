@@ -1,30 +1,40 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
-import 'package:psikoz/core/service/model/user_model.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:psikoz/controller/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:psikoz/product/base/IDioService2.dart';
+import 'package:psikoz/product/service/model/material/article_model.dart';
+import 'package:psikoz/product/service/model/material/book_model.dart';
+import 'package:psikoz/product/service/model/material/music_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../core/service/model/post/post_model_output.dart';
-
-class HomeController extends GetxService {
+class HomeController extends GetxController {
   late final dateTime;
-  UserInfos? personInfo;
   late final String formatter;
-  FirebaseDb db = FirebaseDb();
   var frontText = "Günaydın".obs;
   var isClicked = false.obs;
   var isSizedBox = false.obs;
   RefreshController refreshController = RefreshController();
+  final box = GetStorage("token");
+  IDioServiceMain dioService;
+  MusicModel? musicModel;
+  BookModel? bookModel;
+  ArticleModel? articleModel;
+  var isLoading = false.obs;
+  ScrollController controllers = ScrollController();
+
+  HomeController({required this.dioService});
 
   @override
   Future<void> onInit() async {
     // TODO: implement onInit
     super.onInit();
-
+    
+    initService();
+   
     dateTime = DateTime.now();
     formatter = DateFormat.H().format(dateTime);
     datetimeSelected();
@@ -40,57 +50,31 @@ class HomeController extends GetxService {
   }
 
   Future<void> signout() async {
-    await FirebaseAuth.instance.signOut();
-  }
-
-  String readTimestamp(int timestamp) {
-    var now = DateTime.now();
-    var format = DateFormat('HH:mm a');
-    var date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-    var diff = now.difference(date);
-    var time = '';
-
-    if (diff.inSeconds <= 0 ||
-        diff.inSeconds > 0 && diff.inMinutes == 0 ||
-        diff.inMinutes > 0 && diff.inHours == 0 ||
-        diff.inHours > 0 && diff.inDays == 0) {
-      time = format.format(date);
-    } else if (diff.inDays > 0 && diff.inDays < 7) {
-      if (diff.inDays == 1) {
-        time = '${diff.inDays} DAY AGO';
-      } else {
-        time = '${diff.inDays} DAYS AGO';
-      }
-    } else {
-      if (diff.inDays == 7) {
-        time = '${(diff.inDays / 7).floor()} WEEK AGO';
-      } else {
-        time = '${(diff.inDays / 7).floor()} WEEKS AGO';
-      }
-    }
-
-    return time;
-  }
-
-  usernameDetection(PostOutput data, FirebaseDb db) {
-    if (int.parse(db.user.first.claimsId ?? "1") >= 3) {
-      return data.username ?? "";
-    } else if (int.parse(db.user.first.claimsId ?? "1") <= 3) {
-      return data.isAnonim ?? true ? data.anonimname : data.username;
-    } else {
-      return data.anonimname;
-    }
+    await box.remove("auth");
   }
 
   Future<void>? setEmotions(String emotion) async {
     isClicked.toggle();
-    await db.setEmotion(emotion);
+    await Future.delayed(const Duration(seconds: 3));
     isSizedBox.toggle();
     await Future.delayed(const Duration(seconds: 3));
   }
 
   Future<void> onrefresh() async {
-    await Future.delayed(Duration(seconds: 1));
+    initService();
     refreshController.refreshCompleted();
+     controllers.jumpTo(0);
+
   }
+
+  Future<void> initService() async {
+    isLoading.toggle();
+    musicModel = await dioService.getMusics();
+    bookModel = await dioService.getBooks();
+    articleModel = await dioService.getArticles();
+    isLoading.toggle();
+    update();
+  }
+
+ 
 }

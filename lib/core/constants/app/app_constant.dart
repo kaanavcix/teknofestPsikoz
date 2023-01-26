@@ -2,9 +2,11 @@ class AppConstant {
   static const String hello = "";
   static const String titleApp = "Psikoz";
   static const String feelHome = "Bugün kendinizi nasıl hissediyorsunuz";
-  static const String messageTitle = "YORUMLAR";
+  static const String messageTitle = "Yanıtlar";
   static const String dummyMessage = "En kısa sürede";
   static const String postTitleComment = "Post";
+    static const String privateRoom = "Özel oda";
+
   static const String discoveryTitle = "Keşfet";
   static const String discoveryTrend = "Trend Olanlar";
   static const String discoverySubtitle =

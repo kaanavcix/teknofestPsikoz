@@ -5,7 +5,10 @@ import '../../core/constants/app/app_size_constant.dart';
 import '../../core/utility/embabed/embabed_utility.dart';
 
 class TrendCard extends StatelessWidget {
-  const TrendCard({
+  String text;
+  String name;
+   TrendCard({
+    required this.name,required this.text,
     Key? key,
   }) : super(key: key);
 
@@ -44,7 +47,7 @@ class TrendCard extends StatelessWidget {
                   runSpacing: 10,
                   children: [
                     Text(
-                      "En güçlü insanların bakış açıları",
+                      text,
 
                       //  overflow: TextOverflow.fade,
 
@@ -58,7 +61,7 @@ class TrendCard extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("Kaan Avcı", style: Get.textTheme.bodyLarge!
+                        Text(name, style: Get.textTheme.bodyLarge!
                             //  .copyWith(color: EmbabedUtility.darkBlack),
                             )
                       ],

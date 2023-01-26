@@ -23,7 +23,7 @@ class LeadingWidget extends StatelessWidget {
               color: Colors.transparent,
               shape: BoxShape.circle),
           child: IconNames.arrowleft.tosvgPictureConvert(
-              EmbabedUtility.socialLightGray,
+              EmbabedUtility.socialwhite,
               height: 16,
               width: 16)),
     );

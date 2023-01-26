@@ -1,10 +1,6 @@
 name: psikoz
 description: Physcology Social Media.
-
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-
+publish_to: 'none'
 version: 1.7.0+1
 
 environment:
@@ -47,12 +43,12 @@ dependencies:
 
   
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.1.1
-  firebase_auth: ^4.1.1
-  cloud_firestore: ^4.0.4
   rxdart: ^0.27.6
   lottie: ^2.0.0
   card_swiper: ^2.0.4
+  get_storage: ^2.0.3
+  file_picker: ^5.2.4
+  flutter_colorpicker: ^1.0.3
  
 
 dev_dependencies:
@@ -66,6 +62,7 @@ dev_dependencies:
   flutter_native_splash: ^2.2.16
   liquid_pull_to_refresh: ^3.0.1
   pull_to_refresh: ^2.0.0
+  painter: ^2.0.0
 
 
 
