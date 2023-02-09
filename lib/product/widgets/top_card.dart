@@ -38,7 +38,7 @@ class TopCard extends StatelessWidget {
                   topText ?? "",
                   style: Get.textTheme.headlineLarge,
                 ),
-                Text(subText ?? ""),
+                Text(subText ?? "" , style: Get.textTheme.bodyLarge,),
               ],
             )
           ],

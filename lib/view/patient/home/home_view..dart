@@ -1,7 +1,10 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:psikoz/view/patient/home/widgets/home_shimmer.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:psikoz/controller/user_controller.dart';
+import 'package:psikoz/core/constants/app/app_array_constant.dart';
 import 'package:psikoz/core/constants/enums/Icon-enums.dart';
 import 'package:psikoz/controller/home_controller.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
@@ -13,28 +16,27 @@ import 'package:psikoz/view/patient/home/bar_view.dart';
 
 import '../../../core/constants/app/app_constant.dart';
 import '../../../core/constants/app/app_size_constant.dart';
+import '../../../core/global/dio_instance.dart';
 import '../../../core/utility/app/padding_utility.dart';
 import '../../../product/widgets/top_card.dart';
 import '../../../product/widgets/trend_card.dart';
 import 'search_view..dart';
 import 'widgets/alert_view.dart';
 
-
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<HomeController>(
         builder: (_) => Scaffold(
-            appBar: appbar(),
+            appBar: appbar(context),
             body: controller.isLoading.value
-                ? loadingBar()
+                ? HomeShimmer(controller: controller)
                 : SizedBox(
                     height: Get.height,
                     child: RefreshIndicator(
-                      color: EmbabedUtility.socialPurple,
+                      color: EmbabedUtility.socialwhite,
                       onRefresh: controller.onrefresh,
                       child: ListView(
                         physics: ScrollPyhcisyUtilty.bouncAlways(),
@@ -42,12 +44,14 @@ class HomeView extends GetView<HomeController> {
                         clipBehavior: Clip.none,
                         children: [
                           smallCard(),
-                          middleBar(AppConstant.discoveryTrend,controller.bookModel),
+                          middleBar(
+                              AppConstant.discoveryTrend, controller.bookModel),
                           trendScroll(),
                           const SizedBoxDummy.height(
                             height: 5,
                           ),
-                          middleBar(AppConstant.recommenededMaterial,controller.bookModel),
+                          middleBar(AppConstant.recommenededMaterial,
+                              controller.bookModel),
                           mediumLayout(),
                           Text("Short podcast article book"),
                           Placeholder(fallbackHeight: 100),
@@ -60,21 +64,17 @@ class HomeView extends GetView<HomeController> {
                   )));
   }
 
-  Widget loadingBar() {
-    return const Center(
-        child: CircularProgressIndicator(
-      backgroundColor: Colors.blue,
-    ));
-  }
-
-  AppBar appbar() {
+  AppBar appbar(BuildContext context) {
     var userController = Get.find<UserController>();
 
     return AppBar(
-      automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () => Get.to(SearchView()),
+              onPressed: () {
+                // showSearch(context: context, delegate: SearchPageDelegate());
+                Get.to(SearchView());
+              },
               icon: IconNames.search.tosvgPictureConvert(null)),
           IconButton(
               onPressed: () => Get.to(AlertView()),
@@ -142,9 +142,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Padding middleBar(
-    String text,BookModel? bookModel
-  ) {
+  Padding middleBar(String text, BookModel? bookModel) {
     return Padding(
       padding: PaddinUtilty.normalPadding().padding,
       child: Align(
@@ -177,12 +175,58 @@ class HomeView extends GetView<HomeController> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               var model = controller.bookModel?.data?[index];
+              var data = (model!.image!).split("/");
               return TrendCard(
-                text: model?.title ?? "",
-                name: "ali",
+                text: model.title ?? "",
+                name: model.writer ?? "",
+                url: ApiPath.BASE_PATH + data[1],
               );
             },
           ),
         ));
+  }
+}
+
+class SearchPageDelegate extends SearchDelegate {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      TextButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: Text("İptal et"))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    if (query.isEmpty) {
+      return Center(child: Text("Lütfen birşeyler aratın"));
+    } else {
+      return ListView(
+        children: AppArrayConstant.ageClass
+            .map((e) => ListTile(
+                  title: Text(e.toString()),
+                ))
+            .toList(),
+      );
+    }
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return ListView(
+      children: AppArrayConstant.ageClass
+          .map((e) => ListTile(
+                title: Text(e.toString()),
+              ))
+          .toList(),
+    );
   }
 }

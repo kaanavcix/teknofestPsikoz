@@ -10,6 +10,8 @@ class BarView extends StatelessWidget {
 
   String title;
   BookModel? bookmodel;
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

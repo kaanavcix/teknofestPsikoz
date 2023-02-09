@@ -4,6 +4,8 @@ import 'package:psikoz/product/service/model/material/book_model.dart';
 import 'package:psikoz/product/service/model/material/music_model.dart';
 import 'package:psikoz/product/service/model/post/post_model_input.dart';
 import 'package:psikoz/product/service/model/post/post_model_output.dart';
+import 'package:psikoz/product/service/model/result/result_model.dart';
+import 'package:psikoz/product/service/model/user/user_model.dart';
 
 import '../service/model/comment/comment_model.dart';
 
@@ -21,4 +23,5 @@ abstract class IDioServiceMain {
   Future<ArticleModel> getArticles();
   Future<BookModel> getBooks();
   Future<CommentModel?> getComments(int id);
+  Future<BaseModel?> getmypost(TokenInputModel tokenInputModel);
 }

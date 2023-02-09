@@ -59,5 +59,6 @@ enum IconNames {
   sad,
   stress,
   unhappy,
-  earth
+  earth,
+  waveform
 }

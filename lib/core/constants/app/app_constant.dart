@@ -15,7 +15,7 @@ class AppConstant {
   static const String fallowArticle = "Fallow Article";
   static const String profileAnonim = "Anonim";
   static const String profileArticleTitle = "Makalelerim";
-  static const String articleTitle = "Yeni Makale";
+  static const String articleTitle = "Yeni Psikoeğitim Yazısı";
   static const String loginBottomText = "Hala Bir Hesaba Sahip Değilmisiniz ?";
   static const String registerTextButton = "Kayıt Ol";
   static const String loginButtonText = "Giriş Yap";

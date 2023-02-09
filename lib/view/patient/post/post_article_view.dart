@@ -20,14 +20,14 @@ class PostArticleView extends GetView<PostController> {
       appBar: AppBar(
           title: Text(
             AppConstant.articleTitle,
-            style: Get.textTheme.displaySmall,
+            style: Get.textTheme.bodyMedium,
           ),
           actions: [
             Padding(
               padding: PaddinUtilty.normalPadding(
                 padding: 8,
               ).padding,
-              child: Icon(
+              child: const Icon(
                 Icons.archive_outlined,
                 color: Colors.white,
               ),

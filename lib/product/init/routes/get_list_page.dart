@@ -5,13 +5,13 @@ import 'package:hive/hive.dart';
 import 'package:psikoz/bindings/main_bindings.dart';
 import 'package:psikoz/bindings/onboarding_bindings.dart';
 import 'package:psikoz/product/service/model/user/user_model.dart';
-import 'package:psikoz/view/doctor/main_view_doctor.dart';
 import 'package:psikoz/view/onboarding/login_view.dart';
 import 'package:psikoz/view/onboarding/onboarding_view.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
 import 'package:psikoz/view/onboarding/register_view_doctor.dart';
 import 'package:psikoz/view/onboarding/widgets/register_button.dart';
 
+import '../../../view/doctor/main/main_view_doctor.dart';
 import '../../../view/patient/main/main_view.dart';
 
 final box = GetStorage("token");
@@ -20,6 +20,7 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(
       name: "/",
       page: function,
+      
       bindings: [OnboardingBinding(), MainBinding()]),
   GetPage(
       name: "/login",
@@ -41,5 +42,5 @@ Widget function() => box.hasData("auth")
     ? 
          box.read("patient") == true
             ? const MainView()
-            : const MainViewDoctor()
+            :  MainViewDoctor()
         : const LoginView();

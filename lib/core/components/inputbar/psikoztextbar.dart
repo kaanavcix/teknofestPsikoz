@@ -10,6 +10,7 @@ class PsikozTextBar extends StatelessWidget {
       this.hintText,
       this.obscureText,
       this.prefixIcon,
+      this.onTap,
       this.suffixIcon,this.validator})
       : super(key: key);
   TextEditingController? textcontroller;
@@ -19,6 +20,7 @@ class PsikozTextBar extends StatelessWidget {
   bool? obscureText;
   String? hintText;
   TextInputAction? textInputAction;
+  void Function()? onTap;
 String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ String? Function(String?)? validator;
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         validator: validator,
-        
+        onTap:onTap ,
         textInputAction: textInputAction,
         autocorrect: true,
         autovalidateMode: AutovalidateMode.onUserInteraction,

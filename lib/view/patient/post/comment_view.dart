@@ -11,10 +11,10 @@ import 'package:psikoz/product/init/theme/text_theme.dart';
 import 'package:psikoz/product/service/model/post/post_model_output.dart';
 import 'package:psikoz/core/utility/app/scroll_pyhcis_utility.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
-import 'package:psikoz/controller/home_controller.dart';
-import 'package:psikoz/product/service/service/dio_service_db.dart';
+
 
 import '../../../core/components/iconWidget/leading_widget.dart';
+import '../../../product/view/appointment_view.dart';
 
 class CommentView extends GetView<CommentController> {
   CommentView({Key? key, required this.post}) : super(key: key);
@@ -23,11 +23,11 @@ class CommentView extends GetView<CommentController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CommentController());
     return GetBuilder<CommentController>(
       init: CommentController(),
       initState: (state) {
         controller.getComments(post!.id ?? 11);
- 
       },
       builder: (controller) {
         return Scaffold(
@@ -39,7 +39,7 @@ class CommentView extends GetView<CommentController> {
           body: ListView(
               physics: const ScrollPyhcisyUtilty.bouncAlways(),
               children: [
-                postbar(),
+                postbar(context),
                 bodyTitle(controller),
               ]),
         );
@@ -47,8 +47,11 @@ class CommentView extends GetView<CommentController> {
     );
   }
 
-  Widget postbar() {
-    return PostBar(null, null,
+  Widget postbar(BuildContext context) {
+    return PostBar(
+        null,
+        null,
+        () => Get.to(()=>AppointmentView()),
         text: post!.content ?? "",
         userName: post!.username ?? "",
         time: "",
@@ -86,10 +89,9 @@ class CommentView extends GetView<CommentController> {
                 ),
                 subtitle: Text(
                   comment?.comment ?? "",
-                  style: Get.textTheme.displayLarge
-                      ?.copyWith(fontWeight: FontWeight.normal,
-                       ),
-                      
+                  style: Get.textTheme.displayLarge?.copyWith(
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               );
             },
@@ -112,7 +114,12 @@ class CommentView extends GetView<CommentController> {
     return AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        leading: const LeadingWidget(),
+        leading: GestureDetector(
+            onTap: () => Get.back(),
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            )),
         title: Text(
           AppConstant.privateRoom,
           style: grSTextB.copyWith(

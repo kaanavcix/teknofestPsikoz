@@ -65,7 +65,9 @@ class ProfileCard extends StatelessWidget {
                         overflow: TextOverflow.visible,
                         style: Get.textTheme.headlineSmall,
                       ),
+                      
                     )
+                    
                   ],
                 ),
               ),

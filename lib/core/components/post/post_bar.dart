@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/core/utility/app/padding_utility.dart';
+import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 
 import '../../components/post/post_bar_image.dart';
 import '../../components/seperators/seperators_line.dart';
@@ -8,7 +10,7 @@ import '../../../product/init/theme/text_theme.dart';
 import '../../utility/embabed/embabed_utility.dart';
 
 class PostBar extends StatelessWidget {
-  PostBar(this.onTapComment, this.onLongPress,
+  PostBar(this.onTapComment, this.onLongPress, this.onTapMore,
       {Key? key,
       required this.text,
       required this.userName,
@@ -30,7 +32,7 @@ class PostBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const edgeInsets = EdgeInsets.symmetric(horizontal: 15.0);
-    const edgeInsets2 = EdgeInsets.only(left: 8.0);
+    const edgeInsets2 = EdgeInsets.only(left: 3.0);
     return Column(children: [
       sizedbox(),
       Padding(
@@ -53,23 +55,7 @@ class PostBar extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: category!= ""? Row(
-                            children: [
-                              Text(
-                                category,
-                                style: grSTextB.copyWith(
-                                    color: EmbabedUtility.socialPurple),
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              const Icon(
-                                Icons.verified_outlined,
-                                size: 16,
-                                color: EmbabedUtility.socialPurple,
-                              )
-                            ],
-                          ):SizedBox(),
+                          child: category != "" ? verifyCategory() : SizedBox(),
                         ),
                       ],
                     ),
@@ -83,56 +69,90 @@ class PostBar extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: onTapMore,
-                child: IconNames.dotsvertical
-                    .tosvgPictureConvert(Colors.white, height: 18, width: 18),
+                child: IconNames.dotsvertical.tosvgPictureConvert(
+                    EmbabedUtility.socialLightGray,
+                    height: 24,
+                    width: 24),
               ),
             ],
           ),
         ),
       ),
-      Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                text,
-                style: grSText,
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3),
+        child: Text(
+          textAlign: TextAlign.justify,
+          text,
+          style: grSTextB.copyWith(fontWeight: FontWeight.w300,fontSize: 12),
+        ),
+      ),
+      SizedBox(
+        height: 40,
+        width: Get.width,
+        child: Padding(
+          padding: PaddinUtilty.horizontalPadding().padding,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.auto_awesome_sharp,
+                        size: 18,
+                      ),
+                      Padding(
+                        padding: PaddinUtilty.leftPadding().padding,
+                        child: Text("123", style: grSText),
+                      )
+                    ],
+                  )),
+              onTapComment != null
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: buttons(
+                          IconNames.comment
+                              .tosvgPictureConvert(null, width: 18, height: 18),
+                          // ignore: prefer_null_aware_operators
+                          null,
+                          onTapComment),
+                    )
+                  : sizedbox(),
+              Spacer(),
+              GestureDetector(
+                child: IconNames.bookmark
+                    .tosvgPictureConvert(null, width: 18, height: 18),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
-      const SizedBox(
-        height: 5,
-      ),
-      onTapComment != null
-          ? Padding(
-              padding: edgeInsets,
-              child: Row(
-                children: [
-                  buttons(
-                      IconNames.comment
-                          .tosvgPictureConvert(null, width: 18, height: 18),
-                      // ignore: prefer_null_aware_operators
-                      null,
-                      onTapComment),
-                  const Spacer(),
-                  GestureDetector(
-                    child: IconNames.bookmark
-                        .tosvgPictureConvert(null, width: 18, height: 18),
-                  ),
-                ],
-              ),
-            )
-          : sizedbox(),
       sizedbox(),
       const MySeparator(
         color: EmbabedUtility.socialLightGray,
         height: 1,
       )
     ]);
+  }
+
+  Row verifyCategory() {
+    return Row(
+      children: [
+        Text(
+          category,
+          style: grSTextB.copyWith(color: EmbabedUtility.socialPurple),
+        ),
+        const SizedBox(
+          width: 2,
+        ),
+        const Icon(
+          Icons.verified_outlined,
+          size: 16,
+          color: EmbabedUtility.socialPurple,
+        )
+      ],
+    );
   }
 
   SizedBox sizedbox() => const SizedBox(

@@ -7,8 +7,9 @@ import '../../core/utility/embabed/embabed_utility.dart';
 class TrendCard extends StatelessWidget {
   String text;
   String name;
+  String? url;
    TrendCard({
-    required this.name,required this.text,
+    required this.name,required this.text, required this.url,
     Key? key,
   }) : super(key: key);
 
@@ -26,14 +27,14 @@ class TrendCard extends StatelessWidget {
             Expanded(
                 flex: 1,
                 child: Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                  decoration:  BoxDecoration(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(32),
                           bottomLeft: Radius.circular(32)),
                       image: DecorationImage(
                           fit: BoxFit.fill,
                           image:
-                              NetworkImage("https://picsum.photos/200/300"))),
+                              NetworkImage(url ?? "https://picsum.photos/200/300"))),
                 )),
             Expanded(
               flex: 1,

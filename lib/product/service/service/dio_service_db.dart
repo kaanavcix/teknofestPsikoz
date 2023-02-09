@@ -5,6 +5,7 @@ import 'package:psikoz/product/service/model/comment/comment_model.dart';
 import 'package:psikoz/product/service/model/material/article_model.dart';
 import 'package:psikoz/product/service/model/material/book_model.dart';
 import 'package:psikoz/product/service/model/material/music_model.dart';
+import 'package:psikoz/product/service/model/user/user_model.dart';
 
 import '../../base/IDioService2.dart';
 import '../model/post/post_model_input.dart';
@@ -176,9 +177,33 @@ class DioServiceDb extends IDioServiceMain {
       print(e.message);
     }
   }
+
+  @override
+  Future<BaseModel?> getmypost(TokenInputModel tokenInputModel) async {
+    try {
+      var response =
+          await dio.post(PostPath.myposts.name, data: tokenInputModel);
+
+      if (response.statusCode == 200) {
+        var data = response.data;
+
+        if (data is Map<String, dynamic>) {
+          return PostModel.fromJson(data);
+        }
+      }
+      if (response.statusCode == 201) {
+        return SuccessModel.fromJson(response.data);
+      }
+      ;
+
+      return ErrorModel.fromJson(response.data);
+    } on DioError catch (e) {
+      print(e.message);
+    }
+  }
 }
 
-enum PostPath { posts, post, musics, articles, books, comments }
+enum PostPath { posts, post, musics, articles, books, comments, myposts }
 
 
 

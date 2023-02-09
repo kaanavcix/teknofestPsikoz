@@ -1,15 +1,15 @@
 class BookModel {
-  bool? sucess;
+  bool? success;
   List<Data>? data;
 
-  BookModel({this.sucess, this.data});
+  BookModel({this.success, this.data});
 
   BookModel.fromJson(Map<String, dynamic> json) {
-    sucess = json['sucess'];
+    success = json['success'];
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add( Data.fromJson(v));
       });
     }
   }
@@ -22,25 +22,38 @@ class Data {
   String? title;
   String? content;
   String? summary;
-  Null? image;
-  String? createdAt;
+  String? writer;
+  String? date;
+  String? image;
 
   Data(
       {this.id,
       this.title,
       this.content,
       this.summary,
-      this.image,
-      this.createdAt});
+      this.writer,
+      this.date,
+      this.image});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     content = json['content'];
     summary = json['summary'];
+    writer = json['writer'];
+    date = json['date'];
     image = json['image'];
-    createdAt = json['createdAt'];
   }
 
-  
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['title'] = title;
+    data['content'] = content;
+    data['summary'] = summary;
+    data['writer'] = writer;
+    data['date'] = date;
+    data['image'] = image;
+    return data;
+  }
 }

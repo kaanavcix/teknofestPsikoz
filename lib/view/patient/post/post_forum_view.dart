@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/view/patient/post/post_article_view.dart';
 import 'package:psikoz/view/patient/post/post_draw_view.dart';
 
 import '../../../controller/post_controller.dart';
@@ -22,19 +23,19 @@ class PostForumView extends GetView<PostController> {
           title: const Text("Forum"),
           actions: [
             IconButton(
-              onPressed: () => Get.to(PostView()),
+              onPressed: () => Get.to(const PostArticleView()),
               icon: IconNames.plus.tosvgPictureConvert(null),
             ),
             IconButton(
                 onPressed: () {
                   Get.to(PostDrawView());
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.draw_outlined,
                   color: Colors.white,
                 )),
             IconButton(
-                onPressed: () => Get.to(MessageView()),
+                onPressed: () => Get.to(GeneralControlView()),
                 icon: IconNames.email.tosvgPictureConvert(null))
           ],
         ),
@@ -49,16 +50,16 @@ class PostForumView extends GetView<PostController> {
                   : ListView.builder(
                       physics: const ScrollPyhcisyUtilty.bouncAlways(),
                       itemBuilder: (context, index) {
-                        var mode = controller.postModel?.data?[index];
+                        var model = controller.postModel?.data?[index];
+                        print(model);
                         return PostBar(
-                          mode!.comment!.isEmpty
-                              ? null
-                              : () => Get.to(CommentView(post: mode)),
                           null,
-                          text: mode.content ?? "",
-                          userName: mode.username ?? "",
+                          null,
+                          null,
+                          text: model?.content ?? "",
+                          userName: model?.username ?? "",
                           time: "",
-                          category: mode.category ?? "",
+                          category: model?.category ?? "",
                         );
                       },
                       itemCount: controller.postModel?.data?.length,

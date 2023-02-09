@@ -33,17 +33,17 @@ class SettingsView extends GetView<ProfileController> {
           subtitle: "" == ""
               ? Text(
                   "Bir anonim isime sahip değilsiniz.",
-                  style: Get.textTheme.headlineMedium,
+                  style: Get.textTheme.displayLarge,
                 )
               : Text(
                   " Şu an ki anonim isminiz :  eğer değiştirmek isterseniz tıklayınız",
-                  style: Get.textTheme.headlineMedium),
+                  style: Get.textTheme.displayLarge),
         ),
         ListTile(
           onTap: ()=> controller.signout(),
           title: Text(
             "Çıkış yap",
-            style: Get.textTheme.headlineSmall,
+            style: Get.textTheme.bodyMedium,
           ),
         )
       ]),
