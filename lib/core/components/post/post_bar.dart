@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/core/utility/app/padding_utility.dart';
+import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 
 import '../../components/post/post_bar_image.dart';
 import '../../components/seperators/seperators_line.dart';
@@ -8,49 +10,54 @@ import '../../../product/init/theme/text_theme.dart';
 import '../../utility/embabed/embabed_utility.dart';
 
 class PostBar extends StatelessWidget {
-  PostBar(
+  PostBar(this.onTapComment, this.onLongPress, this.onTapMore,
       {Key? key,
       required this.text,
       required this.userName,
       required this.time,
-      required this.onTapLike,
-      required this.onTapComment,
-      required this.commentLenght,
-      required this.likeLenght,required this.onLongPress})
+      required this.category})
       : super(key: key);
   final String text;
 
   final String userName;
   final String time;
-  void Function()? onTapLike;
   void Function()? onTapComment;
-  String likeLenght;
-  String? commentLenght;
+
   Color? colorLike;
+  String? status;
   void Function()? onTapMore;
   void Function()? onLongPress;
+  String category;
 
   @override
   Widget build(BuildContext context) {
-    var edgeInsets = const EdgeInsets.symmetric(horizontal: 15.0);
+    const edgeInsets = EdgeInsets.symmetric(horizontal: 15.0);
+    const edgeInsets2 = EdgeInsets.only(left: 3.0);
     return Column(children: [
       sizedbox(),
       Padding(
         padding: edgeInsets,
-        child: GestureDetector
-        (
+        child: GestureDetector(
           onLongPress: onLongPress,
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: edgeInsets2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      userName,
-                      style: grSTextB,
+                    Row(
+                      children: [
+                        Text(
+                          userName,
+                          style: grSTextB,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: category != "" ? verifyCategory() : SizedBox(),
+                        ),
+                      ],
                     ),
                     Text(
                       time,
@@ -62,53 +69,63 @@ class PostBar extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: onTapMore,
-                child: IconNames.dotsvertical
-                    .tosvgPictureConvert(Colors.white, height: 18, width: 18),
+                child: IconNames.dotsvertical.tosvgPictureConvert(
+                    EmbabedUtility.socialLightGray,
+                    height: 24,
+                    width: 24),
               ),
             ],
           ),
         ),
       ),
-      Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                text,
-                style: grSText,
-              ),
-            ),
-          ),
-        ],
-      ),
       Padding(
-        padding: edgeInsets,
-        child: Row(
-          children: [
-            buttons(
-                IconNames.like.tosvgPictureConvert(null, width: 18, height: 18),
-                likeLenght.toString(),
-                onTapLike),
-            const Spacer(flex: 1),
-            buttons(
-                IconNames.comment
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3),
+        child: Text(
+          textAlign: TextAlign.justify,
+          text,
+          style: grSTextB.copyWith(fontWeight: FontWeight.w300,fontSize: 12),
+        ),
+      ),
+      SizedBox(
+        height: 40,
+        width: Get.width,
+        child: Padding(
+          padding: PaddinUtilty.horizontalPadding().padding,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.auto_awesome_sharp,
+                        size: 18,
+                      ),
+                      Padding(
+                        padding: PaddinUtilty.leftPadding().padding,
+                        child: Text("123", style: grSText),
+                      )
+                    ],
+                  )),
+              onTapComment != null
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: buttons(
+                          IconNames.comment
+                              .tosvgPictureConvert(null, width: 18, height: 18),
+                          // ignore: prefer_null_aware_operators
+                          null,
+                          onTapComment),
+                    )
+                  : sizedbox(),
+              Spacer(),
+              GestureDetector(
+                child: IconNames.bookmark
                     .tosvgPictureConvert(null, width: 18, height: 18),
-                // ignore: prefer_null_aware_operators
-                commentLenght ==null? "": commentLenght.toString(),
-                onTapComment),
-            const Spacer(
-              flex: 1,
-            ),
-            const Spacer(
-              flex: 6,
-            ),
-            GestureDetector(
-              child: IconNames.bookmark
-                  .tosvgPictureConvert(null, width: 18, height: 18),
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
       sizedbox(),
@@ -119,25 +136,30 @@ class PostBar extends StatelessWidget {
     ]);
   }
 
+  Row verifyCategory() {
+    return Row(
+      children: [
+        Text(
+          category,
+          style: grSTextB.copyWith(color: EmbabedUtility.socialPurple),
+        ),
+        const SizedBox(
+          width: 2,
+        ),
+        const Icon(
+          Icons.verified_outlined,
+          size: 16,
+          color: EmbabedUtility.socialPurple,
+        )
+      ],
+    );
+  }
+
   SizedBox sizedbox() => const SizedBox(
         height: 10,
       );
 
   Widget buttons(dynamic widget, String? text, void Function()? onTap) {
-    return Row(
-      children: [
-        GestureDetector(child: widget, onTap: onTap),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            text.toString(),
-            style: grTertiary,
-          ),
-        )
-      ],
-    );
+    return GestureDetector(child: widget, onTap: onTap);
   }
 }
-
-
-// beğeni renk olayı gerekiyor

@@ -29,10 +29,10 @@ class ThirdScreen extends GetView<RegisterController> {
                 suffixIcon: Obx(() => AnimatedCrossFade(
                     firstChild: IconButton(
                         onPressed: () => controller.changeVisible(),
-                        icon: const Icon(Icons.visibility_off)),
+                        icon: const Icon(Icons.visibility_off,size: 18,color: Colors.white,)),
                     secondChild: IconButton(
                         onPressed: () => controller.changeVisible(),
-                        icon: const Icon(Icons.visibility)),
+                        icon: const Icon(Icons.visibility,size: 18,color: Colors.white,)),
                     crossFadeState: controller.obscureText.value
                         ? CrossFadeState.showFirst
                         : CrossFadeState.showSecond,
@@ -40,7 +40,7 @@ class ThirdScreen extends GetView<RegisterController> {
                 textInputAction: TextInputAction.done,
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(15),
-                  child: IconNames.lock.tosvgPictureConvert(null),
+                  child: IconNames.lock.tosvgPictureConvert(height: 16,width: 16,null),
                 ),
               ),
             ))

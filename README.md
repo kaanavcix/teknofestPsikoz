@@ -78,19 +78,21 @@ Giriş kısmı aynı arayüz olucak.
  ileride eklemeye devam edeceğiz muhtamelen.
 ### Kullanıcı (Hasta) 
 
-- [x] Giriş yapma ekranı
-- [x] Kayıt olma ekranı
+- [x] Giriş yapma ekranı 
+- [x] Kayıt olma ekranı (Hasta bitti Doktor kısmı yapılacak)
 - [x] Profil Sayfası(Güncellenicek ama)
-- [x] Post ekleme sayfası(Güncellenicek ama)
-- [x] Ana sayfa Ui bitti (api entegrasyon yapılacak)
-- [x] Arama Ui bitti (api entegrasyon yapılacak)
+- [x] Post ekleme sayfası( Validate sayfasında mini quiz kısmı için tasarlamalarını bekliyeceğim o kısım kaldı)
+- [x] Ana sayfa Ui bitti (api entegrasyon yapılacak placeholder bulunan kısımları değiştireceğiz api iyileştirme yapılacak bir karma veri döndürme sistemi oluşturalacak)
+- [x] Arama Ui %87 (api entegrasyon yapılacak ve ilgili sayfalara gidebilmesi için tasarım yapılacak)
 - [x] post görünteleme sayfası ui bitti (güncellenebilir ui ve api entegrasyon)
-- [x] 
-- [x]
-- [x]
-- [x]
+- [x] Özel oda isminde bir kısım oluşturuldu doktor ile hasta oradan konuşacaklar
+- [ ] Mesajlaşma kısmını yeniden tasarlayalım o kısımda kişi kendi problemlerini cevaplarını ve görüntülü konuşma yapabilmesi için randevu sistemini orada oluşturalım.
+- [ ] Bildirim sayfası yapılacak bunun tasarımı gerekli
+- [ ] ayarlar kısmına ekleme yapılacak 
+- []
+> eğer eksik gördüğünüz yerleri doldurabilirsiniz.
 
-altta kalan kısımları zamanla dolduracağım 
+>altta kalan kısımları zamanla dolduracağım 
 
 
 ### API URL LINKLERI
@@ -99,32 +101,36 @@ Hurakoya bağlamayı deniyorum olmazsa eğer localhost üzerinden ilerleriz yada
 #### Login
 - /api/login
 
-- [x] General login processing.
+- [x] General login processing (Onam formu kabulu gibi şeyler daha eklenmedi eklenilecek son aşamada).
 
 
 #### Register
 - /api/register
 - [x] General register processing 
+- Ui kısmında eksiklikler mevcut doktor kayıt olma ekranı için bir tasarım gerekli
+
 
 
 ### Home Screen
 
 #### Search 
 
+
+
 #### Natifications
 #### Book Article Music Podcast Suggestion System 
 
-> [x] get music
-- /api/musics
+- [x] get music
+> /api/musics
 
-> [x] get book
-- /api/books
+- [x] get book
+> /api/books
 
-> [x] get article 
-- /api/articles
+- [x] get article 
+> /api/articles
 
-> [x] get podcast
-- /api/podcasts
+- [x] get podcast
+> /api/podcasts
 
 > add update delete article getby id also 
 
@@ -132,6 +138,7 @@ Hurakoya bağlamayı deniyorum olmazsa eğer localhost üzerinden ilerleriz yada
 
 #### Post Screen
 > verify post return 
+-[x]
 
 > add post
 

@@ -35,6 +35,7 @@ ThemeData darkTheme = ThemeData(
     textTheme: textTheme,
     scaffoldBackgroundColor: EmbabedUtility.darkBlack,
     colorScheme: const ColorScheme(
+      
         brightness: Brightness.dark,
         primary: EmbabedUtility.primaryColor,
         onPrimary: EmbabedUtility.primaryColor,

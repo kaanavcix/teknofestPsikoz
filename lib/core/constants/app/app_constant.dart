@@ -2,9 +2,11 @@ class AppConstant {
   static const String hello = "";
   static const String titleApp = "Psikoz";
   static const String feelHome = "Bugün kendinizi nasıl hissediyorsunuz";
-  static const String messageTitle = "YORUMLAR";
+  static const String messageTitle = "Yanıtlar";
   static const String dummyMessage = "En kısa sürede";
   static const String postTitleComment = "Post";
+    static const String privateRoom = "Özel oda";
+
   static const String discoveryTitle = "Keşfet";
   static const String discoveryTrend = "Trend Olanlar";
   static const String discoverySubtitle =
@@ -13,7 +15,7 @@ class AppConstant {
   static const String fallowArticle = "Fallow Article";
   static const String profileAnonim = "Anonim";
   static const String profileArticleTitle = "Makalelerim";
-  static const String articleTitle = "Yeni Makale";
+  static const String articleTitle = "Yeni Psikoeğitim Yazısı";
   static const String loginBottomText = "Hala Bir Hesaba Sahip Değilmisiniz ?";
   static const String registerTextButton = "Kayıt Ol";
   static const String loginButtonText = "Giriş Yap";

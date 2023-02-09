@@ -5,7 +5,11 @@ import '../../core/constants/app/app_size_constant.dart';
 import '../../core/utility/embabed/embabed_utility.dart';
 
 class TrendCard extends StatelessWidget {
-  const TrendCard({
+  String text;
+  String name;
+  String? url;
+   TrendCard({
+    required this.name,required this.text, required this.url,
     Key? key,
   }) : super(key: key);
 
@@ -23,14 +27,14 @@ class TrendCard extends StatelessWidget {
             Expanded(
                 flex: 1,
                 child: Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                  decoration:  BoxDecoration(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(32),
                           bottomLeft: Radius.circular(32)),
                       image: DecorationImage(
                           fit: BoxFit.fill,
                           image:
-                              NetworkImage("https://picsum.photos/200/300"))),
+                              NetworkImage(url ?? "https://picsum.photos/200/300"))),
                 )),
             Expanded(
               flex: 1,
@@ -44,7 +48,7 @@ class TrendCard extends StatelessWidget {
                   runSpacing: 10,
                   children: [
                     Text(
-                      "En güçlü insanların bakış açıları",
+                      text,
 
                       //  overflow: TextOverflow.fade,
 
@@ -58,7 +62,7 @@ class TrendCard extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("Kaan Avcı", style: Get.textTheme.bodyLarge!
+                        Text(name, style: Get.textTheme.bodyLarge!
                             //  .copyWith(color: EmbabedUtility.darkBlack),
                             )
                       ],

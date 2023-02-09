@@ -11,7 +11,7 @@ import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
 import 'package:psikoz/controller/onboarding/login_controller.dart';
 import 'package:psikoz/product/validator/onboarding_validate.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
-import 'package:psikoz/view/onboarding/widgets/register_first_screen.dart';
+import 'package:psikoz/view/onboarding/register_first_screen.dart';
 
 import '../../core/components/buttons/psikoz_button.dart';
 import '../../core/components/stacks/psikoz_stack.dart';
@@ -31,7 +31,7 @@ class LoginView extends GetView<LoginController> {
 
             emailTextBar(),
             Obx(() => passwordTextBar()),
-            button(),
+            Obx(() =>  button()),
             const SizedBoxDummy.height(height: 10,),
             bottomText(),
           ]),
@@ -62,7 +62,7 @@ class LoginView extends GetView<LoginController> {
             onTap: () => controller.logControl(
                 controller.emailController.text,
                 controller.passwordController.text),
-            child: Text(
+            child: controller.isLoading.value? const CircularProgressIndicator.adaptive() :  Text(
               AppConstant.loginButtonText,
               style:
                   Get.textTheme.displayLarge?.copyWith(color: Colors.white),
@@ -89,18 +89,18 @@ class LoginView extends GetView<LoginController> {
         suffixIcon: Obx(() => AnimatedCrossFade(
             firstChild: IconButton(
                 onPressed: () => controller.changeVisible(),
-                icon: const Icon(Icons.visibility_off)),
+                icon: const Icon(Icons.visibility_off,color: Colors.white,size: 18,)),
             secondChild: IconButton(
                 onPressed: () => controller.changeVisible(),
-                icon: const Icon(Icons.visibility)),
+                icon: const Icon(Icons.visibility,color: Colors.white,size: 18,)),
             crossFadeState: controller.obscureText.value
                 ? CrossFadeState.showFirst
                 : CrossFadeState.showSecond,
             duration: DurationUtilty.normalDuration())),
         textInputAction: TextInputAction.done,
         prefixIcon: Padding(
-          padding: PaddinUtilty.verticalPadding(height: 20).padding,
-          child: IconNames.lock.tosvgPictureConvert(null),
+          padding: PaddinUtilty.verticalPadding(height: 15).padding,
+          child: IconNames.lock.tosvgPictureConvert(height: 12,width: 12,null),
         ),
       ),
     );
@@ -117,8 +117,8 @@ class LoginView extends GetView<LoginController> {
         textcontroller: controller.emailController,
         keyboardType: TextInputType.emailAddress,
         prefixIcon: Padding(
-          padding: PaddinUtilty.verticalPadding(height: 20).padding,
-          child: IconNames.email.tosvgPictureConvert(
+          padding: PaddinUtilty.verticalPadding(height: 15).padding,
+          child: IconNames.email.tosvgPictureConvert(height: 16,width: 16,
             null,
           ),
         ),

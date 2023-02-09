@@ -4,16 +4,19 @@ import 'package:get/get.dart';
 import '../../core/utility/embabed/embabed_utility.dart';
 
 class DiscoverCard extends StatelessWidget {
-   DiscoverCard({
+  String? text1;
+  String? text2;
+  DiscoverCard({
+    this.text1,this.text2,
     this.onTap,
     Key? key,
   }) : super(key: key);
 
-void Function()? onTap;
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-       onTap: onTap,
+      onTap: onTap,
       child: Card(
         elevation: 8,
         color: EmbabedUtility.darkBlack,
@@ -46,12 +49,12 @@ void Function()? onTap;
                       child: Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: Text(
-                          "Depresyon Dönemleri",
+                          text1 ??"",
                           style: Get.textTheme.bodyLarge,
                         ),
                       ),
                     ),
-                    Text("Psikolojik travmalara önlemler"),
+                    Text(text2??""),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +65,8 @@ void Function()? onTap;
                               Icons.timelapse,
                               size: 18,
                             ),
-                            Text("1 hours ago", style: Get.textTheme.titleMedium)
+                            Text("1 hours ago",
+                                style: Get.textTheme.titleMedium)
                           ],
                         ),
                       ],

@@ -1,19 +1,16 @@
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:psikoz/core/service/firebase/firebase_db.dart';
-import 'package:psikoz/product/widgets/discovery_view.dart';
-import 'package:psikoz/view/post/post_article_view.dart';
-import 'package:psikoz/view/post/post_forum_view.dart';
-import 'package:psikoz/view/post/post_view.dart';
-import 'package:psikoz/view/profile/profile_view.dart';
-import 'package:psikoz/view/home/search_view..dart';
+import 'package:flutter/material.dart';
+import 'package:psikoz/view/doctor/profile/profile_view.dart';
 
-import '../../../view/home/home_view..dart';
+import '../../../view/doctor/home/home_view.dart';
+import '../../../view/doctor/material/material_view.dart';
+import '../../../view/patient/home/home_view..dart';
+import '../../../view/patient/post/post_forum_view.dart';
+import '../../../view/patient/profile/profile_view.dart';
 
-var db = Get.find<FirebaseDb>();
+List<Widget> pages = [HomeView(), PostForumView(), ProfileView()];
 
-List<Widget> pages = [
-  HomeView(),
-  db.user.first.claimsId != "6" ? PostForumView() : PostForumView(),
-  ProfileView()
+List<Widget> doctorPages = [
+  HomeViewDoctor(),
+  MaterialViewDoctor(),
+  ProfileViewDoctor()
 ];

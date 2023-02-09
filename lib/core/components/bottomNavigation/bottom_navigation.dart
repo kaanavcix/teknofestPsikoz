@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psikoz/core/constants/enums/image_enums.dart';
 
 import '../../constants/enums/Icon-enums.dart';
 import '../../utility/app/gradient-utility.dart';
@@ -7,27 +8,24 @@ import '../../utility/embabed/embabed_utility.dart';
 import 'package:get/get.dart';
 
 class BottomNavigatior extends StatelessWidget {
-  BottomNavigatior(
-      {Key? key,
-      required this.selectedItem,
-      required this.onTap,
-      required this.onTap1,
-      required this.onTap2,
-     })
-      : super(key: key);
+  BottomNavigatior({
+    Key? key,
+    required this.selectedItem,
+    required this.onTap,
+    required this.onTap1,
+    required this.onTap2,
+  }) : super(key: key);
   int selectedItem;
   void Function() onTap;
   void Function() onTap1;
   void Function() onTap2;
 
-
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      elevation: 80,
         child: Container(
       color: Get.isDarkMode ? EmbabedUtility.darkBlack : Colors.white,
-      height: 55,
+      height: kToolbarHeight,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,21 +33,22 @@ class BottomNavigatior extends StatelessWidget {
             IconNormal(
                 onTap: onTap,
                 child: IconNames.feed.tosvgPictureConvert(selectedItem == 0
-                    ? Get.theme.colorScheme.background
+                    ? EmbabedUtility.socialwhite
                     : Get.theme.colorScheme.surface)),
-           
             IconNormal(
               onTap: onTap1,
               child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: IconNames.plus.tosvgPictureConvert(selectedItem==1? Get.theme.colorScheme.background
+                padding: const EdgeInsets.all(8),
+                child: ImageEnum.logo.tosvgPictureConvert(selectedItem == 1
+                    ? EmbabedUtility.socialwhite
                     : Get.theme.colorScheme.surface),
-            ),),
-           
+              ),
+            ),
+            
             IconNormal(
                 onTap: onTap2,
                 child: IconNames.profile.tosvgPictureConvert(selectedItem == 2
-                    ? Get.theme.colorScheme.background
+                    ? EmbabedUtility.socialwhite
                     : Get.theme.colorScheme.surface)),
           ]),
     ));
