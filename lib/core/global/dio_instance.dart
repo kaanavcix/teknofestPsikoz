@@ -17,7 +17,7 @@ import 'package:dio/dio.dart';
 } */
 
 class DioInstanceTsApi {
-  final Dio _dio = Dio(BaseOptions(baseUrl: "http://172.25.160.1:8080/api/"));
+  final Dio _dio = Dio(BaseOptions(baseUrl: "http://psikozbac.eu-central-1.elasticbeanstalk.com/api/"));
 
   DioInstanceTsApi._();
 
@@ -26,7 +26,7 @@ class DioInstanceTsApi {
   Dio get dio => _dio;
 
   Dio dioAuth(String token) => Dio(BaseOptions(
-      baseUrl: "http://172.25.160.1:8080/api/", headers: {"token": token}));
+      baseUrl: "http://psikozbac.eu-central-1.elasticbeanstalk.com/api/", headers: {"token": token}));
 }
 
 
@@ -36,3 +36,6 @@ class DioInstanceTsApi {
 class ApiPath{
   static const String BASE_PATH = "http://192.168.1.14:8080/";
 }
+
+
+//http://psikozbac.eu-central-1.elasticbeanstalk.com/

@@ -28,16 +28,16 @@ class SettingsView extends GetView<ProfileController> {
               .tosvgPictureConvert(EmbabedUtility.socialLightGray),
           title: Text(
             "Anonim isim ",
-            style: Get.textTheme.headlineMedium,
+           
           ),
           subtitle: "" == ""
               ? Text(
                   "Bir anonim isime sahip değilsiniz.",
-                  style: Get.textTheme.displayLarge,
+                 
                 )
               : Text(
                   " Şu an ki anonim isminiz :  eğer değiştirmek isterseniz tıklayınız",
-                  style: Get.textTheme.displayLarge),
+                 ),
         ),
         ListTile(
           onTap: ()=> controller.signout(),

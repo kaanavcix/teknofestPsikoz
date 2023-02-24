@@ -6,6 +6,7 @@ import 'package:psikoz/bindings/main_bindings.dart';
 import 'package:psikoz/bindings/onboarding_bindings.dart';
 import 'package:psikoz/product/service/model/user/user_model.dart';
 import 'package:psikoz/view/onboarding/login_view.dart';
+import 'package:psikoz/view/onboarding/login_view_new_design.dart';
 import 'package:psikoz/view/onboarding/onboarding_view.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
 import 'package:psikoz/view/onboarding/register_view_doctor.dart';
@@ -43,4 +44,4 @@ Widget function() => box.hasData("auth")
          box.read("patient") == true
             ? const MainView()
             :  MainViewDoctor()
-        : const LoginView();
+        :  LoginViewNewDesign();

@@ -19,14 +19,18 @@ class RegisterButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-            shape: const StadiumBorder(),
+          
+            //shape: const StadiumBorder(),
             // RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            
+            shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(9)
+            ),
             disabledBackgroundColor: EmbabedUtility.socialGray,
+            
             enableFeedback: true,
             visualDensity: VisualDensity.adaptivePlatformDensity,
             backgroundColor: color),
-        child: Text(text,style: TextStyle(color: Colors.white),));
+        child: Text(text,style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),));
   }
 }
 

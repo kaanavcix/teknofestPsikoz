@@ -24,7 +24,7 @@ class BottomNavigatior extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
         child: Container(
-      color: Get.isDarkMode ? EmbabedUtility.darkBlack : Colors.white,
+      color: Get.isDarkMode ? EmbabedUtility.scaffoaldBackgorund : Colors.white,
       height: kToolbarHeight,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

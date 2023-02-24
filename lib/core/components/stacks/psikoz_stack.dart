@@ -40,21 +40,7 @@ class PsikozStack extends StatelessWidget {
     )
         ),
       ),
-      SafeArea(
-          child: Align(
-              alignment: Alignment.topRight,
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  child:  const Icon(
-                    Icons.question_mark,
-                    color: Colors.white,
-                  ),
-                  width: 50,
-                  height: 50,
-                  color: Colors.transparent,
-                ),
-              )))
+      
     ]);
   }
 }

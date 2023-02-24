@@ -16,16 +16,81 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-     var control = Get.find<UserController>();
-    
-    return Scaffold(body: RefreshIndicator(
-      onRefresh: () => control.getUserData(),
-      child: scdeneme(control),));
+    var control = Get.find<UserController>();
+    var userModel = control.userModel!.data;
+    return SafeArea(
+      child: Scaffold(
+          body: RefreshIndicator(
+              onRefresh: () => control.getUserData(),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          height: 150,
+                          color: Colors.green,
+                          width: Get.width,
+                        ),
+                        Positioned(
+                            bottom: -60,
+                            left: 0,
+                            right: 0,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey,
+                              maxRadius: 60,
+                              //    child: Container(decoration: BoxDecoration(shape: ),child: Image.network("https://picsum.photos/200/300",cacheHeight: 120,cacheWidth: 120,fit: BoxFit.cover,)),
+                              backgroundImage: AssetImage(
+                                "assets/images/logo.png",
+                              ),
+                              foregroundImage: NetworkImage(
+                                "https://picsum.photos/200/300",
+                              ), //TODO: WE MUST SET PHOTO QUALİTY
+                            )),
+                        Positioned(
+                            top: 0,
+                            right: 0,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.more_horiz_outlined,
+                              ),
+                              onPressed: () => Get.to(SettingsView()),
+                            ))
+                      ],
+                    ),
+                    const SizedBoxDummy.height(
+                      height: 70,
+                    ),
+                    Padding(
+                      padding: PaddinUtilty.bottomPadding(
+                        height: 8,
+                      ).padding,
+                      child: Text("${userModel!.name}",
+                          style: Get.textTheme.bodyLarge!.copyWith(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1)),
+                    ),
+                    Text(
+                      userModel.description.toString(),
+                      style: Get.textTheme.titleSmall,
+                    ),
+
+                    Placeholder(fallbackWidth: Get.width,fallbackHeight: Get.height-200,
+                  
+                     )
+                     //TODO:Tasarım geldiğinde yapılacaktır
+                  ],
+                ),
+              ))),
+    );
   }
 
   Scaffold scdeneme(UserController control) {
     var mode = control.userModel?.data;
-   
+
     return Scaffold(
       appBar: appBar(),
       body: SizedBox(
@@ -36,11 +101,11 @@ class ProfileView extends GetView<ProfileController> {
             ProfileCard(
               imageUrl: "https://picsum.photos/200/300",
               controller: controller.tabController,
-              claimsName: (mode?.isPatient=="1"?true:false)? "":"Doktor",
+              claimsName:
+                  (mode?.isPatient == "1" ? true : false) ? "" : "Doktor",
               description: mode?.description ?? "",
-              firstName:mode?.name ,
+              firstName: mode?.name,
               username: mode?.username,
-
             ),
             const SizedBoxDummy.height(
               height: 5,
@@ -76,7 +141,7 @@ class ProfileView extends GetView<ProfileController> {
 
   AppBar appBar() {
     return AppBar(
-       automaticallyImplyLeading: false,
+      automaticallyImplyLeading: false,
       title: Padding(
         padding: PaddinUtilty.horizontalPadding().padding,
       ),

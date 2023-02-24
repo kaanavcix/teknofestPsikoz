@@ -45,7 +45,7 @@ class ProfileCard extends StatelessWidget {
               height: AppSizeConstant.cardSize220,
               decoration: BoxDecoration(
                 borderRadius: borderRadius2,
-                color: Get.isDarkMode ? EmbabedUtility.darkBlack : Colors.white,
+                color: Get.isDarkMode ? EmbabedUtility.profileCardColor : Colors.white,
               ),
               child: Padding(
                 padding:  PaddinUtilty.normalPadding().padding,
@@ -113,18 +113,15 @@ class ProfileCard extends StatelessWidget {
       children: [
         Text(
           "@${username ?? ""}",
-          style: Get.textTheme.headlineLarge,
+          style: Get.textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBoxDummy.height(),
         Text(
           firstName ?? "",
-          style: Get.textTheme.bodyMedium?.copyWith(letterSpacing: 0.5),
+          style: Get.textTheme.bodyLarge?.copyWith(letterSpacing: 0.5),
         ),
         const SizedBoxDummy.height(),
-        Text(
-          claimsName ?? "",
-          style: Get.textTheme.headlineMedium,
-        )
+        
       ],
     );
   }

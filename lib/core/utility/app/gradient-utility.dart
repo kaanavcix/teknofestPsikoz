@@ -8,8 +8,10 @@ class GradientUtility {
       end: Alignment.centerLeft);
 
   static const LinearGradient dicoverGradient = LinearGradient(
-      colors: [EmbabedUtility.socialblue, EmbabedUtility.socialPurple],
-      begin: Alignment.topRight,
+      colors: [EmbabedUtility.socialPink, EmbabedUtility.socialPurple],
+      begin: Alignment.topLeft,
       stops: [0.1, 0.7],
-      end: Alignment.bottomLeft);
+      end: Alignment.bottomRight);
 }
+
+

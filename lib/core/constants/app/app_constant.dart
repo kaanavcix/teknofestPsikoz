@@ -20,7 +20,7 @@ class AppConstant {
   static const String registerTextButton = "Kayıt Ol";
   static const String loginButtonText = "Giriş Yap";
   static const String passwordText = "Şifre";
-  static const String emailHintText = "E-mail";
+  static const String emailHintText = "E-mail, Username, Avatar";
   static const String registerBackTitle = "Geri dön";
   static const String registerContiuneTitle = "Devam et";
   static const String registerUsername = "Kullanıcı adı";

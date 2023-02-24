@@ -85,7 +85,7 @@ class HomeView extends GetView<HomeController> {
         ],
         title: Text(
           userController.userModel?.data?.name ?? "",
-          style: Get.textTheme.bodyMedium,
+         // style: Get.textTheme.bodyMedium.copyWith(),
         ));
   }
 
@@ -151,7 +151,7 @@ class HomeView extends GetView<HomeController> {
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(text),
+              Text(text,style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold,letterSpacing: 0.8),),
               InkWell(
                 onTap: () => Get.to(BarView(text, bookModel)),
                 child: const Icon(
@@ -164,26 +164,30 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  SizedBox trendScroll() {
-    return SizedBox(
-        height: AppSizeConstant.cardSize200,
-        child: Padding(
-          padding: PaddinUtilty.leftPadding().padding,
-          child: ListView.builder(
-            physics: ScrollPyhcisyUtilty.bouncAlways(),
-            itemCount: controller.bookModel!.data!.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              var model = controller.bookModel?.data?[index];
-              var data = (model!.image!).split("/");
-              return TrendCard(
-                text: model.title ?? "",
-                name: model.writer ?? "",
-                url: ApiPath.BASE_PATH + data[1],
-              );
-            },
-          ),
-        ));
+  Widget trendScroll() {
+    return Padding(
+      padding: PaddinUtilty.verticalPadding(height: 8,).padding,
+      child: SizedBox(
+          height: 150,
+          child: Padding(
+            padding: PaddinUtilty.leftPadding().padding,
+            child: ListView.builder(
+              physics: ScrollPyhcisyUtilty.bouncAlways(),
+              itemCount: controller.bookModel!.data!.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                var model = controller.bookModel?.data?[index];
+                
+             //   var data = (model!.image!).split("/");
+                return TrendCard(
+                  text: model!.title ?? "",
+                  name: model.writer ?? "",
+                  url:  "https://picsum.photos/200/300",
+                );
+              },
+            ),
+          )),
+    );
   }
 }
 

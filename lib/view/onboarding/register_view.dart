@@ -28,9 +28,11 @@ class RegisterView extends GetView<RegisterController> {
     ];
     return Scaffold(
       //resizeToAvoidBottomInset: false,
-      appBar: RegisterAppBar(controller: controller),
+      appBar: AppBar(
+        title: Text("Kayıt Ol"),
+      ),
       body: Padding(
-        padding: PaddinUtilty.horizontalPadding().padding,
+        padding: PaddinUtilty.horizontalPadding(height: 16,).padding,
         child: Obx(() => Form(
               key: controller.formState,
               child: Column(
@@ -60,6 +62,7 @@ class RegisterView extends GetView<RegisterController> {
               })
           : const SizedBox(),
       RegisterButton(
+
           color: EmbabedUtility.socialblue,
           text: controller.currentIndex.value == 3
               ? AppConstant.registerTextButton

@@ -24,7 +24,7 @@ class TopCard extends StatelessWidget {
         width: Get.width * 0.9,
         decoration: BoxDecoration(
             gradient: GradientUtility.dicoverGradient,
-            borderRadius: BorderRadius.circular(20)),
+            borderRadius: BorderRadius.circular(9)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,9 +36,11 @@ class TopCard extends StatelessWidget {
               children: [
                 Text(
                   topText ?? "",
-                  style: Get.textTheme.headlineLarge,
+                  style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                 ),
-                Text(subText ?? "" , style: Get.textTheme.bodyLarge,),
+                Text(subText ?? "" , 
+                style: Get.textTheme.bodyLarge
+                ),
               ],
             )
           ],

@@ -13,7 +13,8 @@ class EmbabedUtility {
   static const Color pureBlack = Color(0xff000000);
   static const Color errorColor = Color(0xffFF5842);
   static const Color textfieldColor = Color(0XffFFFFFF);
-    static const Color textfielborderdColor = Color(0xffF4F4F4);
-
+  static const Color textfielborderdColor = Color(0xffF4F4F4);
+  static const Color scaffoaldBackgorund = Color(0xff131313);
+    static const Color profileCardColor = Color(0xff191a1d);
 
 }

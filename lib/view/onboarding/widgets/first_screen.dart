@@ -11,43 +11,36 @@ class FirstScreen extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "İsminizi ve kullanıcı adınızı giriniz",
-          style: Get.textTheme.headlineLarge,
+      
+        PsikozTextBar(
+          labelText: "İsim",
+          hintText: "İsminiz",
+          keyboardType: TextInputType.text,
+          //textInputAction: TextInputAction.continueAction,
+          textcontroller: controller.nameController,
+          prefixIcon: const Icon(Icons.person, size: 18,color: Colors.white,),
         ),
-        Padding(
-            padding: const EdgeInsets.only(top: 3, bottom: 10),
-            child: PsikozTextBar(
-              hintText: "İsminiz",
-              keyboardType: TextInputType.text,
-              //textInputAction: TextInputAction.continueAction,
-              textcontroller: controller.nameController,
-              prefixIcon: const Icon(Icons.person, size: 18,color: Colors.white,),
-            )),
-        Padding(
-            padding: const EdgeInsets.only(top: 3, bottom: 20,),
-            child: PsikozTextBar(
-              hintText: "Kullanıcı Adınız",
-              keyboardType: TextInputType.text,
-              textcontroller: controller.usernameController,
-              prefixIcon: const Icon(Icons.person, size: 20,color: Colors.white,),
-            )),
-              Padding(
-            padding: const EdgeInsets.only(top: 3, bottom: 20,),
-            child: PsikozTextBar(
-              onTap: () =>DatePicker.showDatePicker(context,
-                              showTitleActions: true,
-                              minTime: DateTime(2002, 01, 01),
-                              maxTime: DateTime.now(), onChanged: (date) {
-                            print('change $date');
-                          }, onConfirm: (date) {
-                            print('confirm $date');  //!!! I WİLL ADJUST
-                          }, currentTime: DateTime.now(), locale: LocaleType.tr)
+        PsikozTextBar(
+          labelText: "Kullanıcı Adı",
+          hintText: "Kullanıcı Adınız",
+          keyboardType: TextInputType.text,
+          textcontroller: controller.usernameController,
+          prefixIcon: const Icon(Icons.person, size: 20,color: Colors.white,),
+        ),
+              PsikozTextBar(
+                onTap: () =>DatePicker.showDatePicker(context,
+                                showTitleActions: true,
+                                minTime: DateTime(2002, 01, 01),
+                                maxTime: DateTime.now(), onChanged: (date) {
+                              print('change $date');
+                            }, onConfirm: (date) {
+                              print('confirm $date');  //!!! I WİLL ADJUST
+                            }, currentTime: DateTime.now(), locale: LocaleType.tr)
     ,
-              hintText: "Doğum Tarihi",
-              
-              prefixIcon: const Icon(Icons.date_range, size: 20,color: Colors.white,),
-            )),
+                hintText: "Doğum Tarihi",
+                
+                prefixIcon: const Icon(Icons.date_range, size: 20,color: Colors.white,),
+              ),
       ],
     );
   }

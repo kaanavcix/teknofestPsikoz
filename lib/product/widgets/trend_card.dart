@@ -1,77 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/core/components/bottomNavigation/bottom_navigation.dart';
 
 import '../../core/constants/app/app_size_constant.dart';
+import '../../core/constants/enums/Icon-enums.dart';
 import '../../core/utility/embabed/embabed_utility.dart';
 
 class TrendCard extends StatelessWidget {
   String text;
   String name;
   String? url;
-   TrendCard({
-    required this.name,required this.text, required this.url,
+  TrendCard({
+    required this.name,
+    required this.text,
+    required this.url,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const edgeInsets = const EdgeInsets.only(bottom: 4.0);
     return SizedBox(
-      height: AppSizeConstant.cardSize200,
-      width: AppSizeConstant.cardSize300,
+      height: 100,
+      width: 350,
       child: Card(
-        elevation: 8,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        color: EmbabedUtility.darkBlack,
+        elevation: AppSizeConstant.elevation8,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: EmbabedUtility.scaffoaldBackgorund,
         child: Row(
           children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                  decoration:  BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(32),
-                          bottomLeft: Radius.circular(32)),
-                      image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image:
-                              NetworkImage(url ?? "https://picsum.photos/200/300"))),
-                )),
+            Container(
+              width: 130,
+              height: 150,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(
+                          url ?? "https://picsum.photos/200/300"))),
+            ),
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Wrap(
-                  alignment: WrapAlignment.spaceBetween,
-                  direction: Axis.horizontal,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.spaceEvenly,
-                  runSpacing: 10,
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      text,
+                    Padding(
+                      padding: edgeInsets,
+                      child: Text(
+                        "BIG DATA",
+                        style: Get.textTheme.bodyMedium!.copyWith(
+                            fontSize: 14,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.bold,
+                            color: EmbabedUtility.socialblue),
+                      ),
+                    ),
+                    Padding(
+                      padding: edgeInsets,
+                      child: Text(
+                        text,
 
-                      //  overflow: TextOverflow.fade,
+                        //  overflow: TextOverflow.fade,
 
-                      style: Get.textTheme.displayLarge!.copyWith(
-                          //color: Colors.black,
-                          ),
+                        style: Get.textTheme.titleSmall!.copyWith(),
+                      ),
                     ),
                     Row(
+                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircleAvatar(backgroundColor: Colors.blue, radius: 15),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(name, style: Get.textTheme.bodyLarge!
-                            //  .copyWith(color: EmbabedUtility.darkBlack),
-                            )
+                        TextButton.icon(
+                            onPressed: () {},
+                            icon: Icon(Icons.star_border_outlined,size:16),
+                            label: Text("2.1 k",style: Get.textTheme.titleSmall,)),
+
+                            TextButton.icon(onPressed: () {
+                              
+                            }, icon: Icon(Icons.timelapse,size:16), label: Text("1 saat önce",style: Get.textTheme.titleSmall,)),
                       ],
                     ),
-                    Text(
-                      "# etiket",
-                      style: Get.textTheme.bodyLarge!
-                          .copyWith(color: EmbabedUtility.socialblue),
-                    )
                   ],
                 ),
               ),
