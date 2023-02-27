@@ -27,6 +27,7 @@ class LoginController extends GetxController {
   GlobalKey<FormState> formState = GlobalKey<FormState>();
   var isFailed = false.obs;
   var isLoading = false.obs;
+  var isRemember = true.obs;
 
   Future<void> logControl(String email, String password) async {
     if (formState.currentState != null && formState.currentState!.validate()) {

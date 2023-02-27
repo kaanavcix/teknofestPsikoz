@@ -22,7 +22,6 @@ class RegisterView extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     List<Widget> screens = const [
       FirstScreen(),
-      SecondScreen(),
       ThirdScreen(),
       FourScreen()
     ];
@@ -55,7 +54,7 @@ class RegisterView extends GetView<RegisterController> {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       controller.currentIndex.value != 0
           ? RegisterButton(
-              color: EmbabedUtility.socialPurple,
+   
               text: AppConstant.registerBackTitle,
               onPressed: () {
                 controller.currentIndex.value--;
@@ -63,8 +62,7 @@ class RegisterView extends GetView<RegisterController> {
           : const SizedBox(),
       RegisterButton(
 
-          color: EmbabedUtility.socialblue,
-          text: controller.currentIndex.value == 3
+          text: controller.currentIndex.value == 2
               ? AppConstant.registerTextButton
               : AppConstant.registerContiuneTitle,
           onPressed: registerFunction)
@@ -82,13 +80,13 @@ class RegisterView extends GetView<RegisterController> {
         Get.snackbar("Error", result.message.toString());
         //   print(controller.currentIndex.value.toString() + "ikinci print");
       }
-    } else if (controller.currentIndex.value != 3 &&
+    } else if (controller.currentIndex.value != 2 &&
         controller.currentIndex.value != 0) {
       // print(controller.currentIndex.value.toString() + "üçüncü print");
 
       controller.currentIndex.value++;
       // print(controller.currentIndex.value.toString() + "dörtüncü print");
-    } else if (controller.currentIndex.value == 3) {
+    } else if (controller.currentIndex.value == 2) {
       print("data");
 
       //TODO: Model üzerinde ilerlemelerde bulunmalıyız.

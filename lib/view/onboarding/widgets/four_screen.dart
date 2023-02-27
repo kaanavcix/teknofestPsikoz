@@ -26,10 +26,7 @@ class FourScreen extends GetView<RegisterController> {
       // height: Get.height,
       child: Column(
         children: [
-          Text(
-            "",
-            style: Get.textTheme.displaySmall,
-          ),
+       
           DropdownWidget(controller: controller,),
           Obx(() => Column(
                 children: [
@@ -42,7 +39,7 @@ class FourScreen extends GetView<RegisterController> {
                     onChanged: (value) {
                       controller.kvkkform.value = value ?? false;
                     },
-                    title: const Text("KVKKK FORMU "),
+                    title:  Text(AppConstant.registerKvkkFormText ,style: Get.textTheme.bodyMedium,),
                   ),
                   CheckboxListTile(
                     activeColor: EmbabedUtility.socialblue,
@@ -53,7 +50,7 @@ class FourScreen extends GetView<RegisterController> {
                     onChanged: (value) {
                       controller.onamform.value = value ?? false;
                     },
-                    title: Text("KİŞİ ONAM FORMU FORMU "),
+                    title: Text(AppConstant.registerOnamFormText, style: Get.textTheme.bodyMedium,),
                   ),
                   CheckboxListTile(
                     activeColor: EmbabedUtility.socialblue,
@@ -64,7 +61,7 @@ class FourScreen extends GetView<RegisterController> {
                     onChanged: (value) {
                       controller.secretform.value = value ?? false;
                     },
-                    title: Text("GİZLİLİK SÖZLEŞME FORMU "),
+                    title: Text(AppConstant.registerSecretAgreementText, style: Get.textTheme.bodyMedium,),
                   )
                 ],
               ))

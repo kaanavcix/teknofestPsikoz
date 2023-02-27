@@ -60,12 +60,12 @@ class PsikozTextBar extends StatelessWidget {
                     EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 constraints: BoxConstraints(
                     minHeight: 48,
-                    maxWidth: Get.width * 0.9,
-                    minWidth: Get.width * 0.9),
+                  
+                  ),
                 fillColor: EmbabedUtility.scaffoaldBackgorund,
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: EmbabedUtility.socialblue,
+                    color: EmbabedUtility.socialPink,
                     width: 0.6,
                   ),
                   borderRadius: BorderRadius.circular(9),

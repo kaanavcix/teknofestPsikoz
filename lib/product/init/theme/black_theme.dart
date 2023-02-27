@@ -47,7 +47,8 @@ ThemeData darkTheme = ThemeData(
             borderSide: const BorderSide(color: Colors.transparent, width: 0.0),
             borderRadius: BorderRadius.circular(9)),
         fillColor: EmbabedUtility.socialGray),
-    textTheme: GoogleFonts.plusJakartaSansTextTheme(Typography.whiteCupertino),
+    textTheme: GoogleFonts.interTextTheme(Typography.whiteHelsinki),
+    //GoogleFonts.plusJakartaSansTextTheme(Typography.whiteHelsinki),
     scaffoldBackgroundColor: Color(0xff131313),
     colorScheme: const ColorScheme(
       

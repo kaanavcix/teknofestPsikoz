@@ -31,10 +31,16 @@ class ProfileView extends GetView<ProfileController> {
                       children: [
                         Container(
                           height: 150,
-                          color: Colors.green,
+                          decoration: BoxDecoration(
+                              color: Colors.purple,
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  filterQuality: FilterQuality.high,
+                                  image: NetworkImage(
+                                      "https://picsum.photos/200/300"))),
                           width: Get.width,
                         ),
-                        Positioned(
+                        const Positioned(
                             bottom: -60,
                             left: 0,
                             right: 0,
@@ -53,7 +59,7 @@ class ProfileView extends GetView<ProfileController> {
                             top: 0,
                             right: 0,
                             child: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.more_horiz_outlined,
                               ),
                               onPressed: () => Get.to(SettingsView()),
@@ -78,10 +84,11 @@ class ProfileView extends GetView<ProfileController> {
                       style: Get.textTheme.titleSmall,
                     ),
 
-                    Placeholder(fallbackWidth: Get.width,fallbackHeight: Get.height-200,
-                  
-                     )
-                     //TODO:Tasarım geldiğinde yapılacaktır
+                    Placeholder(
+                      fallbackWidth: Get.width,
+                      fallbackHeight: Get.height - 200,
+                    )
+                    //TODO:Tasarım geldiğinde yapılacaktır
                   ],
                 ),
               ))),

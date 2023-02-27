@@ -41,7 +41,7 @@ class LoginView extends GetView<LoginController> {
                 const SizedBoxDummy.height(
                   height: 20,
                 ),
-              
+
                 emailTextBar(),
                 Obx(() => passwordTextBar()),
                 Row(
@@ -54,13 +54,13 @@ class LoginView extends GetView<LoginController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text("Beni hatırla"),
-                        Checkbox(
-                          activeColor: EmbabedUtility.socialblue,
-                          value: true,
-                          onChanged: (value) {
-                            print(value);
-                          },
-                        )
+                        Obx(() => Checkbox(
+                              activeColor: EmbabedUtility.socialPink,
+                              value: controller.isRemember.value,
+                              onChanged: (value) {
+                                controller.isRemember.value = value!;
+                              },
+                            ))
                       ],
                     ),
                     const Text("Şifremi unuttum")
@@ -154,60 +154,69 @@ class LoginView extends GetView<LoginController> {
   }
 
   Widget passwordTextBar() {
-    return PsikozTextBar(
-      labelText: "Şifre",
-      validator: Validator.validatorPassword,
-      obscureText: controller.obscureText.value,
-      hintText: AppConstant.passwordText,
-      textcontroller: controller.passwordController,
-      suffixIcon: Obx(() => AnimatedCrossFade(
-          firstChild: IconButton(
-              onPressed: () => controller.changeVisible(),
-              icon: const Icon(
-                Icons.visibility_off,
-                color: Colors.white,
-                size: 18,
-              )),
-          secondChild: IconButton(
-              onPressed: () => controller.changeVisible(),
-              icon: const Icon(
-                Icons.visibility,
-                color: Colors.white,
-                size: 18,
-              )),
-          crossFadeState: controller.obscureText.value
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
-          duration: DurationUtilty.normalDuration())),
-      textInputAction: TextInputAction.done,
-      prefixIcon: Padding(
-        padding: PaddinUtilty.verticalPadding(height: 15).padding,
-        child: IconNames.lock.tosvgPictureConvert(height: 12, width: 12, null),
+    return Padding(
+      padding: PaddinUtilty.horizontalPadding(
+        height: 4,
+      ).padding,
+      child: PsikozTextBar(
+        labelText: "Şifre",
+        validator: Validator.validatorPassword,
+        obscureText: controller.obscureText.value,
+        hintText: AppConstant.passwordText,
+        textcontroller: controller.passwordController,
+        suffixIcon: Obx(() => AnimatedCrossFade(
+            firstChild: IconButton(
+                onPressed: () => controller.changeVisible(),
+                icon: const Icon(
+                  Icons.visibility_off,
+                  color: Colors.white,
+                  size: 18,
+                )),
+            secondChild: IconButton(
+                onPressed: () => controller.changeVisible(),
+                icon: const Icon(
+                  Icons.visibility,
+                  color: Colors.white,
+                  size: 18,
+                )),
+            crossFadeState: controller.obscureText.value
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            duration: DurationUtilty.normalDuration())),
+        textInputAction: TextInputAction.done,
+        prefixIcon: Padding(
+          padding: PaddinUtilty.verticalPadding(height: 15).padding,
+          child:
+              IconNames.lock.tosvgPictureConvert(height: 12, width: 12, null),
+        ),
       ),
     );
   }
 
   Widget emailTextBar() {
-    return PsikozTextBar(
-      validator: Validator.emailValidator,
-      labelText: "E mail",
-      hintText: AppConstant.emailHintText,
-      textcontroller: controller.emailController,
-      keyboardType: TextInputType.emailAddress,
-      prefixIcon: Padding(
-        padding: PaddinUtilty.verticalPadding(height: 15).padding,
-        child: IconNames.email.tosvgPictureConvert(
-          height: 16,
-          width: 16,
-          null,
+    return Padding(
+      padding: PaddinUtilty.horizontalPadding(
+        height: 4,
+      ).padding,
+      child: PsikozTextBar(
+        validator: Validator.emailValidator,
+        labelText: "E mail",
+        hintText: AppConstant.emailHintText,
+        textcontroller: controller.emailController,
+        keyboardType: TextInputType.emailAddress,
+        prefixIcon: Padding(
+          padding: PaddinUtilty.verticalPadding(height: 15).padding,
+          child: IconNames.email.tosvgPictureConvert(
+            height: 16,
+            width: 16,
+            null,
+          ),
         ),
+        textInputAction: TextInputAction.next,
       ),
-      textInputAction: TextInputAction.next,
     );
   }
 }
-
-
 
 class rowButtons extends StatelessWidget {
   const rowButtons({

@@ -54,14 +54,14 @@ class RegisterDoctorView extends GetView<RegisterController> {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       controller.currentIndex.value != 0
           ? RegisterButton(
-              color: EmbabedUtility.socialPurple,
+            
               text: AppConstant.registerBackTitle,
               onPressed: () {
                 controller.currentIndex.value--;
               })
           : const SizedBox(),
       RegisterButton(
-          color: EmbabedUtility.socialblue,
+      
           text: controller.currentIndex.value == 3
               ? AppConstant.registerTextButton
               : AppConstant.registerContiuneTitle,

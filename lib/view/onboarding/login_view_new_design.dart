@@ -31,7 +31,7 @@ class LoginViewNewDesign extends GetView<OnboardingController> {
         body: Column(
           children: [
             Expanded(
-              flex: 7,
+              flex: 15,
               child: PageView.builder(
                 controller: controller.pageController,
                 pageSnapping: true,
@@ -47,7 +47,7 @@ class LoginViewNewDesign extends GetView<OnboardingController> {
               ),
             ),
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 mainAxisSize: MainAxisSize.min,

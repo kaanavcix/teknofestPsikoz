@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/core/constants/app/app_constant.dart';
 
 import '../../../controller/onboarding/register_controller.dart';
 import '../../../core/constants/app/app_array_constant.dart';
@@ -20,21 +21,25 @@ class DropdownWidget extends StatelessWidget {
       children: [
         Obx(() => DropdownButtonHideUnderline(
               child: DropdownButton(
-                
-                hint:Text(controller.gender.value == ""
-                      ? "Cinsiyet"
-                      : controller.gender.value.toString()) ,
+                  hint: Text(
+                    controller.gender.value == ""
+                        ? AppConstant.registerGenderText
+                        : controller.gender.value.toString().contains("1")
+                            ? AppConstant.registerMaleText
+                            : AppConstant.registerFemaleText,
+                            style: Get.textTheme.bodyMedium,
+                  ),
                   elevation: AppSizeConstant.elevation8.toInt(),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  items: const [
+                  items:  [
                     DropdownMenuItem(
                       value: "1",
-                      child: Text("Erkek"),
+                      child: Text(AppConstant.registerMaleText, style: Get.textTheme.bodyMedium,),
                     ),
                     DropdownMenuItem(
                       value: "2",
                       child: Text(
-                        "Kadın",
+                        AppConstant.registerFemaleText, style: Get.textTheme.bodyMedium,
                       ),
                     ),
                   ],
@@ -48,7 +53,7 @@ class DropdownWidget extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   hint: Text(controller.age.value == 1
                       ? "Yaş"
-                      : controller.age.value.toString()),
+                      : controller.age.value.toString(), style: Get.textTheme.bodyMedium,),
                   items: AppArrayConstant.ageClass
                       .map((e) => DropdownMenuItem<int>(
                           value: e, child: Text(e.toString())))

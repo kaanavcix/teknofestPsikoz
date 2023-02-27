@@ -38,27 +38,32 @@ class HomeView extends GetView<HomeController> {
                     child: RefreshIndicator(
                       color: EmbabedUtility.socialwhite,
                       onRefresh: controller.onrefresh,
-                      child: ListView(
-                        physics: ScrollPyhcisyUtilty.bouncAlways(),
-                        controller: controller.controllers,
-                        clipBehavior: Clip.none,
-                        children: [
-                          smallCard(),
-                          middleBar(
-                              AppConstant.discoveryTrend, controller.bookModel),
-                          trendScroll(),
-                          const SizedBoxDummy.height(
-                            height: 5,
-                          ),
-                          middleBar(AppConstant.recommenededMaterial,
-                              controller.bookModel),
-                          mediumLayout(),
-                          Text("Short podcast article book"),
-                          Placeholder(fallbackHeight: 100),
-                          Text("quiz reletaing to phys"),
-                          Placeholder(fallbackHeight: 200),
-                          Text("Short podcast article book"),
-                        ],
+                      child: Padding(
+                        padding:PaddinUtilty.horizontalPadding().padding,
+                        child: ListView(
+                          physics: ScrollPyhcisyUtilty.bouncAlways(),
+                          controller: controller.controllers,
+                          clipBehavior: Clip.none,
+                          children: [
+                            smallCard(),
+                            middleBar(
+                                AppConstant.discoveryTrend, controller.bookModel),
+                            trendScroll(),
+                            const SizedBoxDummy.height(
+                              height: 5,
+                            ),
+                            middleBar(AppConstant.recommenededMaterial,
+                                controller.bookModel),
+                            mediumLayout(),
+                            DiscoverCard(text1:   "dENEME",text2: "Deneme2",),
+                            //TODO: Podcast ve makaleler için card tasarımı yapılmalı
+                            Text("Short podcast article book"),
+                            Placeholder(fallbackHeight: 100),
+                            Text("quiz reletaing to phys"),
+                            Placeholder(fallbackHeight: 200),
+                            Text("Short podcast article book"),
+                          ],
+                        ),
                       ),
                     ),
                   )));
@@ -128,9 +133,10 @@ class HomeView extends GetView<HomeController> {
       width: Get.width,
 
       child: ListView.builder(
+         prototypeItem: DiscoverCard(),
         physics: ScrollPyhcisyUtilty.neverScroll(),
         shrinkWrap: true,
-        itemCount: controller.articleModel!.data!.length,
+        itemCount: controller.articleModel!.data!.length ,
         itemBuilder: (BuildContext context, int index) {
           var model = controller.articleModel!.data![index];
           return DiscoverCard(
@@ -144,7 +150,7 @@ class HomeView extends GetView<HomeController> {
 
   Padding middleBar(String text, BookModel? bookModel) {
     return Padding(
-      padding: PaddinUtilty.normalPadding().padding,
+      padding: PaddinUtilty.verticalPadding().padding,
       child: Align(
           alignment: Alignment.centerLeft,
           child: SizedBox(
@@ -180,8 +186,9 @@ class HomeView extends GetView<HomeController> {
                 
              //   var data = (model!.image!).split("/");
                 return TrendCard(
-                  text: model!.title ?? "",
-                  name: model.writer ?? "",
+            hoursAgo: model?.date,
+            likeCount: 2,
+            title: model?.title,
                   url:  "https://picsum.photos/200/300",
                 );
               },

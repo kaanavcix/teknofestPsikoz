@@ -17,7 +17,14 @@ import 'package:dio/dio.dart';
 } */
 
 class DioInstanceTsApi {
-  final Dio _dio = Dio(BaseOptions(baseUrl: "http://psikozbac.eu-central-1.elasticbeanstalk.com/api/"));
+  final Dio _dio = Dio(BaseOptions(
+      baseUrl: "http://psikozbac.eu-central-1.elasticbeanstalk.com/api/",
+      headers: {
+        
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        'Accept': '*/*'
+      }));
 
   DioInstanceTsApi._();
 
@@ -26,14 +33,11 @@ class DioInstanceTsApi {
   Dio get dio => _dio;
 
   Dio dioAuth(String token) => Dio(BaseOptions(
-      baseUrl: "http://psikozbac.eu-central-1.elasticbeanstalk.com/api/", headers: {"token": token}));
+      baseUrl: "http://psikozbac.eu-central-1.elasticbeanstalk.com/api/",
+      headers: {"token": token}));
 }
 
-
-
-
-
-class ApiPath{
+class ApiPath {
   static const String BASE_PATH = "http://192.168.1.14:8080/";
 }
 

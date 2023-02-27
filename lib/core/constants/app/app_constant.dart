@@ -5,7 +5,7 @@ class AppConstant {
   static const String messageTitle = "Yanıtlar";
   static const String dummyMessage = "En kısa sürede";
   static const String postTitleComment = "Post";
-    static const String privateRoom = "Özel oda";
+  static const String privateRoom = "Özel oda";
 
   static const String discoveryTitle = "Keşfet";
   static const String discoveryTrend = "Trend Olanlar";
@@ -26,4 +26,14 @@ class AppConstant {
   static const String registerUsername = "Kullanıcı adı";
   static const String registerEmailTitle = "E-mailinizi giriniz";
   static const String recommenededMaterial = "İlginizi çekebilecek materyaller";
+  static const String appointmentAppBarTitle = "Gönderiler ve Seanslar";
+  static const String registerNameText = "İsim";
+  static const String registerbirthdayText = "Doğum Tarihi";
+  static const String registerGenderText = "Cinsiyet";
+  static const String registerMaleText = "Erkek";
+  static const String registerFemaleText = "Kadın";
+  static const String registerAgeText = "Yaş";
+  static const String registerKvkkFormText = "Kvkk Formu";
+  static const String registerOnamFormText = "Kişi Onam Formu";
+  static const String registerSecretAgreementText = "Gizlilik Sözleşmesi Formu";
 }

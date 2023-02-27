@@ -51,7 +51,7 @@ class PostBar extends StatelessWidget {
                       children: [
                         Text(
                           userName,
-                          style: grSTextB,
+                          style: Get.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -70,7 +70,7 @@ class PostBar extends StatelessWidget {
               GestureDetector(
                 onTap: onTapMore,
                 child: IconNames.dotsvertical.tosvgPictureConvert(
-                    EmbabedUtility.socialLightGray,
+                    EmbabedUtility.socialwhite,
                     height: 24,
                     width: 24),
               ),
@@ -83,7 +83,7 @@ class PostBar extends StatelessWidget {
         child: Text(
           textAlign: TextAlign.justify,
           text,
-          style: grSTextB.copyWith(fontWeight: FontWeight.w300,fontSize: 12),
+          style: Get.textTheme.titleSmall,
         ),
       ),
       SizedBox(
@@ -104,7 +104,7 @@ class PostBar extends StatelessWidget {
                       ),
                       Padding(
                         padding: PaddinUtilty.leftPadding().padding,
-                        child: Text("123", style: grSText),
+                        child: Text("123", style: Get.textTheme.titleSmall),
                       )
                     ],
                   )),
@@ -130,7 +130,7 @@ class PostBar extends StatelessWidget {
       ),
       sizedbox(),
       const MySeparator(
-        color: EmbabedUtility.socialLightGray,
+        color: EmbabedUtility.socialwhite,
         height: 1,
       )
     ]);

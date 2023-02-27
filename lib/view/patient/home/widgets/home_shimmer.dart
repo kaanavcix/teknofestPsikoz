@@ -50,9 +50,7 @@ class HomeShimmer extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
            
               return TrendCard(
-                text: "",
-                name: "",
-                url:null ,
+               
               );
             },
           ),

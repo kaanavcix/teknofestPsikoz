@@ -44,4 +44,4 @@ Widget function() => box.hasData("auth")
          box.read("patient") == true
             ? const MainView()
             :  MainViewDoctor()
-        :  LoginViewNewDesign();
+        :  LoginView();

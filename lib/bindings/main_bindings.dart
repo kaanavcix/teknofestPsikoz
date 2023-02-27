@@ -16,13 +16,10 @@ class MainBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<MainController>(() => MainController());
     Get.put<HomeController>(
-        HomeController(
-            dioService: DioServiceDb(
-                DioInstanceTsApi.instance.dio)),
+        HomeController(dioService: DioServiceDb(DioInstanceTsApi.instance.dio)),
         permanent: true);
     Get.lazyPut<PostController>(
-      () => PostController(DioServiceDb(
-          DioInstanceTsApi.instance.dio)),
+      () => PostController(DioServiceDb(DioInstanceTsApi.instance.dio)),
     );
     Get.lazyPut<CommentController>(
       () => CommentController(),
@@ -30,8 +27,7 @@ class MainBinding implements Bindings {
     ;
     Get.lazyPut<ProfileController>(() => ProfileController());
     Get.lazyPut<UserController>(
-      () => UserController(DioServiceUser(
-          DioInstanceTsApi.instance.dio)),
+      () => UserController(DioServiceUser(DioInstanceTsApi.instance.dio)),
     );
   }
 }

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:psikoz/controller/onboarding/register_controller.dart';
 import 'package:psikoz/core/components/buttons/psikoz_button.dart';
 import 'package:psikoz/core/components/inputbar/psikoztextbar.dart';
 import 'package:psikoz/core/utility/app/padding_utility.dart';
 import 'package:psikoz/core/utility/app/sized_box_dummy.dart';
 import 'package:psikoz/core/utility/embabed/embabed_utility.dart';
+import 'package:psikoz/product/validator/onboarding_validate.dart';
 import 'package:psikoz/product/view/horizontal_or_divider.dart';
 import 'package:psikoz/view/onboarding/register_view.dart';
 import 'package:psikoz/view/onboarding/register_view_doctor.dart';
 import 'package:psikoz/view/onboarding/widgets/first_screen.dart';
 
 import '../../core/components/buttons/text_icon_button.dart';
+import '../../core/constants/app/app_constant.dart';
 
-class RegisterFirstView extends StatelessWidget {
+class RegisterFirstView extends GetView<RegisterController> {
   const RegisterFirstView({super.key});
 
   @override
@@ -40,7 +43,7 @@ class RegisterFirstView extends StatelessWidget {
                 ),
                 TextIconButton(
                   onPressed: () {},
-                  data: Icon(
+                  data: const Icon(
                     Icons.apple,
                     size: 24,
                   ),
@@ -58,7 +61,14 @@ class RegisterFirstView extends StatelessWidget {
                   height: 10,
                 ),
                 HorizontalOrLine(label: "Yada", height: 0.8),
-                PsikozTextBar(),
+                PsikozTextBar(
+                  hintText: AppConstant.emailHintText,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.done,
+                  validator: Validator.emailValidator,
+                  textcontroller: controller.emailController,
+                  
+                ),
                 PsikozButton(
                     onTap: () {
                         Get.toNamed("/register"); 

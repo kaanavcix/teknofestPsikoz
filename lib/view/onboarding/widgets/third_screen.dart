@@ -14,7 +14,7 @@ class ThirdScreen extends GetView<RegisterController> {
       children: [
         Text(
           "Şifrenizi giriniz", // bu textleri düzenlicem
-          style: Get.textTheme.headlineLarge,
+          
         ),
         Obx(() => Padding(
               padding: const EdgeInsets.only(
@@ -25,6 +25,7 @@ class ThirdScreen extends GetView<RegisterController> {
                     : null,
                 obscureText: controller.obscureText.value,
                 hintText: "Şifre",
+                labelText: "Şifre",
                 textcontroller: controller.passwordController,
                 suffixIcon: Obx(() => AnimatedCrossFade(
                     firstChild: IconButton(

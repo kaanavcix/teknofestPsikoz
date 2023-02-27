@@ -8,7 +8,7 @@ import '../../../controller/post_controller.dart';
 import '../../../core/components/post/post_bar.dart';
 import '../../../core/constants/enums/Icon-enums.dart';
 import '../../../core/utility/app/scroll_pyhcis_utility.dart';
-import 'email_view.dart';
+import 'general_control_view.dart';
 import 'comment_view.dart';
 import 'post_view.dart';
 

@@ -8,19 +8,17 @@ import 'package:psikoz/product/service/model/user/user_model.dart';
 
 class GeneralControlController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  late TabController generalControl;
   IDioServiceMain dioService;
   BaseModel? postModel;
   GeneralControlController(this.dioService);
-
+  Rx<int> index = 0.obs;
+  late PageController pageController;
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    generalControl = TabController(
-      vsync: this,
-      length: 3,
-    );
+    pageController = PageController(initialPage: 0);
+
     getCustomPosts();
   }
 

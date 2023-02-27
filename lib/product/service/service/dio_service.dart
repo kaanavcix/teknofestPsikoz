@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' hide FormData;
 
 import '../../base/IDioService.dart';
 import '../model/tokens/token_model.dart';
@@ -21,10 +22,12 @@ class DioServiceOnboard extends IDioService {
         }
       } else if (response.statusCode == 404) {
         var data = response.data;
+         Get.snackbar("Error", data.toString());
         return ErrorModel.fromJson(data);
+        
       }
     } on DioError catch (e) {
-      print(e.message);
+      Get.snackbar("Hi", e.message.toString());
     }
   }
 
@@ -60,9 +63,9 @@ class DioServiceOnboard extends IDioService {
           return SuccessModel.fromJson(data);
         }
       }
-        if (response.statusCode == 201) {
-          return ErrorModel.fromJson(response.data);
-        }
+      if (response.statusCode == 201) {
+        return ErrorModel.fromJson(response.data);
+      }
     } on DioError catch (e) {
       Map<String, dynamic> result = {"sucess": false, "message": e.message};
       print(e.message);
